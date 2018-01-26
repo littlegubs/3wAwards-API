@@ -1,72 +1,40 @@
-Symfony Standard Edition
-========================
+# English
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+## [3wAwards](https://github.com/MWAlexisL/3wAwards) Symfony API Project
 
-What's inside?
---------------
 
-The Symfony Standard Edition is configured with the following defaults:
+### Description
 
-  * An AppBundle you can use to start coding;
+This API is designed for the 3wAwards Angular App.
+3wAwards is a web app which allow companies, websites owners, and web agency to submit their website to the public.
+Anonyme visitors and logged in members can vote, give likes and visit websites' rewiew card and visit them.
+In addition, an award through many categories is given to the best websites.
 
-  * Twig as the only configured template engine;
+This allow visitors to find the best websites of the moment, localized, filtered by many categories.
 
-  * Doctrine ORM/DBAL;
+### Purpose
 
-  * Swiftmailer;
+The 3wAwards is an API which will comunicate to the angular App.
 
-  * Annotations enabled for everything.
+### Installation
 
-It comes pre-configured with the following bundles:
+* Run`git clone https://github.com/MWAlexisL/3wAwards.git`
 
-  * **FrameworkBundle** - The core Symfony framework bundle
+* Run `git clone https://github.com/MWAlexisL/3wAwards-API.git`
 
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
+* Run `composer install`
 
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
+* Run `vendore/bin/phing update:dev`
 
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
+#### It's working :D 
 
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
+### Contributors
 
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
+* [LEROY Alexis](https://github.com/Gouaky)
 
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
+* [ROBERT Florian](https://github.com/florob95)
 
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
+* [DECOURTY William](https://github.com/ZPredou)
 
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][13] (in dev env) - Adds code generation
-    capabilities
-
-  * [**WebServerBundle**][14] (in dev env) - Adds commands for running applications
-    using the PHP built-in web server
-
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
-
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
-
-[1]:  https://symfony.com/doc/3.4/setup.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/3.4/doctrine.html
-[8]:  https://symfony.com/doc/3.4/templating.html
-[9]:  https://symfony.com/doc/3.4/security.html
-[10]: https://symfony.com/doc/3.4/email.html
-[11]: https://symfony.com/doc/3.4/logging.html
-[13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
-[14]: https://symfony.com/doc/current/setup/built_in_web_server.html
+* [BOURGEOIS Lucas](https://github.com/LucasBourgeois)
