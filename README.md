@@ -25,7 +25,7 @@ The 3wAwards is an API which will comunicate to the angular App.
 
 * Run `composer install`
 
-* Run `vendore/bin/phing update:dev`
+* Run `vendor/bin/phing update:dev`
 
 #### It's working :D 
 
