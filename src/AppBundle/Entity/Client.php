@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Agency
+ * Client
  *
- * @ORM\Table(name="agency")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\AgencyRepository")
+ * @ORM\Table(name="client")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ClientRepository")
  */
-class Agency
+class Client
 {
     /**
      * @var int
@@ -20,6 +20,13 @@ class Agency
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
 
 
     /**
@@ -31,5 +38,7 @@ class Agency
     {
         return $this->id;
     }
+
+
 }
 
