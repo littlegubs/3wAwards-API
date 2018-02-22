@@ -1,0 +1,6 @@
+parameters:
+    smart.project_url: "https://3w-awards.sf/"
+    smart.project_name: 3w-awards
+    smart.project_title: 3wAwards
+    smart.vagrant_ip: 192.168.9.12
+
