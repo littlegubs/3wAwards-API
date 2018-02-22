@@ -31,9 +31,23 @@ class Tag
     /**
      * @var Agency
      *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Agency", mappedBy="agency")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Agency", mappedBy="tags")
      */
     private $agencies;
+
+    /**
+     * @var Client
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Client", mappedBy="tags")
+     */
+    private $clients;
+
+    /**
+     * @var Project
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Project", mappedBy="tags")
+     */
+    private $projects;
 
     /**
      * Get id

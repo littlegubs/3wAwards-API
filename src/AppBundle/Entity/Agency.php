@@ -34,22 +34,21 @@ class Agency
      * @var Member
      *
      * @ORM\Column(name="member")
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Member", inversedBy="member")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Member", inversedBy="agencies")
      */
     private $member;
 
     /**
      * @var Project
      *
-     * @ORM\Column(name="project")
-     * @ORM\OneToMany(targetEntity="Project", mappedBy="project")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Project", mappedBy="agency")
      */
-    private $project;
+    private $projects;
 
     /**
      * @var Tag
      *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="tag")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="agencies")
      */
     private $tags;
 
@@ -59,6 +58,23 @@ class Agency
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
      */
     private $image;
+
+    /**
+     * @return Image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param Image $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
 
     /**
      * Get id

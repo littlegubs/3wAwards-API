@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -99,12 +100,16 @@ class Member
     private $projectRatingMember;
 
     /**
-     * @var Member
-     *
-     * @ORM\Column(name="member")
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Member", mappedBy="member")
+     * @var Client | ArrayCollection[]
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Client", mappedBy="member")
      */
-    private $member;
+    private $clients;
+
+    /**
+     * @var Agency | ArrayCollection[]
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Agency", mappedBy="member")
+     */
+    private $agencies;
 
     /**
      * @var Image

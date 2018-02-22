@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity\Traits;
 
+use AppBundle\Entity\Tag;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,14 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 trait CardTrait
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
 
     /**
      * @var string
@@ -27,13 +20,6 @@ trait CardTrait
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="logo", type="string", length=255)
-     */
-    private $logo;
 
     /**
      * @var string
@@ -118,17 +104,6 @@ trait CardTrait
      * @ORM\Column(name="duns", type="string", length=255)
      */
     private $duns;
-
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set name
@@ -466,5 +441,6 @@ trait CardTrait
     {
         return $this->duns;
     }
+
 }
 

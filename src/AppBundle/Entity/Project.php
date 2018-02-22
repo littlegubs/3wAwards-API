@@ -85,9 +85,16 @@ class Project
 
     /**
      * @var Agency
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Agency", inversedBy="project")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Agency", inversedBy="projects")
      */
     private $agency;
+
+    /**
+     * @var Tag
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="projects")
+     */
+    private $tags;
 
     /**
      * Get id

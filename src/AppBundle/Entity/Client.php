@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Traits\CardTrait;
 
 /**
  * Client
@@ -12,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Client
 {
+    use CardTrait;
     /**
      * @var int
      *
@@ -22,18 +24,19 @@ class Client
     private $id;
 
     /**
-     * @var string
+     * @var Tag
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="clients")
      */
-    private $name;
+    private $tags;
 
     /**
-     * @var Client
+     * @var Member
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Client", inversedBy="client")
+     * @ORM\Column(name="member")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Member", inversedBy="clients")
      */
-    private $client;
+    private $member;
 
     /**
      * Get id
