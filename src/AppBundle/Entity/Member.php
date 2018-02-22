@@ -91,6 +91,27 @@ class Member
      */
     private $optIn;
 
+    /**
+     * @var ProjectRatingMember
+     *
+     * @ORM\Column(name="projectRatingMember", type="ProjectRatingMember")
+     */
+    private $projectRatingMember;
+
+    /**
+     * @var Member
+     *
+     * @ORM\Column(name="member")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Member", mappedBy="member")
+     */
+    private $member;
+
+    /**
+     * @var Image
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", inversedBy="member")
+     */
+    private $image;
 
     /**
      * Get id
@@ -340,6 +361,46 @@ class Member
     public function getOptIn()
     {
         return $this->optIn;
+    }
+
+    /**
+     * @return ProjectRatingMember
+     */
+    public function getProjectRatingMember()
+    {
+        return $this->projectRatingMember;
+    }
+
+    /**
+     * @param ProjectRatingMember $projectRatingMember
+     *
+     * @return $this
+     */
+    public function setProjectRatingMember($projectRatingMember)
+    {
+        $this->projectRatingMember = $projectRatingMember;
+
+        return $this;
+    }
+
+    /**
+     * @return Member
+     */
+    public function getMember()
+    {
+        return $this->Member;
+    }
+
+    /**
+     * @param Member $Member
+     *
+     * @return $this
+     */
+    public function setMember($Member)
+    {
+        $this->Member = $Member;
+
+        return $this;
     }
 }
 

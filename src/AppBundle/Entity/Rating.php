@@ -37,6 +37,13 @@ class Rating
     private $category;
 
     /**
+     * @var ProjectRatingMember
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectRatingMember", mappedBy="ratings")
+     */
+    private $projectRatingMember;
+
+    /**
      * Get id
      *
      * @return int
@@ -68,6 +75,46 @@ class Rating
     public function getValue()
     {
         return $this->value;
+    }
+
+    /**
+     * @return Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param Category $category
+     *
+     * @return $this
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return ProjectRatingMember
+     */
+    public function getProjectRatingMember()
+    {
+        return $this->projectRatingMember;
+    }
+
+    /**
+     * @param ProjectRatingMember $projectRatingMember
+     *
+     * @return $this
+     */
+    public function setProjectRatingMember($projectRatingMember)
+    {
+        $this->projectRatingMember = $projectRatingMember;
+
+        return $this;
     }
 }
 

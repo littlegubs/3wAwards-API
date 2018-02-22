@@ -28,6 +28,12 @@ class Client
      */
     private $name;
 
+    /**
+     * @var Client
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Client", inversedBy="client")
+     */
+    private $client;
 
     /**
      * Get id

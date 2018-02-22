@@ -3,7 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use AppBundle\Entity\Traits\CardTrait;
 /**
  * Agency
  *
@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Agency
 {
+    use CardTrait;
     /**
      * @var int
      *
@@ -21,6 +22,43 @@ class Agency
      */
     private $id;
 
+    /**
+     * @var TypeCompany
+     *
+     * @ORM\Column(name="typeCompany")
+     * @ORM\ManyToOne(targetEntity="TypeCompany", inversedBy="typeCompany")
+     */
+    private $typeCompany;
+
+    /**
+     * @var Member
+     *
+     * @ORM\Column(name="member")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Member", inversedBy="member")
+     */
+    private $member;
+
+    /**
+     * @var Project
+     *
+     * @ORM\Column(name="project")
+     * @ORM\OneToMany(targetEntity="Project", mappedBy="project")
+     */
+    private $project;
+
+    /**
+     * @var Tag
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="tag")
+     */
+    private $tags;
+
+    /**
+     * @var Image
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
+     */
+    private $image;
 
     /**
      * Get id
@@ -30,6 +68,26 @@ class Agency
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return TypeCompany
+     */
+    public function getTypeCompany()
+    {
+        return $this->typeCompany;
+    }
+
+    /**
+     * @param TypeCompany $typeCompany
+     *
+     * @return $this
+     */
+    public function setTypeCompany($typeCompany)
+    {
+        $this->typeCompany = $typeCompany;
+
+        return $this;
     }
 }
 

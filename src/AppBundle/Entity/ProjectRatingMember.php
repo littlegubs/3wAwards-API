@@ -35,6 +35,36 @@ class ProjectRatingMember
      */
     private $isVoteJudge;
 
+    /**
+     * @var Rating
+     *
+     * @ORM\Column(name="ratings")
+     * @ORM\ManyToOne(targetEntity="Rating", inversedBy="projectRatingMember")
+     */
+    private $ratings;
+
+    /**
+     * @var Member
+     *
+     * @ORM\Column(name="member")
+     * @ORM\ManyToOne(targetEntity="Member", inversedBy="projectRatingMember")
+     */
+    private $member;
+
+    /**
+     * @var Project
+     *
+     * @ORM\Column(name="project")
+     * @ORM\ManyToOne(targetEntity="Project", inversedBy="projectRatingMember")
+     */
+    private $project;
+
+    /**
+     * @var Rating
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Rating", inversedBy="projectRatingMember")
+     */
+    private $rating;
 
     /**
      * Get id
@@ -93,5 +123,66 @@ class ProjectRatingMember
     {
         return $this->isVoteJudge;
     }
+
+    /**
+     * @return Category
+     */
+    public function getRatings()
+    {
+        return $this->ratings;
+    }
+
+    /**
+     * @param Category $ratings
+     *
+     * @return $this
+     */
+    public function setRatings($ratings)
+    {
+        $this->ratings = $ratings;
+
+        return $this;
+    }
+
+    /**
+     * @return Category
+     */
+    public function getMember()
+    {
+        return $this->member;
+    }
+
+    /**
+     * @param Category $member
+     *
+     * @return $this
+     */
+    public function setMember($member)
+    {
+        $this->member = $member;
+
+        return $this;
+    }
+
+    /**
+     * @return Category
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
+     * @param Category $project
+     *
+     * @return $this
+     */
+    public function setProject($project)
+    {
+        $this->project = $project;
+
+        return $this;
+    }
+
 }
 

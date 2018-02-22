@@ -35,6 +35,12 @@ class Image
      */
     private $libelle;
 
+    /**
+     * @var Member
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Member", mappedBy="image")
+     */
+    private $member;
 
     /**
      * Get id

@@ -28,6 +28,12 @@ class Tag
      */
     private $libelle;
 
+    /**
+     * @var Agency
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Agency", mappedBy="agency")
+     */
+    private $agencies;
 
     /**
      * Get id

@@ -70,6 +70,24 @@ class Project
      */
     private $marksNumber;
 
+    /**
+     * @var ProjectRatingMember
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Project", mappedBy="projectRatingMember")
+     */
+    private $projectRatingMember;
+
+    /**
+     * @var Client
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Client", inversedBy="project")
+     */
+    private $client;
+
+    /**
+     * @var Agency
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Agency", inversedBy="project")
+     */
+    private $agency;
 
     /**
      * Get id
@@ -247,6 +265,66 @@ class Project
     public function getMarksNumber()
     {
         return $this->marksNumber;
+    }
+
+    /**
+     * @return ProjectRatingMember
+     */
+    public function getProjectRatingMember()
+    {
+        return $this->projectRatingMember;
+    }
+
+    /**
+     * @param ProjectRatingMember $projectRatingMember
+     *
+     * @return $this
+     */
+    public function setProjectRatingMember($projectRatingMember)
+    {
+        $this->projectRatingMember = $projectRatingMember;
+
+        return $this;
+    }
+
+    /**
+     * @return Client
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * @param Client $client
+     *
+     * @return $this
+     */
+    public function setClient($client)
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * @return Agency
+     */
+    public function getAgency()
+    {
+        return $this->agency;
+    }
+
+    /**
+     * @param Agency $agency
+     *
+     * @return $this
+     */
+    public function setAgency($agency)
+    {
+        $this->agency = $agency;
+
+        return $this;
     }
 }
 

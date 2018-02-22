@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace AppBundle\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="card_trait")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CardTraitRepository")
  */
-class CardTrait
+trait CardTrait
 {
     /**
      * @var int

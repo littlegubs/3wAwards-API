@@ -45,6 +45,15 @@ class TypeCompany
      */
     private $owners;
 
+    /**
+     * @var Agency
+     *
+     * @ORM\Column(name="agency")
+     * @ORM\OneToMany(targetEntity="Agency", mappedBy="agency")
+     */
+    private $agency;
+
+
     public function __construct()
     {
         $this->agencies = new ArrayCollection();
@@ -83,6 +92,26 @@ class TypeCompany
     public function getLibelle()
     {
         return $this->libelle;
+    }
+
+    /**
+     * @return Agency
+     */
+    public function getAgency()
+    {
+        return $this->agency;
+    }
+
+    /**
+     * @param Agency $agency
+     *
+     * @return $this
+     */
+    public function setAgency($agency)
+    {
+        $this->agency = $agency;
+
+        return $this;
     }
 }
 
