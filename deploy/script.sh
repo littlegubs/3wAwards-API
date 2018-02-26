@@ -17,11 +17,11 @@ sudo debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password pas
 sudo debconf-set-selections <<< "mysql-server-5.5 mysql-server/root_password_again password $4"
 sudo apt-get -y install mysql-server
 
-sudo sed -i "s|3306|3312|" /etc/mysql/mysql.conf.d/mysqld.cnf
-sudo sed -i "s|127.0.0.1|0.0.0.0|" /etc/mysql/mysql.conf.d/mysqld.cnf
+sudo sed -i "s/3306/3312/" /etc/mysql/mysql.conf.d/mysqld.cnf
+sudo sed -i "s/127.0.0.1/0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld.cnf
+echo 'sql_mode = "STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"' >> /etc/mysql/mysql.conf.d/mysqld.cnf
 
 mysql -u root -p$4 -e "CREATE USER 'root'@'%' IDENTIFIED BY '$4'; GRANT ALL PRIVILEGES ON * . * TO 'root'@'%' IDENTIFIED BY '$4'; FLUSH PRIVILEGES;"
-
 sudo service mysql restart
 
 # Install PHPMyAdmin
@@ -38,18 +38,15 @@ sudo mv /var/www/config.inc.php /etc/phpmyadmin/config.inc.php
 sudo chmod 644 /etc/phpmyadmin/config.inc.php
 
 # Install PHP7
-sudo apt-get -y install php php7.0-mysql php7.0-cli php7.0-intl php7.0-curl php7.0-gd php7.0-bcmath php-apcu php7.0-mcrypt php-imagick
+sudo apt-get -y install php php7.0-mysql php7.0-cli php7.0-intl php7.0-curl php7.0-gd php-apcu php7.0-mcrypt
 
 # Enable PHP7 mod
 sudo phpenmod mcrypt
 
 # Edit PHP7 Config
-sudo sed -i "s|post_max_size = 8M|post_max_size = 600M|" /etc/php/7.0/apache2/php.ini
-sudo sed -i "s|upload_max_filesize = 2M|upload_max_filesize = 500M|" /etc/php/7.0/apache2/php.ini
-sudo sed -i "s|memory_limit = 128M|memory_limit = 512M|" /etc/php/7.0/apache2/php.ini
-sudo sed -i "s|display_errors = Off|display_errors = On|" /etc/php/7.0/apache2/php.ini
-sudo sed -i "s|;date.timezone =|date.timezone = Europe/Paris|" /etc/php/7.0/apache2/php.ini
-
+sudo sed -i "s/post_max_size = 8M/post_max_size = 600M/" /etc/php/7.0/apache2/php.ini
+sudo sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 500M/" /etc/php/7.0/apache2/php.ini
+sudo sed -i "s/display_errors = Off/display_errors = On/" /etc/php/7.0/apache2/php.ini
 
 # Delete default Apache web directory and vhost
 sudo rm -rf /var/www/html
@@ -61,11 +58,11 @@ sudo mv /var/www/project.conf /etc/apache2/sites-available/
 sudo mkdir /etc/apache2/ssl
 sudo mv /var/www/project.crt /etc/apache2/ssl/project.crt
 sudo mv /var/www/project.key /etc/apache2/ssl/project.key
-sudo sed -i "s|project_url|$3|g" /etc/apache2/sites-available/project.conf
+sudo sed -i "s/project_url/$3/g" /etc/apache2/sites-available/project.conf
 
 # Edit Apache config
-sudo sed -i "s|export APACHE_RUN_USER=www-data|export APACHE_RUN_USER=vagrant|" /etc/apache2/envvars
-sudo sed -i "s|export APACHE_RUN_GROUP=www-data|export APACHE_RUN_GROUP=vagrant|" /etc/apache2/envvars
+sudo sed -i "s/export APACHE_RUN_USER=www-data/export APACHE_RUN_USER=ubuntu/" /etc/apache2/envvars
+sudo sed -i "s/export APACHE_RUN_GROUP=www-data/export APACHE_RUN_GROUP=ubuntu/" /etc/apache2/envvars
 
 # Enable Apache mod and vhost
 sudo a2enmod rewrite
@@ -81,7 +78,6 @@ sudo apt-get install default-jdk -y
 
 # Install elastic search
 sudo wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
-sudo apt-get install apt-transport-https
 echo "deb https://packages.elastic.co/elasticsearch/5.x/debian stable main" | sudo tee -a /etc/apt/sources.list.d/elasticsearch-5.x.list
 sudo apt-get update
 sudo apt-get -y install elasticsearch
