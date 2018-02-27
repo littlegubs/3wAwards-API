@@ -41,7 +41,7 @@ class Category
      * @var Rating
      *
      * @ORM\Column(name="ratings")
-     * @ORM\OneToMany(targetEntity="Rating", mappedBy="")
+     * @ORM\OneToMany(targetEntity="Rating", mappedBy="category")
      */
     private $ratings;
 

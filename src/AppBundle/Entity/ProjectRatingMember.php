@@ -36,14 +36,6 @@ class ProjectRatingMember
     private $isVoteJudge;
 
     /**
-     * @var Rating
-     *
-     * @ORM\Column(name="ratings")
-     * @ORM\ManyToOne(targetEntity="Rating", inversedBy="projectRatingMember")
-     */
-    private $ratings;
-
-    /**
      * @var Member
      *
      * @ORM\Column(name="member")
@@ -55,7 +47,7 @@ class ProjectRatingMember
      * @var Project
      *
      * @ORM\Column(name="project")
-     * @ORM\ManyToOne(targetEntity="Project", inversedBy="projectRatingMember")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project", inversedBy="projectRatingMember")
      */
     private $project;
 

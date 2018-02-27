@@ -94,8 +94,7 @@ class Member
 
     /**
      * @var ProjectRatingMember
-     *
-     * @ORM\Column(name="projectRatingMember", type="ProjectRatingMember")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectRatingMember", mappedBy="member")
      */
     private $projectRatingMember;
 

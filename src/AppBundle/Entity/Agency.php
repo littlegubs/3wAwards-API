@@ -105,5 +105,65 @@ class Agency
 
         return $this;
     }
+
+    /**
+     * @return Member
+     */
+    public function getMember()
+    {
+        return $this->member;
+    }
+
+    /**
+     * @param Member $member
+     *
+     * @return $this
+     */
+    public function setMember($member)
+    {
+        $this->member = $member;
+
+        return $this;
+    }
+
+    /**
+     * @return Project
+     */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
+
+    /**
+     * @param Project $projects
+     *
+     * @return $this
+     */
+    public function setProjects($projects)
+    {
+        $this->projects = $projects;
+
+        return $this;
+    }
+
+    /**
+     * @return Tag
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param Tag $tags
+     *
+     * @return $this
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
 }
 

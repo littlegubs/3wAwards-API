@@ -73,7 +73,7 @@ class Project
     /**
      * @var ProjectRatingMember
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Project", mappedBy="projectRatingMember")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectRatingMember", mappedBy="project")
      */
     private $projectRatingMember;
 
@@ -95,6 +95,12 @@ class Project
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="projects")
      */
     private $tags;
+
+    /**
+     * @var Image | ArrayCollection[]
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="project")
+     */
+    private $image;
 
     /**
      * Get id
@@ -330,6 +336,46 @@ class Project
     public function setAgency($agency)
     {
         $this->agency = $agency;
+
+        return $this;
+    }
+
+    /**
+     * @return Tag
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param Tag $tags
+     *
+     * @return $this
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection[]|Image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param ArrayCollection[]|Image $image
+     *
+     * @return $this
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
 
         return $this;
     }

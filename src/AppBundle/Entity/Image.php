@@ -43,6 +43,14 @@ class Image
     private $member;
 
     /**
+     * @var Project
+     *
+     * @ORM\Column(name="project")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project", inversedBy="image")
+     */
+    private $project;
+
+    /**
      * Get id
      *
      * @return int
@@ -98,6 +106,46 @@ class Image
     public function getLibelle()
     {
         return $this->libelle;
+    }
+
+    /**
+     * @return Member
+     */
+    public function getMember()
+    {
+        return $this->member;
+    }
+
+    /**
+     * @param Member $member
+     *
+     * @return $this
+     */
+    public function setMember($member)
+    {
+        $this->member = $member;
+
+        return $this;
+    }
+
+    /**
+     * @return Project
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
+     * @param Project $project
+     *
+     * @return $this
+     */
+    public function setProject($project)
+    {
+        $this->project = $project;
+
+        return $this;
     }
 }
 

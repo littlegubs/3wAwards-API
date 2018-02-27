@@ -39,6 +39,13 @@ class Client
     private $member;
 
     /**
+     * @var Image
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
+     */
+    private $image;
+
+    /**
      * Get id
      *
      * @return int
@@ -46,6 +53,66 @@ class Client
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return Tag
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param Tag $tags
+     *
+     * @return $this
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+
+    /**
+     * @return Member
+     */
+    public function getMember()
+    {
+        return $this->member;
+    }
+
+    /**
+     * @param Member $member
+     *
+     * @return $this
+     */
+    public function setMember($member)
+    {
+        $this->member = $member;
+
+        return $this;
+    }
+
+    /**
+     * @return Image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param Image $image
+     *
+     * @return $this
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
     }
 
 
