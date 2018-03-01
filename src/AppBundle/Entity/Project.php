@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -71,7 +72,7 @@ class Project
     private $marksNumber;
 
     /**
-     * @var ProjectRatingMember
+     * @var ProjectRatingMember[] | ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectRatingMember", mappedBy="project")
      */
@@ -79,7 +80,7 @@ class Project
 
     /**
      * @var Client
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Client", inversedBy="project")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Client", inversedBy="projects")
      */
     private $client;
 
@@ -90,17 +91,23 @@ class Project
     private $agency;
 
     /**
-     * @var Tag
+     * @var Tag[] | ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="projects")
      */
     private $tags;
 
     /**
-     * @var Image | ArrayCollection[]
+     * @var Image[] | ArrayCollection
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="project")
      */
-    private $image;
+    private $images;
+
+    /**
+     * @var Award[] | ArrayCollection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Award", mappedBy="project")
+     */
+    private $awards;
 
     /**
      * Get id

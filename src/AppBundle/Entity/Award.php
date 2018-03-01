@@ -12,6 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Award
 {
+    const TYPE_DAY = 'day';
+    const TYPE_MONTH =  'month';
+    const TYPE_YEAR = 'year';
+
     /**
      * @var int
      *
@@ -37,19 +41,19 @@ class Award
     private $category;
 
     /**
-     * @var type
+     * @var string
      *
      * @ORM\Column(name="type")
      */
     private $type;
 
     /**
-     * @var Site
+     * @var Project
      *
-     * @ORM\Column(name="site")
-     * @ORM\ManyToOne(targetEntity="Site", inversedBy="awards")
+     * @ORM\Column(name="project")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project", inversedBy="awards")
      */
-    private $site;
+    private $project;
 
 
 
@@ -128,21 +132,21 @@ class Award
     }
 
     /**
-     * @return Site
+     * @return Project
      */
-    public function getSite()
+    public function getProject()
     {
-        return $this->site;
+        return $this->project;
     }
 
     /**
-     * @param Site $site
+     * @param Project $project
      *
      * @return $this
      */
-    public function setSite($site)
+    public function setProject($project)
     {
-        $this->site = $site;
+        $this->project = $project;
 
         return $this;
     }

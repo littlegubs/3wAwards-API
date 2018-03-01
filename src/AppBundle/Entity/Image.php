@@ -24,9 +24,9 @@ class Image
     /**
      * @var string
      *
-     * @ORM\Column(name="imageUrl", type="string", length=255)
+     * @ORM\Column(type="string", length=255)
      */
-    private $imageUrl;
+    private $path;
 
     /**
      * @var string
@@ -34,21 +34,6 @@ class Image
      * @ORM\Column(name="libelle", type="string", length=255)
      */
     private $libelle;
-
-    /**
-     * @var Member
-     *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Member", mappedBy="image")
-     */
-    private $member;
-
-    /**
-     * @var Project
-     *
-     * @ORM\Column(name="project")
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project", inversedBy="image")
-     */
-    private $project;
 
     /**
      * Get id
@@ -60,29 +45,6 @@ class Image
         return $this->id;
     }
 
-    /**
-     * Set imageUrl
-     *
-     * @param string $imageUrl
-     *
-     * @return Image
-     */
-    public function setImageUrl($imageUrl)
-    {
-        $this->imageUrl = $imageUrl;
-
-        return $this;
-    }
-
-    /**
-     * Get imageUrl
-     *
-     * @return string
-     */
-    public function getImageUrl()
-    {
-        return $this->imageUrl;
-    }
 
     /**
      * Set libelle
@@ -99,53 +61,25 @@ class Image
     }
 
     /**
-     * Get libelle
-     *
      * @return string
      */
-    public function getLibelle()
+    public function getPath()
     {
-        return $this->libelle;
+        return $this->path;
     }
 
     /**
-     * @return Member
-     */
-    public function getMember()
-    {
-        return $this->member;
-    }
-
-    /**
-     * @param Member $member
+     * @param string $path
      *
      * @return $this
      */
-    public function setMember($member)
+    public function setPath($path)
     {
-        $this->member = $member;
+        $this->path = $path;
 
         return $this;
     }
 
-    /**
-     * @return Project
-     */
-    public function getProject()
-    {
-        return $this->project;
-    }
 
-    /**
-     * @param Project $project
-     *
-     * @return $this
-     */
-    public function setProject($project)
-    {
-        $this->project = $project;
-
-        return $this;
-    }
 }
 

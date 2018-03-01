@@ -38,7 +38,7 @@ class Category
     private $awards;
 
     /**
-     * @var Rating
+     * @var Rating[] | ArrayCollection
      *
      * @ORM\Column(name="ratings")
      * @ORM\OneToMany(targetEntity="Rating", mappedBy="category")

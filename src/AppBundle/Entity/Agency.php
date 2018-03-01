@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Traits\CardTrait;
 /**
@@ -23,12 +24,11 @@ class Agency
     private $id;
 
     /**
-     * @var TypeCompany
+     * @var TypeAgency
      *
-     * @ORM\Column(name="typeCompany")
-     * @ORM\ManyToOne(targetEntity="TypeCompany", inversedBy="typeCompany")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TypeAgency", inversedBy="typeCompany")
      */
-    private $typeCompany;
+    private $typeAgency;
 
     /**
      * @var Member
@@ -39,14 +39,14 @@ class Agency
     private $member;
 
     /**
-     * @var Project
+     * @var Project[] | ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Project", mappedBy="agency")
      */
     private $projects;
 
     /**
-     * @var Tag
+     * @var Tag[] | ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="agencies")
      */
@@ -58,6 +58,12 @@ class Agency
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
      */
     private $image;
+
+    public function __construct()
+    {
+        $this->projects = new ArrayCollection();
+        $this->tags = new ArrayCollection();
+    }
 
     /**
      * @return Image
@@ -75,7 +81,6 @@ class Agency
         $this->image = $image;
     }
 
-
     /**
      * Get id
      *
@@ -84,26 +89,6 @@ class Agency
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return TypeCompany
-     */
-    public function getTypeCompany()
-    {
-        return $this->typeCompany;
-    }
-
-    /**
-     * @param TypeCompany $typeCompany
-     *
-     * @return $this
-     */
-    public function setTypeCompany($typeCompany)
-    {
-        $this->typeCompany = $typeCompany;
-
-        return $this;
     }
 
     /**
@@ -127,7 +112,27 @@ class Agency
     }
 
     /**
-     * @return Project
+     * @return TypeAgency
+     */
+    public function getTypeAgency()
+    {
+        return $this->typeAgency;
+    }
+
+    /**
+     * @param TypeAgency $typeAgency
+     *
+     * @return $this
+     */
+    public function setTypeAgency($typeAgency)
+    {
+        $this->typeAgency = $typeAgency;
+
+        return $this;
+    }
+
+    /**
+     * @return Project[]|ArrayCollection
      */
     public function getProjects()
     {
@@ -135,7 +140,7 @@ class Agency
     }
 
     /**
-     * @param Project $projects
+     * @param Project[]|ArrayCollection $projects
      *
      * @return $this
      */
@@ -147,7 +152,7 @@ class Agency
     }
 
     /**
-     * @return Tag
+     * @return Tag[]|ArrayCollection
      */
     public function getTags()
     {
@@ -155,7 +160,7 @@ class Agency
     }
 
     /**
-     * @param Tag $tags
+     * @param Tag[]|ArrayCollection $tags
      *
      * @return $this
      */

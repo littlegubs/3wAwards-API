@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Traits\CardTrait;
 
@@ -24,7 +25,7 @@ class Client
     private $id;
 
     /**
-     * @var Tag
+     * @var Tag[] | ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="clients")
      */
@@ -46,6 +47,13 @@ class Client
     private $image;
 
     /**
+     * @var Project[] | ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Project", mappedBy="client")
+     */
+    private $projects;
+
+    /**
      * Get id
      *
      * @return int
@@ -56,7 +64,7 @@ class Client
     }
 
     /**
-     * @return Tag
+     * @return Tag[]
      */
     public function getTags()
     {
@@ -114,7 +122,6 @@ class Client
 
         return $this;
     }
-
 
 }
 

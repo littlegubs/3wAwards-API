@@ -69,11 +69,17 @@ class ProjectRatingMember
     }
 
     /**
-     * Set date
-     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
      * @param \DateTime $date
      *
-     * @return AwardRatingCategory
+     * @return $this
      */
     public function setDate($date)
     {
@@ -83,21 +89,17 @@ class ProjectRatingMember
     }
 
     /**
-     * Get date
-     *
-     * @return \DateTime
+     * @return bool
      */
-    public function getDate()
+    public function isVoteJudge()
     {
-        return $this->date;
+        return $this->isVoteJudge;
     }
 
     /**
-     * Set isVoteJudge
+     * @param bool $isVoteJudge
      *
-     * @param boolean $isVoteJudge
-     *
-     * @return AwardRatingCategory
+     * @return $this
      */
     public function setIsVoteJudge($isVoteJudge)
     {
@@ -107,37 +109,7 @@ class ProjectRatingMember
     }
 
     /**
-     * Get isVoteJudge
-     *
-     * @return bool
-     */
-    public function getIsVoteJudge()
-    {
-        return $this->isVoteJudge;
-    }
-
-    /**
-     * @return Category
-     */
-    public function getRatings()
-    {
-        return $this->ratings;
-    }
-
-    /**
-     * @param Category $ratings
-     *
-     * @return $this
-     */
-    public function setRatings($ratings)
-    {
-        $this->ratings = $ratings;
-
-        return $this;
-    }
-
-    /**
-     * @return Category
+     * @return Member
      */
     public function getMember()
     {
@@ -145,7 +117,7 @@ class ProjectRatingMember
     }
 
     /**
-     * @param Category $member
+     * @param Member $member
      *
      * @return $this
      */
@@ -157,7 +129,7 @@ class ProjectRatingMember
     }
 
     /**
-     * @return Category
+     * @return Project
      */
     public function getProject()
     {
@@ -165,7 +137,7 @@ class ProjectRatingMember
     }
 
     /**
-     * @param Category $project
+     * @param Project $project
      *
      * @return $this
      */
@@ -175,6 +147,27 @@ class ProjectRatingMember
 
         return $this;
     }
+
+    /**
+     * @return Rating
+     */
+    public function getRating()
+    {
+        return $this->rating;
+    }
+
+    /**
+     * @param Rating $rating
+     *
+     * @return $this
+     */
+    public function setRating($rating)
+    {
+        $this->rating = $rating;
+
+        return $this;
+    }
+
 
 }
 

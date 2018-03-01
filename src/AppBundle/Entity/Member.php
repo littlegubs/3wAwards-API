@@ -73,6 +73,11 @@ class Member
 
     /**
      * @var string
+     * @ORM\Column(type="string")
+     */
+    private $presentation;
+    /**
+     * @var string
      *
      * @ORM\Column(name="websiteUrl", type="string", length=255)
      */
@@ -115,7 +120,7 @@ class Member
      *
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", inversedBy="member")
      */
-    private $image;
+    private $profilePicture;
 
     /**
      * Get id
@@ -388,23 +393,84 @@ class Member
     }
 
     /**
-     * @return Member
+     * @return string
      */
-    public function getMember()
+    public function getPresentation()
     {
-        return $this->Member;
+        return $this->presentation;
     }
 
     /**
-     * @param Member $Member
+     * @param string $presentation
      *
      * @return $this
      */
-    public function setMember($Member)
+    public function setPresentation($presentation)
     {
-        $this->Member = $Member;
+        $this->presentation = $presentation;
 
         return $this;
     }
+
+    /**
+     * @return Client|ArrayCollection[]
+     */
+    public function getClients()
+    {
+        return $this->clients;
+    }
+
+    /**
+     * @param Client|ArrayCollection[] $clients
+     *
+     * @return $this
+     */
+    public function setClients($clients)
+    {
+        $this->clients = $clients;
+
+        return $this;
+    }
+
+    /**
+     * @return Agency|ArrayCollection[]
+     */
+    public function getAgencies()
+    {
+        return $this->agencies;
+    }
+
+    /**
+     * @param Agency|ArrayCollection[] $agencies
+     *
+     * @return $this
+     */
+    public function setAgencies($agencies)
+    {
+        $this->agencies = $agencies;
+
+        return $this;
+    }
+
+    /**
+     * @return Image
+     */
+    public function getProfilePicture()
+    {
+        return $this->profilePicture;
+    }
+
+    /**
+     * @param Image $profilePicture
+     *
+     * @return $this
+     */
+    public function setProfilePicture($profilePicture)
+    {
+        $this->profilePicture = $profilePicture;
+
+        return $this;
+    }
+
 }
 

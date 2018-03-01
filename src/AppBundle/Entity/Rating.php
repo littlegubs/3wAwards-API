@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,9 +38,9 @@ class Rating
     private $category;
 
     /**
-     * @var ProjectRatingMember
+     * @var ProjectRatingMember[] | ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectRatingMember", mappedBy="ratings")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectRatingMember", mappedBy="rating")
      */
     private $projectRatingMember;
 

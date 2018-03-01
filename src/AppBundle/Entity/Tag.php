@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -29,21 +30,21 @@ class Tag
     private $libelle;
 
     /**
-     * @var Agency
+     * @var Agency[] | ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Agency", mappedBy="tags")
      */
     private $agencies;
 
     /**
-     * @var Client
+     * @var Client[] | ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Client", mappedBy="tags")
      */
     private $clients;
 
     /**
-     * @var Project
+     * @var Project[] | ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Project", mappedBy="tags")
      */
@@ -82,5 +83,67 @@ class Tag
     {
         return $this->libelle;
     }
+
+    /**
+     * @return Agency[]|ArrayCollection
+     */
+    public function getAgencies()
+    {
+        return $this->agencies;
+    }
+
+    /**
+     * @param Agency[]|ArrayCollection $agencies
+     *
+     * @return $this
+     */
+    public function setAgencies($agencies)
+    {
+        $this->agencies = $agencies;
+
+        return $this;
+    }
+
+    /**
+     * @return Client[]|ArrayCollection
+     */
+    public function getClients()
+    {
+        return $this->clients;
+    }
+
+    /**
+     * @param Client[]|ArrayCollection $clients
+     *
+     * @return $this
+     */
+    public function setClients($clients)
+    {
+        $this->clients = $clients;
+
+        return $this;
+    }
+
+    /**
+     * @return Project[]|ArrayCollection
+     */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
+
+    /**
+     * @param Project[]|ArrayCollection $projects
+     *
+     * @return $this
+     */
+    public function setProjects($projects)
+    {
+        $this->projects = $projects;
+
+        return $this;
+    }
+
+
 }
 

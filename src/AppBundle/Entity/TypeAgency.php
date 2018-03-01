@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,6 +29,17 @@ class TypeAgency
      */
     private $libelle;
 
+    /**
+     * @var Agency[] | ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Agency", mappedBy="typeAgency")
+     */
+    private $agencies;
+
+    public function __construct()
+    {
+        $this->agencies = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -62,5 +74,27 @@ class TypeAgency
     {
         return $this->libelle;
     }
+
+    /**
+     * @return Agency[]|ArrayCollection
+     */
+    public function getAgencies()
+    {
+        return $this->agencies;
+    }
+
+    /**
+     * @param Agency[]|ArrayCollection $agencies
+     *
+     * @return $this
+     */
+    public function setAgencies($agencies)
+    {
+        $this->agencies = $agencies;
+
+        return $this;
+    }
+
+
 }
 
