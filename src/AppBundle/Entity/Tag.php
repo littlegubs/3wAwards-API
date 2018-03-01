@@ -51,6 +51,20 @@ class Tag
     private $projects;
 
     /**
+     * @var TypeTag
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TypeTag", inversedBy="tags")
+     */
+    private $type;
+
+    public function __construct()
+    {
+        $this->agencies = new ArrayCollection();
+        $this->clients = new ArrayCollection();
+        $this->projects = new ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return int
@@ -140,6 +154,26 @@ class Tag
     public function setProjects($projects)
     {
         $this->projects = $projects;
+
+        return $this;
+    }
+
+    /**
+     * @return TypeTag
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param TypeTag $type
+     *
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
 
         return $this;
     }

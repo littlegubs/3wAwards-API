@@ -32,7 +32,6 @@ class Rating
     /**
      * @var Category
      *
-     * @ORM\Column(name="category")
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="ratings")
      */
     private $category;
@@ -43,6 +42,11 @@ class Rating
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectRatingMember", mappedBy="rating")
      */
     private $projectRatingMember;
+
+    public function __construct()
+    {
+        $this->projectRatingMember = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -55,27 +59,23 @@ class Rating
     }
 
     /**
-     * Set value
+     * @return int
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param int $value
      *
-     * @param integer $value
-     *
-     * @return Grade
+     * @return $this
      */
     public function setValue($value)
     {
         $this->value = $value;
 
         return $this;
-    }
-
-    /**
-     * Get value
-     *
-     * @return int
-     */
-    public function getValue()
-    {
-        return $this->value;
     }
 
     /**
@@ -99,7 +99,7 @@ class Rating
     }
 
     /**
-     * @return ProjectRatingMember
+     * @return ProjectRatingMember[]|ArrayCollection
      */
     public function getProjectRatingMember()
     {
@@ -107,7 +107,7 @@ class Rating
     }
 
     /**
-     * @param ProjectRatingMember $projectRatingMember
+     * @param ProjectRatingMember[]|ArrayCollection $projectRatingMember
      *
      * @return $this
      */
@@ -117,5 +117,6 @@ class Rating
 
         return $this;
     }
+
 }
 

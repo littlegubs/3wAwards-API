@@ -32,7 +32,6 @@ class Category
     /**
      * @var Award[] | ArrayCollection
      *
-     * @ORM\Column(name="awards")
      * @ORM\OneToMany(targetEntity="Award", mappedBy="category")
      */
     private $awards;
@@ -40,7 +39,6 @@ class Category
     /**
      * @var Rating[] | ArrayCollection
      *
-     * @ORM\Column(name="ratings")
      * @ORM\OneToMany(targetEntity="Rating", mappedBy="category")
      */
     private $ratings;

@@ -33,7 +33,6 @@ class Agency
     /**
      * @var Member
      *
-     * @ORM\Column(name="member")
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Member", inversedBy="agencies")
      */
     private $member;

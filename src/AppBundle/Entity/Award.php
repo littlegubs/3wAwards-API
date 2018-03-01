@@ -35,7 +35,6 @@ class Award
     /**
      * @var Category
      *
-     * @ORM\Column(name="category")
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="awards")
      */
     private $category;
@@ -50,7 +49,6 @@ class Award
     /**
      * @var Project
      *
-     * @ORM\Column(name="project")
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project", inversedBy="awards")
      */
     private $project;

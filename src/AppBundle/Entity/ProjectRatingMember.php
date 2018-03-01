@@ -38,7 +38,6 @@ class ProjectRatingMember
     /**
      * @var Member
      *
-     * @ORM\Column(name="member")
      * @ORM\ManyToOne(targetEntity="Member", inversedBy="projectRatingMember")
      */
     private $member;
@@ -46,7 +45,6 @@ class ProjectRatingMember
     /**
      * @var Project
      *
-     * @ORM\Column(name="project")
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project", inversedBy="projectRatingMember")
      */
     private $project;

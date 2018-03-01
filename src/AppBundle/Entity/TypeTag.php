@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,6 +29,17 @@ class TypeTag
      */
     private $libelle;
 
+    /**
+     * @var Tag[] | ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Tag", mappedBy="type")
+     */
+    private $tags;
+
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -62,5 +74,27 @@ class TypeTag
     {
         return $this->libelle;
     }
+
+    /**
+     * @return Tag[]|ArrayCollection
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param Tag[]|ArrayCollection $tags
+     *
+     * @return $this
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+
+
 }
 

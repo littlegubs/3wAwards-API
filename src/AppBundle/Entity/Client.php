@@ -34,7 +34,6 @@ class Client
     /**
      * @var Member
      *
-     * @ORM\Column(name="member")
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Member", inversedBy="clients")
      */
     private $member;
@@ -52,6 +51,12 @@ class Client
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Project", mappedBy="client")
      */
     private $projects;
+
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+        $this->projects = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -122,6 +127,28 @@ class Client
 
         return $this;
     }
+
+    /**
+     * @return Project[]|ArrayCollection
+     */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
+
+    /**
+     * @param Project[]|ArrayCollection $projects
+     *
+     * @return $this
+     */
+    public function setProjects($projects)
+    {
+        $this->projects = $projects;
+
+        return $this;
+    }
+
+
 
 }
 

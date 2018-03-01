@@ -44,11 +44,11 @@ class Project
     private $publicationDate;
 
     /**
-     * @var int
+     * @var float
      *
-     * @ORM\Column(name="mark", type="integer")
+     * @ORM\Column(type="float")
      */
-    private $mark;
+    private $averageRating;
 
     /**
      * @var string
@@ -56,20 +56,6 @@ class Project
      * @ORM\Column(name="noticableDescription", type="string", length=255)
      */
     private $noticableDescription;
-
-    /**
-     * @var float
-     *
-     * @ORM\Column(name="averageMark", type="float")
-     */
-    private $averageMark;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="marksNumber", type="integer")
-     */
-    private $marksNumber;
 
     /**
      * @var ProjectRatingMember[] | ArrayCollection
@@ -99,7 +85,10 @@ class Project
 
     /**
      * @var Image[] | ArrayCollection
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="project")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Image")
+     * @ORM\JoinTable(name="project_image",
+     *     joinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="image_id", referencedColumnName="id")})
      */
     private $images;
 
@@ -108,6 +97,14 @@ class Project
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Award", mappedBy="project")
      */
     private $awards;
+
+    public function __construct()
+    {
+        $this->awards = new ArrayCollection();
+        $this->images = new ArrayCollection();
+        $this->tags = new ArrayCollection();
+        $this->projectRatingMember = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -192,30 +189,6 @@ class Project
     }
 
     /**
-     * Set mark
-     *
-     * @param integer $mark
-     *
-     * @return Project
-     */
-    public function setMark($mark)
-    {
-        $this->mark = $mark;
-
-        return $this;
-    }
-
-    /**
-     * Get mark
-     *
-     * @return int
-     */
-    public function getMark()
-    {
-        return $this->mark;
-    }
-
-    /**
      * Set noticableDescription
      *
      * @param string $noticableDescription
@@ -240,55 +213,27 @@ class Project
     }
 
     /**
-     * Set averageMark
-     *
-     * @param float $averageMark
-     *
-     * @return Project
-     */
-    public function setAverageMark($averageMark)
-    {
-        $this->averageMark = $averageMark;
-
-        return $this;
-    }
-
-    /**
-     * Get averageMark
-     *
      * @return float
      */
-    public function getAverageMark()
+    public function getAverageRating()
     {
-        return $this->averageMark;
+        return $this->averageRating;
     }
 
     /**
-     * Set marksNumber
+     * @param float $averageRating
      *
-     * @param integer $marksNumber
-     *
-     * @return Project
+     * @return $this
      */
-    public function setMarksNumber($marksNumber)
+    public function setAverageRating($averageRating)
     {
-        $this->marksNumber = $marksNumber;
+        $this->averageRating = $averageRating;
 
         return $this;
     }
 
     /**
-     * Get marksNumber
-     *
-     * @return int
-     */
-    public function getMarksNumber()
-    {
-        return $this->marksNumber;
-    }
-
-    /**
-     * @return ProjectRatingMember
+     * @return ProjectRatingMember[]|ArrayCollection
      */
     public function getProjectRatingMember()
     {
@@ -296,7 +241,7 @@ class Project
     }
 
     /**
-     * @param ProjectRatingMember $projectRatingMember
+     * @param ProjectRatingMember[]|ArrayCollection $projectRatingMember
      *
      * @return $this
      */
@@ -348,7 +293,7 @@ class Project
     }
 
     /**
-     * @return Tag
+     * @return Tag[]|ArrayCollection
      */
     public function getTags()
     {
@@ -356,7 +301,7 @@ class Project
     }
 
     /**
-     * @param Tag $tags
+     * @param Tag[]|ArrayCollection $tags
      *
      * @return $this
      */
@@ -368,23 +313,44 @@ class Project
     }
 
     /**
-     * @return ArrayCollection[]|Image
+     * @return Image[]|ArrayCollection
      */
-    public function getImage()
+    public function getImages()
     {
-        return $this->image;
+        return $this->images;
     }
 
     /**
-     * @param ArrayCollection[]|Image $image
+     * @param Image[]|ArrayCollection $images
      *
      * @return $this
      */
-    public function setImage($image)
+    public function setImages($images)
     {
-        $this->image = $image;
+        $this->images = $images;
 
         return $this;
     }
+
+    /**
+     * @return Award[]|ArrayCollection
+     */
+    public function getAwards()
+    {
+        return $this->awards;
+    }
+
+    /**
+     * @param Award[]|ArrayCollection $awards
+     *
+     * @return $this
+     */
+    public function setAwards($awards)
+    {
+        $this->awards = $awards;
+
+        return $this;
+    }
+
 }
 
