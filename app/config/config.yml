@@ -95,7 +95,7 @@ api_platform:
 
 
 fos_user:
-    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    db_driver: orm 
     firewall_name: main
     user_class: AppBundle\Entity\User
     from_email:
@@ -116,6 +116,12 @@ jms_serializer:
 
 nelmio_api_doc:
     areas:
-        path_patterns: # an array of regexps
+        path_patterns:
             - ^/api(?!/doc$)
 
+knp_doctrine_behaviors:
+    blameable:      false
+    geocodable:     ~
+    loggable:       ~
+    sluggable:      true
+    soft_deletable: true
