@@ -53,7 +53,7 @@ class Member extends BaseUser
     /**
      * @var string
      * @Groups({"user"})
-     * @ORM\Column(name="birthday", type="string", length=255)
+     * @ORM\Column(name="birthday", type="date", length=255)
      */
     private $birthday;
 
@@ -67,20 +67,20 @@ class Member extends BaseUser
     /**
      * @var string
      * @Groups({"user"})
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $presentation;
     /**
      * @var string
      * @Groups({"user"})
-     * @ORM\Column(name="websiteUrl", type="string", length=255)
+     * @ORM\Column(name="websiteUrl", type="string", length=255, nullable=true)
      */
     private $websiteUrl;
 
     /**
      * @var bool
      * @Groups({"user"})
-     * @ORM\Column(name="newsletter", type="boolean")
+     * @ORM\Column(name="newsletter", type="boolean", nullable=true)
      */
     private $newsletter;
 
