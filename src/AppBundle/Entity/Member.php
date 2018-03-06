@@ -2,16 +2,23 @@
 
 namespace AppBundle\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Member
  *
  * @ORM\Table(name="member")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\MemberRepository")
+ * @ApiResource(attributes={
+ *     "normalization_context"={"groups"={"user", "user-read"}},
+ *     "denormalization_context"={"groups"={"user", "user-write"}}
+ * })
  */
-class Member
+class Member extends BaseUser
 {
     /**
      * @var int
@@ -20,97 +27,94 @@ class Member
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
-     *
+     * @Groups({"user"})
      * @ORM\Column(name="gender", type="string", length=1)
      */
     private $gender;
 
     /**
      * @var string
-     *
+     * @Groups({"user"})
      * @ORM\Column(name="firstName", type="string", length=255)
      */
     private $firstName;
 
     /**
      * @var string
-     *
+     * @Groups({"user"})
      * @ORM\Column(name="lastName", type="string", length=255)
      */
     private $lastName;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="birthday", type="string", length=255)
+     * @Groups({"user"})
+     * @ORM\Column(name="birthday", type="date", length=255)
      */
     private $birthday;
 
     /**
      * @var bool
-     *
-     * @ORM\Column(name="isAdmin", type="boolean")
-     */
-    private $isAdmin;
-
-    /**
-     * @var bool
-     *
+     * @Groups({"user"})
      * @ORM\Column(name="isJudge", type="boolean")
      */
     private $isJudge;
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @Groups({"user"})
+     * @ORM\Column(type="string", nullable=true)
      */
     private $presentation;
     /**
      * @var string
-     *
-     * @ORM\Column(name="websiteUrl", type="string", length=255)
+     * @Groups({"user"})
+     * @ORM\Column(name="websiteUrl", type="string", length=255, nullable=true)
      */
     private $websiteUrl;
 
     /**
      * @var bool
-     *
-     * @ORM\Column(name="newsletter", type="boolean")
+     * @Groups({"user"})
+     * @ORM\Column(name="newsletter", type="boolean", nullable=true)
      */
     private $newsletter;
 
     /**
      * @var bool
-     *
+     * @Groups({"user"})
      * @ORM\Column(name="optIn", type="boolean")
      */
     private $optIn;
 
     /**
      * @var ProjectRatingMember
+     * @Groups({"user"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectRatingMember", mappedBy="member")
      */
     private $projectRatingMember;
 
     /**
      * @var Client | ArrayCollection[]
+     * @Groups({"user"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Client", mappedBy="member")
      */
     private $clients;
 
     /**
      * @var Agency | ArrayCollection[]
+     * @Groups({"user"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Agency", mappedBy="member")
      */
     private $agencies;
 
     /**
      * @var Image
-     *
+     * @Groups({"user"})
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", inversedBy="member")
      */
     private $profilePicture;
@@ -226,26 +230,6 @@ class Member
     public function setMail($mail)
     {
         $this->mail = $mail;
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isAdmin()
-    {
-        return $this->isAdmin;
-    }
-
-    /**
-     * @param bool $isAdmin
-     *
-     * @return $this
-     */
-    public function setIsAdmin($isAdmin)
-    {
-        $this->isAdmin = $isAdmin;
 
         return $this;
     }
