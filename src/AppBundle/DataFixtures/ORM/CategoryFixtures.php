@@ -46,7 +46,7 @@ class CategoryFixtures extends Fixture implements OrderedFixtureInterface
     private function createCategory(ObjectManager $manager, $i)
     {
         $category = new Category();
-        $category->setLibelle($this->$category[$i]);
+        $category->setLibelle($this->categories[$i]);
 
         $manager->persist($category);
         $this->addReference('category_'.$i, $category);

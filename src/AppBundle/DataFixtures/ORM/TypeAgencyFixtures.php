@@ -44,7 +44,7 @@ class TypeAgencyFixtures extends Fixture implements OrderedFixtureInterface
     private function createTypeAgency(ObjectManager $manager, $i)
     {
         $typeAgency = new TypeAgency();
-        $typeAgency->setLibelle($this->$typeAgency[$i]);
+        $typeAgency->setLibelle($this->typeAgencies[$i]);
 
         $manager->persist($typeAgency);
         $this->addReference('type_agency_'.$i, $typeAgency);

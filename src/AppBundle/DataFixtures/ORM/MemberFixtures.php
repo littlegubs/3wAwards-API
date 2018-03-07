@@ -44,5 +44,6 @@ class MemberFixtures extends Fixture implements OrderedFixtureInterface
             ->setEnabled(true);
 
         $manager->persist($member);
+        $this->addReference('member_'.$username, $member);
     }
 }
