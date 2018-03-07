@@ -4,10 +4,10 @@ namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Category;
 use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-class CategoryFixtures extends AbstractFixture implements OrderedFixtureInterface
+class CategoryFixtures extends Fixture implements OrderedFixtureInterface
 {
     private $categories = [
         'creativity',

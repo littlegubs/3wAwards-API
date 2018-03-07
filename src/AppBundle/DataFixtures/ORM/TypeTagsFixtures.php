@@ -4,10 +4,10 @@ namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\TypeTag;
 use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-class TypeTagsFixtures extends AbstractFixture implements OrderedFixtureInterface
+class TypeTagsFixtures extends Fixture implements OrderedFixtureInterface
 {
     private $typeTags = [
         'site_type',

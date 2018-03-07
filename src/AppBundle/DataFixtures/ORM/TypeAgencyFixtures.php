@@ -4,10 +4,10 @@ namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\TypeAgency;
 use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-class TypeAgencyFixtures extends AbstractFixture implements OrderedFixtureInterface
+class TypeAgencyFixtures extends Fixture implements OrderedFixtureInterface
 {
     private $typeAgencies = [
         'web_agency',
