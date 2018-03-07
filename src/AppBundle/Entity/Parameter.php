@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="parameters")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ParametersRepository")
  */
-class Parameters
+class Parameter
 {
     /**
      * @var string
@@ -31,7 +31,7 @@ class Parameters
      *
      * @param string $libelle
      *
-     * @return Parameters
+     * @return Parameter
      */
     public function setLibelle($libelle)
     {
@@ -55,7 +55,7 @@ class Parameters
      *
      * @param string $value
      *
-     * @return Parameters
+     * @return Parameter
      */
     public function setValue($value)
     {
