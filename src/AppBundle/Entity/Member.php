@@ -13,7 +13,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *
  * @ORM\Table(name="member")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\MemberRepository")
- * @ApiResource(attributes={
+ * @ApiResource(itemOperations={
+ *     "get"={"method"="GET", "path"="/member/{id}" },
+ *     },attributes={
  *     "normalization_context"={"groups"={"user", "user-read"}},
  *     "denormalization_context"={"groups"={"user", "user-write"}}
  * })
@@ -115,7 +117,7 @@ class Member extends BaseUser
     /**
      * @var Image
      * @Groups({"user"})
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", inversedBy="member")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image")
      */
     private $profilePicture;
 
