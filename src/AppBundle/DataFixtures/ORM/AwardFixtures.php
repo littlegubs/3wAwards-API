@@ -10,9 +10,9 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 class AwardFixtures extends Fixture implements OrderedFixtureInterface
 {
     private $awards = [
-        '',
-        '',
-        '',
+        'Award de la semaine',
+        'Award du mois',
+        'Award de l\'année',
         '',
         '',
         ''

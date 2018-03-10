@@ -11,12 +11,12 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 class AgencyFixtures extends Fixture implements OrderedFixtureInterface
 {
     private $agencies = [
-        '',
-        '',
-        '',
-        '',
-        '',
-        ''
+        'Nodevo',
+        'MentalWorks',
+        'MozartsDuWeb',
+        'Cabestan',
+        'Arte',
+        'TF1'
     ];
 
     /**
