@@ -72,8 +72,9 @@ class TagFixtures extends Fixture implements OrderedFixtureInterface
     private function createTag(ObjectManager $manager, $tag, $typeTagKey, $key)
     {
         $tagToCreate = new Tag();
+        $typeTagRef = $this->getReference('type_tag_'.$typeTagKey);
         $tagToCreate
             ->setLibelle($tag)
-            ->setType($typeTagKey);
+            ->setType($typeTagRef);
     }
 }
