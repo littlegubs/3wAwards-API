@@ -31,7 +31,7 @@ trait CardTrait
     /**
      * @var string
      *
-     * @ORM\Column(name="addressComplement", type="string", length=255)
+     * @ORM\Column(name="addressComplement", type="string", length=255, nullable=true)
      */
     private $addressComplement;
 
@@ -52,7 +52,7 @@ trait CardTrait
     /**
      * @var string
      *
-     * @ORM\Column(name="fax", type="string", length=255)
+     * @ORM\Column(name="fax", type="string", length=255, nullable=true)
      */
     private $fax;
 
