@@ -3,6 +3,7 @@
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Category;
+use Doctrine\Common\DataFixtures\BadMethodCallException;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -16,7 +17,7 @@ class CategoryFixtures extends Fixture implements OrderedFixtureInterface
         'interactivity',
         'contents_quality',
         'fonctionnality_quality',
-        'reactivity'
+        'reactivity',
     ];
 
     /**
@@ -29,19 +30,22 @@ class CategoryFixtures extends Fixture implements OrderedFixtureInterface
 
     /**
      * @param ObjectManager $manager
+     *
+     * @throws BadMethodCallException
      */
     public function load(ObjectManager $manager)
     {
         foreach ($this->categories as $key => $value) {
             $this->createCategory($manager, $key);
-
         }
         $manager->flush();
     }
 
     /**
      * @param ObjectManager $manager
-     * @param  int $i
+     * @param int           $i
+     *
+     * @throws BadMethodCallException
      */
     private function createCategory(ObjectManager $manager, $i)
     {

@@ -3,6 +3,7 @@
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Client;
+use Doctrine\Common\DataFixtures\BadMethodCallException;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -66,9 +67,14 @@ class ClientFixtures extends Fixture implements OrderedFixtureInterface
 
     /**
      * @param ObjectManager $manager
+     *
+     * @throws BadMethodCallException
      */
     private function createClient(ObjectManager $manager, $i)
     {
+        /** @var Member $member */
+        $member = $this->getReference('member_'.rand(1, 2));
+
         $client = new Client();
         $client
             ->setName($this->clients[0][$i])
@@ -77,6 +83,7 @@ class ClientFixtures extends Fixture implements OrderedFixtureInterface
             ->setPhone($this->clients[3][$i])
             ->setCity($this->clients[4][$i])
             ->setDescription($this->clients[5][$i])
+            ->setMember($member)
             ->setInternalNotice($this->clients[6][$i])
             ->setWebsiteUrl($this->clients[7][$i])
             ->setTva($this->clients[8][$i])

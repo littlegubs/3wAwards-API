@@ -24,13 +24,13 @@ class ParameterFixtures extends Fixture implements OrderedFixtureInterface
       'nb_max_screen',
       'size_max_screen',
       'nb_max_tags'
-    ]
+    ];
 
     private $values = [
       '3Wawards',
       'jacky.jpg',
       '60204 COMPIEGNE CEDEX',
-      'CS70454 LACROIX SAINT-OUEN';
+      'CS70454 LACROIX SAINT-OUEN',
       '0344862255',
       '0344862277',
       'contact@mentalworks.fr',
@@ -41,7 +41,7 @@ class ParameterFixtures extends Fixture implements OrderedFixtureInterface
       '6',
       '10',
       '5'
-    ]
+    ];
 
     /**
      * @return int
@@ -69,8 +69,8 @@ class ParameterFixtures extends Fixture implements OrderedFixtureInterface
     {
       $parameter = new Parameter();
       $parameter
-        ->setLibelle($this->$libelles[$i])
-        ->setValue($this->$values[$i]);
+        ->setLibelle($this->libelles[$i])
+        ->setValue($this->values[$i]);
       $manager->persist($parameter);
     }
 }

@@ -74,15 +74,14 @@ class AgencyFixtures extends Fixture implements OrderedFixtureInterface
     private function createAgency(ObjectManager $manager, $i)
     {
         /** @var TypeAgency $typeAgency */
-        $typeAgency = $this->getReference('type_agency_'.rand(0,4));
+        $typeAgency = $this->getReference('type_agency_'.rand(0,5));
 
         /** @var Member $member */
-       // $member = $this->getReference('member_'.rand(0,2));
+       $member = $this->getReference('member_'.rand(1,2));
 
-
+        /** @var Agency $agency */
         $agency = new Agency();
-        $agency
-            ->setName($this->agencies[0][$i])
+        $agency->setName($this->agencies[0][$i])
             ->setAddress($this->agencies[1][$i])
             ->setZipcode($this->agencies[2][$i])
             ->setPhone($this->agencies[3][$i])
@@ -91,6 +90,8 @@ class AgencyFixtures extends Fixture implements OrderedFixtureInterface
             ->setInternalNotice($this->agencies[6][$i])
             ->setWebsiteUrl($this->agencies[7][$i])
             ->setTva($this->agencies[8][$i])
+            ->settypeAgency($typeAgency)
+            ->setMember($member)
             ->setDuns($this->agencies[9][$i])
             ->setCreationDate(new \DateTime(rand(1, 28).'-'.rand(1, 12).'-'.rand(2012, 2018)));
 
