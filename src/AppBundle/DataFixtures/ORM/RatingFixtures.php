@@ -10,8 +10,6 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
 class RatingFixtures extends Fixture implements OrderedFixtureInterface
 {
-    private $ratings = [2, 2, 3, 4, 7, 9];
-
     /**
      * @return int
      */
@@ -22,11 +20,12 @@ class RatingFixtures extends Fixture implements OrderedFixtureInterface
 
     /**
      * @param ObjectManager $manager
+     * @throws \Doctrine\Common\DataFixtures\BadMethodCallException
      */
     public function load(ObjectManager $manager)
     {
-        foreach ($this->ratings as $key => $value) {
-            $this->createRating($manager, $key);
+        for ($i=0; $i<9; $i++) {
+            $this->createRating($manager, $i);
 
         }
         $manager->flush();
@@ -43,11 +42,11 @@ class RatingFixtures extends Fixture implements OrderedFixtureInterface
 
         $rating = new Rating();
         $rating
-            ->setValue($this->ratings[$i])
+            ->setValue(rand(1,10))
             ->setCategory($category);
 
         $manager->persist($rating);
 
-        $this->addReference('rating'.$i, $rating);
+        $this->addReference('rating_'.$i, $rating);
     }
 }
