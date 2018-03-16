@@ -12,12 +12,12 @@ security:
 
     firewalls:
         login:
-            pattern:  ^/login
+            pattern:  ^/api/login
             stateless: true
             anonymous: true
             provider: fos_userbundle
             form_login:
-                check_path: /login_check
+                check_path: /api/login_check
                 username_parameter: _username
                 password_parameter: _password
                 success_handler: lexik_jwt_authentication.handler.authentication_success
@@ -25,7 +25,7 @@ security:
                 require_previous_session: false
 
         main:
-            pattern: ^/
+            pattern: ^/api
             provider: fos_userbundle
             stateless: true
             anonymous: true
