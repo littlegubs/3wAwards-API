@@ -3,6 +3,7 @@
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\TypeTag;
+use Doctrine\Common\DataFixtures\BadMethodCallException;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -26,7 +27,7 @@ class TypeTagsFixtures extends Fixture implements OrderedFixtureInterface
         'front_tech',
         'back_tech',
         'cms',
-        'challenge'
+        'challenge',
     ];
 
     /**
@@ -39,19 +40,22 @@ class TypeTagsFixtures extends Fixture implements OrderedFixtureInterface
 
     /**
      * @param ObjectManager $manager
+     *
+     * @throws BadMethodCallException
      */
     public function load(ObjectManager $manager)
     {
         foreach ($this->typeTags as $key => $value) {
             $this->createTypeTag($manager, $key);
-
         }
         $manager->flush();
     }
 
     /**
      * @param ObjectManager $manager
-     * @param  int $i
+     * @param int           $i
+     *
+     * @throws BadMethodCallException
      */
     private function createTypeTag(ObjectManager $manager, $i)
     {

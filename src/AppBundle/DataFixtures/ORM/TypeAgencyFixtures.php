@@ -3,6 +3,7 @@
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\TypeAgency;
+use Doctrine\Common\DataFixtures\BadMethodCallException;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -28,6 +29,8 @@ class TypeAgencyFixtures extends Fixture implements OrderedFixtureInterface
 
     /**
      * @param ObjectManager $manager
+     *
+     * @throws BadMethodCallException
      */
     public function load(ObjectManager $manager)
     {
@@ -39,7 +42,9 @@ class TypeAgencyFixtures extends Fixture implements OrderedFixtureInterface
 
     /**
      * @param ObjectManager $manager
-     * @param  int $i
+     * @param int          $i
+     *
+     * @throws BadMethodCallException
      */
     private function createTypeAgency(ObjectManager $manager, $i)
     {
