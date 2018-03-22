@@ -2,10 +2,14 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
+use AppBundle\Entity\Agency;
+use AppBundle\Entity\Client;
 use AppBundle\Entity\Project;
+use Doctrine\Common\DataFixtures\BadMethodCallException;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use function Sodium\randombytes_buf;
 
 class ProjectFixtures extends Fixture implements OrderedFixtureInterface
 {
@@ -38,10 +42,12 @@ class ProjectFixtures extends Fixture implements OrderedFixtureInterface
 
     /**
      * @param ObjectManager $manager
+     *
+     * @throws BadMethodCallException
      */
     public function load(ObjectManager $manager)
     {
-        for ($i=0; $i<4; $i++) {
+        for ($i=0; $i<5; $i++) {
             $this->createProject($manager, $i);
         }
         $manager->flush();
@@ -49,7 +55,8 @@ class ProjectFixtures extends Fixture implements OrderedFixtureInterface
 
     /**
      * @param ObjectManager $manager
-     * @throws \Doctrine\Common\DataFixtures\BadMethodCallException
+     *
+     * @throws BadMethodCallException
      */
     private function createProject(ObjectManager $manager, $i)
     {
@@ -62,8 +69,17 @@ class ProjectFixtures extends Fixture implements OrderedFixtureInterface
             ->setAverageRating(rand(1,100)/10)
             ->setNoticableDescription($this->projects[2][$i]);
 
+        if (rand(1, 2) == 1) {
+            /** @var Agency $agency */
+            $agency = $this->getReference('agency_'.rand(0, 4));
+            $project->setAgency($agency);
+        } else {
+            /** @var Client $client */
+            $client = $this->getReference('client_'.rand(0, 4));
+            $project->setClient($client);
+        }
+
         $manager->persist($project);
         $this->addReference('project_'.$i, $project);
-
     }
 }

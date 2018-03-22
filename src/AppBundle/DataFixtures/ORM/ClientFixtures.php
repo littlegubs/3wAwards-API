@@ -56,10 +56,12 @@ class ClientFixtures extends Fixture implements OrderedFixtureInterface
 
     /**
      * @param ObjectManager $manager
+     *
+     * @throws BadMethodCallException
      */
     public function load(ObjectManager $manager)
     {
-        for ($i=0; $i<4; $i++) {
+        for ($i=0; $i<5; $i++) {
             $this->createClient($manager, $i);
         }
         $manager->flush();

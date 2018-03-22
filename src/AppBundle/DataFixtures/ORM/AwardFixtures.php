@@ -48,16 +48,16 @@ class AwardFixtures extends Fixture implements OrderedFixtureInterface
     {
         /** @var Category $category */
         $category = $this->getReference('category_'.rand(0, 6));
-//        /** @var Project $project */
-//        $project = $this->getReference('project'.rand(0, 6));
+        /** @var Project $project */
+        $project = $this->getReference('project_'.rand(0, 4));
 
         $award = new Award();
         $award->setDate(new \DateTime(rand(1, 28).'-'.rand(1, 12).'-'.rand(2012, 2018)))
             ->setCategory($category)
             ->setType($type);
-//        $award->setProject($project);
+        $award->setProject($project);
 
-        $manager->persist($category);
+        $manager->persist($award);
         $this->addReference('award_'.$i, $award);
     }
 }

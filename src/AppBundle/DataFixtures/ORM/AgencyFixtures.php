@@ -5,10 +5,10 @@ namespace AppBundle\DataFixtures\ORM;
 use AppBundle\Entity\Agency;
 use AppBundle\Entity\Member;
 use AppBundle\Entity\TypeAgency;
+use Doctrine\Common\DataFixtures\BadMethodCallException;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-
 
 class AgencyFixtures extends Fixture implements OrderedFixtureInterface
 {
@@ -16,7 +16,8 @@ class AgencyFixtures extends Fixture implements OrderedFixtureInterface
         /* name */
         ['Cabestan', 'MentalWorks', 'Arroi', 'Nodevo', 'Capgemini'],
         /* adress */
-        ['7 Quai André Citroën', 'Rue Irène Joliot Curie', '27 Rue Saint-Pierre', '1 Avenue du Général de Gaulle', '11 Rue de Tilsitt'],
+        ['7 Quai André Citroën', 'Rue Irène Joliot Curie', '27 Rue Saint-Pierre', '1 Avenue du Général de Gaulle',
+            '11 Rue de Tilsitt'],
         /* zipcode */
         ['75015', '60200', '60300', '60500', '75017'],
         /* phone */
@@ -29,7 +30,7 @@ class AgencyFixtures extends Fixture implements OrderedFixtureInterface
             'quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo',
             'consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt',
             'Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally',
-            'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium'
+            'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium',
         ],
         /* internalNotice */
         [
@@ -40,11 +41,12 @@ class AgencyFixtures extends Fixture implements OrderedFixtureInterface
             'Quis autem vel eum iure reprehenderit qui in ea voluptate',
         ],
         /* websiteUrl */
-        ['https://angular.io/', 'http://www.nodevo.com/', 'http://www.cabestan.com/', 'https://symfony.com/', 'https://arroi.fr/fr/dusensaloeuvre/'],
+        ['https://angular.io/', 'http://www.nodevo.com/', 'http://www.cabestan.com/', 'https://symfony.com/',
+            'https://arroi.fr/fr/dusensaloeuvre/'],
         /* tva */
         ['12345678901', 'X1234567890', '1X123456789', 'XX123456789', '0987654321'],
         /* duns*/
-        ['123456789', '987654321', '678912345', '987612345', '123498765' ],
+        ['123456789', '987654321', '678912345', '987612345', '123498765'],
 
     ];
 
@@ -58,10 +60,12 @@ class AgencyFixtures extends Fixture implements OrderedFixtureInterface
 
     /**
      * @param ObjectManager $manager
+     *
+     * @throws BadMethodCallException
      */
     public function load(ObjectManager $manager)
     {
-        for ($i=0; $i<4; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             $this->createAgency($manager, $i);
         }
         $manager->flush();
@@ -69,15 +73,16 @@ class AgencyFixtures extends Fixture implements OrderedFixtureInterface
 
     /**
      * @param ObjectManager $manager
-     * @throws \Doctrine\Common\DataFixtures\BadMethodCallException
+     *
+     * @throws BadMethodCallException
      */
     private function createAgency(ObjectManager $manager, $i)
     {
         /** @var TypeAgency $typeAgency */
-        $typeAgency = $this->getReference('type_agency_'.rand(0,5));
+        $typeAgency = $this->getReference('type_agency_'.rand(0, 5));
 
         /** @var Member $member */
-       $member = $this->getReference('member_'.rand(1,2));
+        $member = $this->getReference('member_'.rand(1, 2));
 
         /** @var Agency $agency */
         $agency = new Agency();
@@ -95,10 +100,8 @@ class AgencyFixtures extends Fixture implements OrderedFixtureInterface
             ->setDuns($this->agencies[9][$i])
             ->setCreationDate(new \DateTime(rand(1, 28).'-'.rand(1, 12).'-'.rand(2012, 2018)));
 
-
         $manager->persist($agency);
         $this->addReference('agency_'.$i, $agency);
-
     }
 
 }

@@ -24,7 +24,7 @@ class RatingFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        for ($i=0; $i<9; $i++) {
+        for ($i=0; $i<10; $i++) {
             $this->createRating($manager, $i);
 
         }

@@ -17,9 +17,9 @@ class MemberFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $this->createMember($manager, 'ROLE_USER', 'member', 'member@awfl-team.fr', 'Roger','Martin', 'member', 1);
+        $this->createMember($manager, 'ROLE_USER', 'member', 'member@awfl-team.fr', 'Roger', 'Martin', 'member', 1);
 
-        $this->createMember($manager, 'ROLE_ADMIN', 'admin','admin@awfl-team.fr', 'Richard ','Dubois ','admin', 2);
+        $this->createMember($manager, 'ROLE_ADMIN', 'admin', 'admin@awfl-team.fr', 'Richard ', 'Dubois ', 'admin', 2);
 
         $manager->flush();
     }
@@ -34,13 +34,13 @@ class MemberFixtures extends Fixture implements OrderedFixtureInterface
 
     /**
      * @param ObjectManager $manager
-     * @param               $role
-     * @param               $username
-     * @param               $mail
-     * @param               $firstName
-     * @param               $lastName
-     * @param               $password
-     * @param               $i
+     * @param string        $role
+     * @param string        $username
+     * @param string        $mail
+     * @param string        $firstName
+     * @param string        $lastName
+     * @param string        $password
+     * @param int           $i
      *
      * @throws BadMethodCallException
      */

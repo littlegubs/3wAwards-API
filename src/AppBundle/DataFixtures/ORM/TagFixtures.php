@@ -2,6 +2,7 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
+use AppBundle\Entity\Project;
 use AppBundle\Entity\Tag;
 use AppBundle\Entity\TypeTag;
 use Doctrine\Common\DataFixtures\BadMethodCallException;
@@ -59,7 +60,7 @@ class TagFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 2;
+        return 5;
     }
 
     /**
@@ -76,28 +77,36 @@ class TagFixtures extends Fixture implements OrderedFixtureInterface
                 $i++;
             };
         };
+        $manager->flush();
     }
 
     /**
      * @param ObjectManager $manager
-     * @param string        $tag
+     * @param int           $tagKey
      * @param int           $typeTagKey
      * @param int           $key
      *
      * @throws BadMethodCallException
      */
-    private function createTag(ObjectManager $manager, $tag, $typeTagKey, $key)
+    private function createTag(ObjectManager $manager, $tagKey, $typeTagKey, $key)
     {
         /** @var TypeTag $typeTagRef */
         $typeTagRef = $this->getReference('type_tag_'.$typeTagKey);
 
-        $tagToCreate = new Tag();
-        $tagToCreate
-            ->setLibelle($tag)
+        $tag = new Tag();
+        $tag
+            ->setLibelle($tagKey)
             ->setType($typeTagRef);
 
-        $manager->persist($tagToCreate);
+        if ($typeTagKey <= 16) {
+            /** @var Project $project */
+            $project = $this->getReference('project_'.rand(0, 4));
 
-        $this->addReference("tag_".$key, $tagToCreate);
+            $tag->addProject($project);
+        }
+
+        $manager->persist($tag);
+
+        $this->addReference("tag_".$key, $tag);
     }
 }
