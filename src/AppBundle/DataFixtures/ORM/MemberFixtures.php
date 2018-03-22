@@ -4,16 +4,22 @@ namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Member;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\BadMethodCallException;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class MemberFixtures extends Fixture implements OrderedFixtureInterface
 {
+    /**
+     * @param ObjectManager $manager
+     *
+     * @throws BadMethodCallException
+     */
     public function load(ObjectManager $manager)
     {
-        $this->createMember($manager, 'ROLE_USER', 'member', 'member@awfl-team.fr', 'Roger','Martin', 'member');
+        $this->createMember($manager, 'ROLE_USER', 'member', 'member@awfl-team.fr', 'Roger', 'Martin', 'member', 1);
 
-        $this->createMember($manager, 'ROLE_ADMIN', 'admin','admin@awfl-team.fr', 'Richard ','Dubois ','admin');
+        $this->createMember($manager, 'ROLE_ADMIN', 'admin', 'admin@awfl-team.fr', 'Richard ', 'Dubois ', 'admin', 2);
 
         $manager->flush();
     }
@@ -26,7 +32,19 @@ class MemberFixtures extends Fixture implements OrderedFixtureInterface
         return 1;
     }
 
-    private function createMember(ObjectManager $manager, $role, $username, $mail, $firstName, $lastName, $password)
+    /**
+     * @param ObjectManager $manager
+     * @param string        $role
+     * @param string        $username
+     * @param string        $mail
+     * @param string        $firstName
+     * @param string        $lastName
+     * @param string        $password
+     * @param int           $i
+     *
+     * @throws BadMethodCallException
+     */
+    private function createMember(ObjectManager $manager, $role, $username, $mail, $firstName, $lastName, $password, $i)
     {
 
         $member = new Member();
@@ -44,5 +62,6 @@ class MemberFixtures extends Fixture implements OrderedFixtureInterface
             ->setEnabled(true);
 
         $manager->persist($member);
+        $this->addReference('member_'.$i, $member);
     }
 }

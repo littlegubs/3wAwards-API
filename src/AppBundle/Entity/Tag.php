@@ -147,6 +147,19 @@ class Tag
     }
 
     /**
+     * @param Project $project
+     *
+     * @return Tag
+     */
+    public function addProject($project) {
+        if(!$this->projects->contains($project)) {
+            $this->projects[] = $project;
+            $project->addTag($this);
+        }
+        return $this;
+    }
+
+    /**
      * @param Project[]|ArrayCollection $projects
      *
      * @return $this

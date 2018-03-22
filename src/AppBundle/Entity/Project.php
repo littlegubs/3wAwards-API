@@ -39,7 +39,7 @@ class Project
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="publicationDate", type="datetime")
+     * @ORM\Column(name="publicationDate", type="date")
      */
     private $publicationDate;
 
@@ -300,6 +300,18 @@ class Project
         return $this->tags;
     }
 
+    /**
+     * @param Tag $tag
+     *
+     * @return Project
+     */
+    public function addTag($tag) {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+            $tag->addProject($this);
+        }
+        return $this;
+    }
     /**
      * @param Tag[]|ArrayCollection $tags
      *

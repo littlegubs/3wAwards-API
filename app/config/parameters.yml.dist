@@ -22,9 +22,9 @@ parameters:
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
 
-    cors_allow_origin: http://localhost
+    cors_allow_origin: null
 
-    varnish_urls: [http://varnish]
+    varnish_urls: null
 
     jwt_private_key_path: '%kernel.root_dir%/../var/jwt/private.pem' # ssh private key path
     jwt_public_key_path:  '%kernel.root_dir%/../var/jwt/public.pem'  # ssh public key path
