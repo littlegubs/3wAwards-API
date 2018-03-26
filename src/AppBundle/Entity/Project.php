@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,6 +11,9 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="project")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProjectRepository")
+ * @ApiResource(itemOperations={
+ *     "get"={"method"="GET", "path"="/project/{id}" },
+ *     })
  */
 class Project
 {
