@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProjectRepository")
  * @ApiResource(itemOperations={
  *     "get"={"method"="GET", "path"="/project/{id}" },
- *     })
+ *     }, attributes={"normalization_context"={"groups"={"book"}}})
  */
 class Project
 {
