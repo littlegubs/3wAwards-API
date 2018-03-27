@@ -4,12 +4,19 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * Tag
  *
  * @ORM\Table(name="tag")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TagRepository")
+ * @ApiResource(itemOperations={
+ *     "get"={"method"="GET", "path"="/tag/{id}" },
+ *     }, attributes={
+ *     "normalization_context"={"groups"={"tag"}},
+ *     "denormalization_context"={"groups"={"tag"}}
+ *     })
  */
 class Tag
 {
@@ -24,35 +31,35 @@ class Tag
 
     /**
      * @var string
-     *
+     * @Groups({"tag"})
      * @ORM\Column(name="libelle", type="string", length=255)
      */
     private $libelle;
 
     /**
      * @var Agency[] | ArrayCollection
-     *
+     * @Groups({"tag"})
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Agency", mappedBy="tags")
      */
     private $agencies;
 
     /**
      * @var Client[] | ArrayCollection
-     *
+     * @Groups({"tag"})
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Client", mappedBy="tags")
      */
     private $clients;
 
     /**
      * @var Project[] | ArrayCollection
-     *
+     * @Groups({"tag"})
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Project", mappedBy="tags")
      */
     private $projects;
 
     /**
      * @var TypeTag
-     *
+     * @Groups({"tag"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TypeTag", inversedBy="tags")
      */
     private $type;

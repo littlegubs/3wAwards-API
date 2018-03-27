@@ -3,12 +3,20 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * ProjectRatingMember
  *
  * @ORM\Table(name="project_rating_member")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProjectRatingMemberRepository")
+ * @ApiResource(itemOperations={
+ *     "get"={"method"="GET", "path"="/project-rating-member/{id}" },
+ *     }, attributes={
+ *     "normalization_context"={"groups"={"project-rating-member"}},
+ *     "denormalization_context"={"groups"={"project-rating-member"}}
+ *     })
  */
 class ProjectRatingMember
 {
@@ -23,35 +31,35 @@ class ProjectRatingMember
 
     /**
      * @var \DateTime
-     *
+     * @Groups({"project-rating-member"})
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
 
     /**
      * @var bool
-     *
+     * @Groups({"project-rating-member"})
      * @ORM\Column(name="isVoteJudge", type="boolean")
      */
     private $isVoteJudge;
 
     /**
      * @var Member
-     *
+     * @Groups({"project-rating-member"})
      * @ORM\ManyToOne(targetEntity="Member", inversedBy="projectRatingMember")
      */
     private $member;
 
     /**
      * @var Project
-     *
+     * @Groups({"project-rating-member"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project", inversedBy="projectRatingMember")
      */
     private $project;
 
     /**
      * @var Rating
-     *
+     * @Groups({"project-rating-member"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Rating", inversedBy="projectRatingMember")
      */
     private $rating;

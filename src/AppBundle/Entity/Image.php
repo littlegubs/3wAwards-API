@@ -3,12 +3,20 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Image
  *
  * @ORM\Table(name="image")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ImageRepository")
+ * @ApiResource(itemOperations={
+ *     "get"={"method"="GET", "path"="/image/{id}" },
+ *     }, attributes={
+ *     "normalization_context"={"groups"={"image"}},
+ *     "denormalization_context"={"groups"={"image"}}
+ *     })
  */
 class Image
 {
@@ -23,14 +31,14 @@ class Image
 
     /**
      * @var string
-     *
+     * @Groups({"image"})
      * @ORM\Column(type="string", length=255)
      */
     private $path;
 
     /**
      * @var string
-     *
+     * @Groups({"image"})
      * @ORM\Column(name="libelle", type="string", length=255)
      */
     private $libelle;

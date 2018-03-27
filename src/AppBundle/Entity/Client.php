@@ -5,12 +5,21 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Traits\CardTrait;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Client
  *
  * @ORM\Table(name="client")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ClientRepository")
+ *  @ApiResource(itemOperations={
+ *     "get"={"method"="GET", "path"="/client/{id}" },
+ *     }, attributes={
+ *     "normalization_context"={"groups"={"client"}},
+ *     "denormalization_context"={"groups"={"client"}}
+ *     })
+ *
  */
 class Client
 {
@@ -26,28 +35,28 @@ class Client
 
     /**
      * @var Tag[] | ArrayCollection
-     *
+     * @Groups({"client"})
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="clients")
      */
     private $tags;
 
     /**
      * @var Member
-     *
+     * @Groups({"client"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Member", inversedBy="clients")
      */
     private $member;
 
     /**
      * @var Image
-     *
+     * @Groups({"client"})
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
      */
     private $image;
 
     /**
      * @var Project[] | ArrayCollection
-     *
+     * @Groups({"client"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Project", mappedBy="client")
      */
     private $projects;
