@@ -3,6 +3,7 @@
 namespace AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
 
 class ProjectRepository extends EntityRepository
 {
@@ -11,12 +12,11 @@ class ProjectRepository extends EntityRepository
         $qb = $this->createQueryBuilder('p')
             ->select('p')
             ->where('p.isValidate = 1')
-            ->orderBy('p.projectName','DESC')
+            ->orderBy('p.publicationDate','DESC')
             ->setMaxResults(12)
-            ->getQuery()->getResult();
+            ->getQuery()->getResult(Query::HYDRATE_ARRAY);
 
-        var_dump($qb);
-        die();
         return $qb;
     }
+
 }

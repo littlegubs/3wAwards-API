@@ -12,12 +12,15 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *
  * @ORM\Table(name="project")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProjectRepository")
- * @ApiResource(itemOperations={
+ * @ApiResource(
+ *     itemOperations={
  *     "get"={"method"="GET", "path"="/project/{id}" },
- *     }, attributes={
+ *     },
+ *     attributes={
  *     "normalization_context"={"groups"={"project"}},
  *     "denormalization_context"={"groups"={"project"}}
- *     })
+ *     }
+ * )
  */
 class Project
 {
