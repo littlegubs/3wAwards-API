@@ -67,7 +67,8 @@ class ProjectFixtures extends Fixture implements OrderedFixtureInterface
             ->setProjectDescription($this->projects[1][$i])
             ->setPublicationDate(new \DateTime(rand(1, 28).'-'.rand(1, 12).'-'.rand(2012, 2018)))
             ->setAverageRating(rand(1,100)/10)
-            ->setNoticableDescription($this->projects[2][$i]);
+            ->setNoticableDescription($this->projects[2][$i])
+            ->setIsValidate((rand(0, 1) === 1));
 
         if (rand(1, 2) == 1) {
             /** @var Agency $agency */

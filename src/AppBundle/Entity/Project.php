@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Project
@@ -13,7 +14,10 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProjectRepository")
  * @ApiResource(itemOperations={
  *     "get"={"method"="GET", "path"="/project/{id}" },
- *     }, attributes={"normalization_context"={"groups"={"book"}}})
+ *     }, attributes={
+ *     "normalization_context"={"groups"={"project"}},
+ *     "denormalization_context"={"groups"={"project"}}
+ *     })
  */
 class Project
 {
@@ -28,67 +32,77 @@ class Project
 
     /**
      * @var string
-     *
+     * @Groups({"project"})
      * @ORM\Column(name="projectName", type="string", length=255)
      */
     private $projectName;
 
     /**
      * @var string
-     *
+     * @Groups({"project"})
      * @ORM\Column(name="projectDescription", type="text")
      */
     private $projectDescription;
 
     /**
      * @var \DateTime
-     *
+     * @Groups({"project"})
      * @ORM\Column(name="publicationDate", type="date")
      */
     private $publicationDate;
 
     /**
      * @var float
-     *
+     * @Groups({"project"})
      * @ORM\Column(type="float")
      */
     private $averageRating;
 
     /**
      * @var string
-     *
+     * @Groups({"project"})
      * @ORM\Column(name="noticableDescription", type="string", length=255)
      */
     private $noticableDescription;
 
     /**
+     * @var bool
+     * @Groups({"project"})
+     * @ORM\Column(name="isValidate", type="boolean")
+     */
+    private $isValidate;
+
+    /**
      * @var ProjectRatingMember[] | ArrayCollection
-     *
+     * @Groups({"project"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectRatingMember", mappedBy="project")
      */
     private $projectRatingMember;
 
     /**
      * @var Client
+     * @Groups({"project"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Client", inversedBy="projects")
      */
     private $client;
 
     /**
      * @var Agency
+     * @Groups({"project"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Agency", inversedBy="projects")
      */
     private $agency;
 
     /**
      * @var Tag[] | ArrayCollection
-     *
+     * @Groups({"project"})
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="projects")
      */
     private $tags;
 
     /**
      * @var Image[] | ArrayCollection
+     * @Groups({"project"})
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Image")
      * @ORM\JoinTable(name="project_image",
      *     joinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")},
@@ -98,6 +112,7 @@ class Project
 
     /**
      * @var Award[] | ArrayCollection
+     * @Groups({"project"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Award", mappedBy="project")
      */
     private $awards;
@@ -309,13 +324,15 @@ class Project
      *
      * @return Project
      */
-    public function addTag($tag) {
+    public function addTag($tag)
+    {
         if (!$this->tags->contains($tag)) {
             $this->tags[] = $tag;
             $tag->addProject($this);
         }
         return $this;
     }
+
     /**
      * @param Tag[]|ArrayCollection $tags
      *
@@ -366,6 +383,23 @@ class Project
         $this->awards = $awards;
 
         return $this;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getisValidate()
+    {
+        return $this->isValidate;
+    }
+
+    /**
+     * @param mixed $isValidate
+     */
+    public function setIsValidate($isValidate)
+    {
+        $this->isValidate = $isValidate;
     }
 
 }
