@@ -9,7 +9,6 @@ use Doctrine\Common\DataFixtures\BadMethodCallException;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use function Sodium\randombytes_buf;
 
 class ProjectFixtures extends Fixture implements OrderedFixtureInterface
 {
@@ -32,7 +31,7 @@ class ProjectFixtures extends Fixture implements OrderedFixtureInterface
         ],
     ];
 
-    private $status = ['pending', 'accepted', 'refused'];
+    private $status = [Project::STATUS_PENDING, Project::STATUS_ACCEPTED , Project::STATUS_REFUSED ];
 
     /**
      * @return int*
