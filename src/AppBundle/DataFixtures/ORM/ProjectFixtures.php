@@ -32,6 +32,8 @@ class ProjectFixtures extends Fixture implements OrderedFixtureInterface
         ],
     ];
 
+    private $status = ['pending', 'accepted', 'refused'];
+
     /**
      * @return int*
      */
@@ -68,7 +70,7 @@ class ProjectFixtures extends Fixture implements OrderedFixtureInterface
             ->setPublicationDate(new \DateTime(rand(1, 28).'-'.rand(1, 12).'-'.rand(2012, 2018)))
             ->setAverageRating(rand(1,100)/10)
             ->setNoticableDescription($this->projects[2][$i])
-            ->setIsValidate((rand(0, 1) === 1));
+            ->setStatus($this->status[rand(0,2)]);
 
         if (rand(1, 2) == 1) {
             /** @var Agency $agency */

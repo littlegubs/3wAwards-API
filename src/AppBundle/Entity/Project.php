@@ -22,8 +22,13 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     }
  * )
  */
+
 class Project
 {
+    const STATUS_PENDING = 'pending';
+    const STATUS_ACCEPTED = 'accepted';
+    const STATUS_REFUSED = 'refused';
+
     /**
      * @var int
      *
@@ -69,11 +74,11 @@ class Project
     private $noticableDescription;
 
     /**
-     * @var bool
+     * @var string
      * @Groups({"project"})
-     * @ORM\Column(name="isValidate", type="boolean")
+     * @ORM\Column(name="status", type="string")
      */
-    private $isValidate;
+    private $status = self::STATUS_PENDING;
 
     /**
      * @var ProjectRatingMember[] | ArrayCollection
@@ -388,22 +393,22 @@ class Project
         return $this;
     }
 
-
     /**
-     * @return mixed
+     * @return string
      */
-    public function getisValidate()
+    public function getStatus()
     {
-        return $this->isValidate;
+        return $this->status;
     }
 
     /**
-     * @param mixed $isValidate
+     * @param string $status
      */
-    public function setIsValidate($isValidate)
+    public function setStatus($status)
     {
-        $this->isValidate = $isValidate;
+        $this->status = $status;
     }
+
 
 }
 

@@ -35,7 +35,7 @@ class ProjectController
      */
     public function __invoke(): JsonResponse
     {
-        $projects = $this->projectRepository->lastTwelveProjects();
+        $projects = $this->projectRepository->getLastTwelveProjects();
 
         return new JsonResponse([
             'projects' => $projects,
