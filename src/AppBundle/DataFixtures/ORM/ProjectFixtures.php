@@ -9,7 +9,6 @@ use Doctrine\Common\DataFixtures\BadMethodCallException;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use function Sodium\randombytes_buf;
 
 class ProjectFixtures extends Fixture implements OrderedFixtureInterface
 {
@@ -31,6 +30,8 @@ class ProjectFixtures extends Fixture implements OrderedFixtureInterface
 
         ],
     ];
+
+    private $status = [Project::STATUS_PENDING, Project::STATUS_ACCEPTED , Project::STATUS_REFUSED ];
 
     /**
      * @return int*
@@ -67,7 +68,8 @@ class ProjectFixtures extends Fixture implements OrderedFixtureInterface
             ->setProjectDescription($this->projects[1][$i])
             ->setPublicationDate(new \DateTime(rand(1, 28).'-'.rand(1, 12).'-'.rand(2012, 2018)))
             ->setAverageRating(rand(1,100)/10)
-            ->setNoticableDescription($this->projects[2][$i]);
+            ->setNoticableDescription($this->projects[2][$i])
+            ->setStatus($this->status[rand(0,2)]);
 
         if (rand(1, 2) == 1) {
             /** @var Agency $agency */

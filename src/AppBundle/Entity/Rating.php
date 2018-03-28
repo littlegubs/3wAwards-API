@@ -4,12 +4,20 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Grade
  *
  * @ORM\Table(name="rating")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\RatingRepository")
+ * @ApiResource(itemOperations={
+ *     "get"={"method"="GET", "path"="/rating/{id}" },
+ *     }, attributes={
+ *     "normalization_context"={"groups"={"rating"}},
+ *     "denormalization_context"={"groups"={"rating"}}
+ *     })
  */
 class Rating
 {
@@ -24,21 +32,21 @@ class Rating
 
     /**
      * @var int
-     *
+     * @Groups({"rating"})
      * @ORM\Column(name="value", type="integer")
      */
     private $value;
 
     /**
      * @var Category
-     *
+     * @Groups({"rating"})
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="ratings")
      */
     private $category;
 
     /**
      * @var ProjectRatingMember[] | ArrayCollection
-     *
+     * @Groups({"rating"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectRatingMember", mappedBy="rating")
      */
     private $projectRatingMember;

@@ -3,12 +3,19 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * Award
  *
  * @ORM\Table(name="award")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AwardRepository")
+ * @ApiResource(itemOperations={
+ *     "get"={"method"="GET", "path"="/award/{id}" },
+ *     }, attributes={
+ *     "normalization_context"={"groups"={"award"}},
+ *     "denormalization_context"={"groups"={"award"}}
+ *     })
  */
 class Award
 {
@@ -27,28 +34,28 @@ class Award
 
     /**
      * @var \DateTime
-     *
+     * @Groups({"award"})
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
 
     /**
      * @var Category
-     *
+     * @Groups({"award"})
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="awards")
      */
     private $category;
 
     /**
      * @var string
-     *
+     * @Groups({"award"})
      * @ORM\Column(name="type")
      */
     private $type;
 
     /**
      * @var Project
-     *
+     * @Groups({"award"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project", inversedBy="awards")
      */
     private $project;

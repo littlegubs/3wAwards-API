@@ -5,11 +5,19 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Traits\CardTrait;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * Agency
  *
  * @ORM\Table(name="agency")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AgencyRepository")
+ * @ApiResource(itemOperations={
+ *     "get"={"method"="GET", "path"="/agency/{id}" },
+ *     }, attributes={
+ *     "normalization_context"={"groups"={"agency"}},
+ *     "denormalization_context"={"groups"={"agency"}}
+ *     })
  */
 class Agency
 {
@@ -25,35 +33,35 @@ class Agency
 
     /**
      * @var TypeAgency
-     *
+     * @Groups({"agency"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TypeAgency", inversedBy="typeCompany")
      */
     private $typeAgency;
 
     /**
      * @var Member
-     *
+     * @Groups({"agency"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Member", inversedBy="agencies")
      */
     private $member;
 
     /**
      * @var Project[] | ArrayCollection
-     *
+     * @Groups({"agency"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Project", mappedBy="agency")
      */
     private $projects;
 
     /**
      * @var Tag[] | ArrayCollection
-     *
+     * @Groups({"agency"})
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="agencies")
      */
     private $tags;
 
     /**
      * @var Image
-     *
+     * @Groups({"agency"})
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
      */
     private $image;
