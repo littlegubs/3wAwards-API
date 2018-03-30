@@ -43,9 +43,10 @@ services:
                 arguments:
                     - "AppBundle:Award"
 
-    acme_api.event.authentication_success_listener:
-            class: AppBundle\EventListener\AuthenticationSuccessListener
+
+    acme_api.event.jwt_created_listener:
+            class: AppBundle\EventListener\JWTCreatedListener
             arguments:
-                - "@service_container"
+                -  "@service_container"
             tags:
-                - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_success, method: onAuthenticationSuccessResponse }
+               - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_created, method: onJWTCreated }

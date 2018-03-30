@@ -1,12 +1,13 @@
 <?php
 
+
 namespace AppBundle\EventListener;
 
 use AppBundle\Entity\Member;
-use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationSuccessEvent;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTCreatedEvent;
 
-class AuthenticationSuccessListener
+class JWTCreatedListener
 {
     private $container;
 
@@ -16,22 +17,26 @@ class AuthenticationSuccessListener
     }
 
     /**
-     * @param AuthenticationSuccessEvent $event
+     * @param JWTCreatedEvent $event
+     *
+     * @return void
      */
-    public function onAuthenticationSuccessResponse(AuthenticationSuccessEvent $event)
+    public function onJWTCreated(JWTCreatedEvent $event)
     {
         $userManager = $this->container->get('fos_user.user_manager');
         $repository = $this->container->get('doctrine')->getRepository(Member::class);
 
         $user = $userManager->findUserByUsername($event->getUser()->getUsername());
-        $payload = $event->getData();
+        /** @var Member $member */
         $member = $repository->find($user->getId());
 
+        $payload = $event->getData();
         $payload['firstName'] = $member->getFirstName();
-        $payload['lasName'] = $member->getLastName();
+        $payload['lastname'] = $member->getLastName();
+        $payload['icon'] = $member->getProfilePicture()->getPath();
+
 
         $event->setData($payload);
-        
     }
 
 }
