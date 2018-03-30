@@ -42,3 +42,11 @@ services:
                 factory: ["@doctrine.orm.entity_manager", "getRepository"]
                 arguments:
                     - "AppBundle:Award"
+
+
+    acme_api.event.jwt_created_listener:
+            class: AppBundle\EventListener\JWTCreatedListener
+            arguments:
+                -  "@service_container"
+            tags:
+               - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_created, method: onJWTCreated }
