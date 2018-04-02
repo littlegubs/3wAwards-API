@@ -34,7 +34,7 @@ class Agency
     /**
      * @var TypeAgency
      * @Groups({"agency"})
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TypeAgency", inversedBy="typeCompany")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TypeAgency", inversedBy="agencies")
      */
     private $typeAgency;
 
