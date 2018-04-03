@@ -17,10 +17,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     "get"={"method"="GET", "path"="/project/{id}" },
  *     },
  *     attributes={
+ *     "pagination_items_per_page"=12,
  *     "normalization_context"={"groups"={"project"}},
- *     "denormalization_context"={"groups"={"project"}}
- *     }
- * )
+ *     "denormalization_context"={"groups"={"project"}},
+ *     "filters"={"project.status_filter", "project.order_filter"}
+ *     })
  */
 
 class Project
@@ -79,7 +80,6 @@ class Project
      * @ORM\Column(name="status", type="string")
      */
     private $status = self::STATUS_PENDING;
-
     /**
      * @var ProjectRatingMember[] | ArrayCollection
      * @Groups({"project"})

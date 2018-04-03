@@ -14,7 +14,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     "get"={"method"="GET", "path"="/award/{id}" },
  *     }, attributes={
  *     "normalization_context"={"groups"={"award"}},
- *     "denormalization_context"={"groups"={"award"}}
+ *     "denormalization_context"={"groups"={"award"}},
+ *     "filters"={"award.order_filter"}
  *     })
  */
 class Award

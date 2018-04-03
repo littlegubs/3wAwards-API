@@ -2,7 +2,6 @@
 
 namespace AppBundle\Repository;
 
-use Doctrine\ORM\Query;
 use Doctrine\ORM\EntityRepository;
 /**
  * AwardRepository
@@ -12,14 +11,5 @@ use Doctrine\ORM\EntityRepository;
  */
 class AwardRepository extends EntityRepository
 {
-   public function getThreeLastAward()
-   {
-       $qb = $this->createQueryBuilder('a')
-           ->orderBy('a.date', 'DESC')
-           ->setMaxResults(3)
-           ->getQuery()->getResult(Query::HYDRATE_ARRAY);
-
-       return $qb;
-   }
 
 }
