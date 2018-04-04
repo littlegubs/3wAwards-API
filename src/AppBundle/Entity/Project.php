@@ -14,13 +14,14 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProjectRepository")
  * @ApiResource(
  *     itemOperations={
- *     "get"={"method"="GET", "path"="/project/{id}" },
+ *     "get"
  *     },
  *     attributes={
+ *     "order"={"publicationDate": "DESC"},
  *     "pagination_items_per_page"=12,
  *     "normalization_context"={"groups"={"project"}},
  *     "denormalization_context"={"groups"={"project"}},
- *     "filters"={"project.status_filter", "project.order_filter"}
+ *     "filters"={"project.status_filter"}
  *     })
  */
 
