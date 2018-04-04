@@ -49,14 +49,6 @@ services:
         autoconfigure: false
         public: false
 
-    project.order_filter:
-        parent: 'api_platform.doctrine.orm.order_filter'
-        arguments: [ { publicationDate: ~ } ]
-        tags:  [ 'api_platform.filter' ]
-        autowire: false
-        autoconfigure: false
-        public: false
-
     award.order_filter:
         parent: 'api_platform.doctrine.orm.order_filter'
         arguments: [ { date: ~ } ]
