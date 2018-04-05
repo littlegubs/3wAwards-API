@@ -4,12 +4,20 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * TypeTag
  *
  * @ORM\Table(name="type_tag")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TypeTagRepository")
+ * @ApiResource(itemOperations={
+ *     "get"
+ *     }, attributes={
+ *     "normalization_context"={"groups"={"type-tag"}},
+ *     "denormalization_context"={"groups"={"type-tag"}}
+ *     })
  */
 class TypeTag
 {
@@ -24,14 +32,14 @@ class TypeTag
 
     /**
      * @var string
-     *
+     * @Groups({"type-tag"})
      * @ORM\Column(name="libelle", type="string", length=255)
      */
     private $libelle;
 
     /**
      * @var Tag[] | ArrayCollection
-     *
+     * @Groups({"type-tag"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Tag", mappedBy="type")
      */
     private $tags;

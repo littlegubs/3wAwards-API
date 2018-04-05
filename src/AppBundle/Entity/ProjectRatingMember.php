@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="project_rating_member")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProjectRatingMemberRepository")
  * @ApiResource(itemOperations={
- *     "get"={"method"="GET", "path"="/project-rating-member/{id}" },
+ *     "get"
  *     }, attributes={
  *     "normalization_context"={"groups"={"project-rating-member"}},
  *     "denormalization_context"={"groups"={"project-rating-member"}}

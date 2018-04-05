@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="image")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ImageRepository")
  * @ApiResource(itemOperations={
- *     "get"={"method"="GET", "path"="/image/{id}" },
+ *     "get"
  *     }, attributes={
  *     "normalization_context"={"groups"={"image"}},
  *     "denormalization_context"={"groups"={"image"}}

@@ -16,8 +16,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ApiResource(itemOperations={
  *     "get"={"method"="GET", "path"="/member/{id}" },
  *     },attributes={
- *     "normalization_context"={"groups"={"user", "user-read"}},
- *     "denormalization_context"={"groups"={"user", "user-write"}}
+ *     "normalization_context"={"groups"={"member"}},
+ *     "denormalization_context"={"groups"={"member"}}
  * })
  */
 class Member extends BaseUser
@@ -33,90 +33,90 @@ class Member extends BaseUser
 
     /**
      * @var string
-     * @Groups({"user"})
+     * @Groups({"member"})
      * @ORM\Column(name="gender", type="string", length=1, nullable=true)
      */
     private $gender;
 
     /**
      * @var string
-     * @Groups({"user"})
+     * @Groups({"member"})
      * @ORM\Column(name="firstName", type="string", length=255)
      */
     private $firstName;
 
     /**
      * @var string
-     * @Groups({"user"})
+     * @Groups({"member"})
      * @ORM\Column(name="lastName", type="string", length=255)
      */
     private $lastName;
 
     /**
      * @var string
-     * @Groups({"user"})
+     * @Groups({"member"})
      * @ORM\Column(name="birthday", type="date", length=255, nullable=true)
      */
     private $birthday;
 
     /**
      * @var bool
-     * @Groups({"user"})
+     * @Groups({"member"})
      * @ORM\Column(name="isJudge", type="boolean")
      */
     private $isJudge;
 
     /**
      * @var string
-     * @Groups({"user"})
+     * @Groups({"member"})
      * @ORM\Column(type="string", nullable=true)
      */
     private $presentation;
     /**
      * @var string
-     * @Groups({"user"})
+     * @Groups({"member"})
      * @ORM\Column(name="websiteUrl", type="string", length=255, nullable=true)
      */
     private $websiteUrl;
 
     /**
      * @var bool
-     * @Groups({"user"})
+     * @Groups({"member"})
      * @ORM\Column(name="newsletter", type="boolean", nullable=true)
      */
     private $newsletter;
 
     /**
      * @var bool
-     * @Groups({"user"})
+     * @Groups({"member"})
      * @ORM\Column(name="optIn", type="boolean")
      */
     private $optIn;
 
     /**
      * @var ProjectRatingMember
-     * @Groups({"user"})
+     * @Groups({"member"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectRatingMember", mappedBy="member")
      */
     private $projectRatingMember;
 
     /**
      * @var Client | ArrayCollection[]
-     * @Groups({"user"})
+     * @Groups({"member"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Client", mappedBy="member")
      */
     private $clients;
 
     /**
      * @var Agency | ArrayCollection[]
-     * @Groups({"user"})
+     * @Groups({"member"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Agency", mappedBy="member")
      */
     private $agencies;
 
     /**
      * @var Image
-     * @Groups({"user"})
+     * @Groups({"member"})
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image")
      */
     private $profilePicture;

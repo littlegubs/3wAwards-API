@@ -4,12 +4,20 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Category
  *
  * @ORM\Table(name="category")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoryRepository")
+ * @ApiResource(itemOperations={
+ *     "get"
+ *     }, attributes={
+ *     "normalization_context"={"groups"={"category"}},
+ *     "denormalization_context"={"groups"={"category"}}
+ *     })
  */
 class Category
 {
@@ -24,21 +32,21 @@ class Category
 
     /**
      * @var string
-     *
+     * @Groups({"category"})
      * @ORM\Column(name="libelle", type="string", length=255)
      */
     private $libelle;
 
     /**
      * @var Award[] | ArrayCollection
-     *
+     * @Groups({"category"})
      * @ORM\OneToMany(targetEntity="Award", mappedBy="category")
      */
     private $awards;
 
     /**
      * @var Rating[] | ArrayCollection
-     *
+     * @Groups({"category"})
      * @ORM\OneToMany(targetEntity="Rating", mappedBy="category")
      */
     private $ratings;
