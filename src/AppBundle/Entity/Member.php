@@ -34,7 +34,7 @@ class Member extends BaseUser
     /**
      * @var string
      * @Groups({"member"})
-     * @ORM\Column(name="gender", type="string", length=1)
+     * @ORM\Column(name="gender", type="string", length=1, nullable=true)
      */
     private $gender;
 
@@ -55,7 +55,7 @@ class Member extends BaseUser
     /**
      * @var string
      * @Groups({"member"})
-     * @ORM\Column(name="birthday", type="date", length=255)
+     * @ORM\Column(name="birthday", type="date", length=255, nullable=true)
      */
     private $birthday;
 
