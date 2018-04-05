@@ -32,7 +32,7 @@ class JWTCreatedListener
 
         $payload = $event->getData();
         $payload['firstName'] = $member->getFirstName();
-        $payload['lastname'] = $member->getLastName();
+        $payload['lastName'] = $member->getLastName();
         $payload['icon'] = $member->getProfilePicture()->getPath();
 
 

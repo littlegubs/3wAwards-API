@@ -33,16 +33,6 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
-    AppBundle\Repository\ProjectRepository:
-            factory: ["@doctrine.orm.entity_manager", "getRepository"]
-            arguments:
-                - "AppBundle:Project"
-
-    AppBundle\Repository\AwardRepository:
-                factory: ["@doctrine.orm.entity_manager", "getRepository"]
-                arguments:
-                    - "AppBundle:Award"
-
 
     acme_api.event.jwt_created_listener:
             class: AppBundle\EventListener\JWTCreatedListener
@@ -50,3 +40,19 @@ services:
                 -  "@service_container"
             tags:
                - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_created, method: onJWTCreated }
+
+    project.status_filter:
+        parent: 'api_platform.doctrine.orm.search_filter'
+        arguments: [ { status: 'exact' } ]
+        tags:  [ 'api_platform.filter' ]
+        autowire: false
+        autoconfigure: false
+        public: false
+
+    award.order_filter:
+        parent: 'api_platform.doctrine.orm.order_filter'
+        arguments: [ { date: ~ } ]
+        tags:  [ 'api_platform.filter' ]
+        autowire: false
+        autoconfigure: false
+        public: false

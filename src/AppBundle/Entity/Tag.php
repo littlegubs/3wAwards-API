@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="tag")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TagRepository")
  * @ApiResource(itemOperations={
- *     "get"={"method"="GET", "path"="/tag/{id}" },
+ *     "get"
  *     }, attributes={
  *     "normalization_context"={"groups"={"tag"}},
  *     "denormalization_context"={"groups"={"tag"}}

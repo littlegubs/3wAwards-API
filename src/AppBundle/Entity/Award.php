@@ -11,10 +11,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="award")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AwardRepository")
  * @ApiResource(itemOperations={
- *     "get"={"method"="GET", "path"="/award/{id}" },
+ *     "get"
  *     }, attributes={
  *     "normalization_context"={"groups"={"award"}},
- *     "denormalization_context"={"groups"={"award"}}
+ *     "denormalization_context"={"groups"={"award"}},
+ *     "filters"={"award.order_filter"}
  *     })
  */
 class Award
