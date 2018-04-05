@@ -126,3 +126,20 @@ knp_doctrine_behaviors:
     loggable:       ~
     sluggable:      true
     soft_deletable: true
+
+liip_imagine:
+    resolvers:
+        default:
+            web_path: ~
+
+    filter_sets:
+        cache: ~
+        card_thumbnail:
+            filters:
+                thumbnail: { size: [415, 300], mode: outbound }
+        profile_pic:
+            filters:
+                thumbnail: { size: [155,155], mode: outbound }
+        slider_thumbnail:
+            filters:
+                thumbnail: { size: [1780, 700], mode: outbound }
