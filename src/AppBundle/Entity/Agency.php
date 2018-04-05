@@ -31,10 +31,17 @@ class Agency
 
     /**
      * @var string
-     * @Groups({"agency"})
+     * @Groups({"agency", "project"})
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+    /**
+     * @var string
+     * @Groups({"agency", "project"})
+     * @ORM\Column(name="country", type="string", length=255)
+     */
+    private $country;
 
     /**
      * @var string
@@ -190,7 +197,7 @@ class Agency
      *
      * @param string $logo
      *
-     * @return CardTrait
+     * @return string
      */
     public function setLogo($logo)
     {
@@ -215,7 +222,7 @@ class Agency
      *
      * @param string $address
      *
-     * @return CardTrait
+     * @return string
      */
     public function setAddress($address)
     {
@@ -239,7 +246,7 @@ class Agency
      *
      * @param string $addressComplement
      *
-     * @return CardTrait
+     * @return string
      */
     public function setAddressComplement($addressComplement)
     {
@@ -263,7 +270,7 @@ class Agency
      *
      * @param string $zipcode
      *
-     * @return CardTrait
+     * @return string
      */
     public function setZipcode($zipcode)
     {
@@ -287,7 +294,7 @@ class Agency
      *
      * @param string $phone
      *
-     * @return CardTrait
+     * @return string
      */
     public function setPhone($phone)
     {
@@ -311,7 +318,7 @@ class Agency
      *
      * @param string $fax
      *
-     * @return CardTrait
+     * @return string
      */
     public function setFax($fax)
     {
@@ -335,7 +342,7 @@ class Agency
      *
      * @param string $city
      *
-     * @return CardTrait
+     * @return string
      */
     public function setCity($city)
     {
@@ -359,7 +366,7 @@ class Agency
      *
      * @param string $description
      *
-     * @return CardTrait
+     * @return string
      */
     public function setDescription($description)
     {
@@ -383,7 +390,7 @@ class Agency
      *
      * @param string $internalNotice
      *
-     * @return CardTrait
+     * @return string
      */
     public function setInternalNotice($internalNotice)
     {
@@ -403,35 +410,29 @@ class Agency
     }
 
     /**
-     * Set creationDate
-     *
-     * @param \DateTime $creationDate
-     *
-     * @return CardTrait
-     */
-    public function setCreationDate($creationDate)
-    {
-        $this->creationDate = $creationDate;
-
-        return $this;
-    }
-
-    /**
-     * Get creationDate
-     *
      * @return \DateTime
      */
-    public function getCreationDate()
+    public function getCreationDate(): \DateTime
     {
         return $this->creationDate;
     }
+
+    /**
+     * @param \DateTime $creationDate
+     */
+    public function setCreationDate(\DateTime $creationDate)
+    {
+        $this->creationDate = $creationDate;
+    }
+
+
 
     /**
      * Set websiteUrl
      *
      * @param string $websiteUrl
      *
-     * @return CardTrait
+     * @return string
      */
     public function setWebsiteUrl($websiteUrl)
     {
@@ -455,7 +456,7 @@ class Agency
      *
      * @param string $tva
      *
-     * @return CardTrait
+     * @return string
      */
     public function setTva($tva)
     {
@@ -479,7 +480,7 @@ class Agency
      *
      * @param string $duns
      *
-     * @return CardTrait
+     * @return string
      */
     public function setDuns($duns)
     {
@@ -603,5 +604,23 @@ class Agency
 
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getCountry(): string
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param string $country
+     */
+    public function setCountry(string $country)
+    {
+        $this->country = $country;
+    }
+
+
 }
 
