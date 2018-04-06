@@ -15,6 +15,8 @@ class AgencyFixtures extends Fixture implements OrderedFixtureInterface
     private $agencies = [
         /* name */
         ['Cabestan', 'MentalWorks', 'Arroi', 'Nodevo', 'Capgemini'],
+        /* country */
+        ['France', 'Espagne', 'Portugal', 'Allemagne', 'Belgique'],
         /* adress */
         ['7 Quai André Citroën', 'Rue Irène Joliot Curie', '27 Rue Saint-Pierre', '1 Avenue du Général de Gaulle',
             '11 Rue de Tilsitt'],
@@ -86,19 +88,20 @@ class AgencyFixtures extends Fixture implements OrderedFixtureInterface
 
         /** @var Agency $agency */
         $agency = new Agency();
-        $agency->setName($this->agencies[0][$i])
-            ->setAddress($this->agencies[1][$i])
-            ->setZipcode($this->agencies[2][$i])
-            ->setPhone($this->agencies[3][$i])
-            ->setCity($this->agencies[4][$i])
-            ->setDescription($this->agencies[5][$i])
-            ->setInternalNotice($this->agencies[6][$i])
-            ->setWebsiteUrl($this->agencies[7][$i])
-            ->setTva($this->agencies[8][$i])
-            ->settypeAgency($typeAgency)
-            ->setMember($member)
-            ->setDuns($this->agencies[9][$i])
-            ->setCreationDate(new \DateTime(rand(1, 28).'-'.rand(1, 12).'-'.rand(2012, 2018)));
+        $agency->setName($this->agencies[0][$i]);
+        $agency->setCountry($this->agencies[1][$i]);
+        $agency->setAddress($this->agencies[2][$i]);
+        $agency->setZipcode($this->agencies[3][$i]);
+        $agency->setPhone($this->agencies[4][$i]);
+        $agency->setCity($this->agencies[5][$i]);
+        $agency->setDescription($this->agencies[6][$i]);
+        $agency->setInternalNotice($this->agencies[7][$i]);
+        $agency->setWebsiteUrl($this->agencies[8][$i]);
+        $agency->setTva($this->agencies[9][$i]);
+        $agency->settypeAgency($typeAgency);
+        $agency->setMember($member);
+        $agency->setDuns($this->agencies[10][$i]);
+        $agency->setCreationDate(new \DateTime(rand(1, 28).'-'.rand(1, 12).'-'.rand(2012, 2018)));
 
         $manager->persist($agency);
         $this->addReference('agency_'.$i, $agency);
