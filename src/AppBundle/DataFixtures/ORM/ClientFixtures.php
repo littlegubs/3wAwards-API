@@ -13,6 +13,8 @@ class ClientFixtures extends Fixture implements OrderedFixtureInterface
     private $clients = [
         /* name */
         ['Gueudet', 'EDF', 'SNCF', 'La Poste', 'FFT'],
+        /* country */
+        ['France', 'Espagne', 'Portugal', 'Allemagne', 'Belgique'],
         /* adress */
         ['7 Quai André Citroën', 'Rue Irène Joliot Curie', '27 Rue Saint-Pierre', '1 Avenue du Général de Gaulle', '11 Rue de Tilsitt'],
         /* zipcode */
@@ -78,19 +80,19 @@ class ClientFixtures extends Fixture implements OrderedFixtureInterface
         $member = $this->getReference('member_'.rand(1, 2));
 
         $client = new Client();
-        $client
-            ->setName($this->clients[0][$i])
-            ->setAddress($this->clients[1][$i])
-            ->setZipcode($this->clients[2][$i])
-            ->setPhone($this->clients[3][$i])
-            ->setCity($this->clients[4][$i])
-            ->setDescription($this->clients[5][$i])
-            ->setMember($member)
-            ->setInternalNotice($this->clients[6][$i])
-            ->setWebsiteUrl($this->clients[7][$i])
-            ->setTva($this->clients[8][$i])
-            ->setDuns($this->clients[9][$i])
-            ->setCreationDate(new \DateTime(rand(1, 28).'-'.rand(1, 12).'-'.rand(2012, 2018)));
+        $client->setName($this->clients[0][$i]);
+        $client->setCountry($this->clients[1][$i]);
+        $client->setAddress($this->clients[2][$i]);
+        $client->setZipcode($this->clients[3][$i]);
+        $client->setPhone($this->clients[4][$i]);
+        $client->setCity($this->clients[5][$i]);
+        $client->setDescription($this->clients[6][$i]);
+        $client->setMember($member);
+        $client->setInternalNotice($this->clients[7][$i]);
+        $client->setWebsiteUrl($this->clients[8][$i]);
+        $client->setTva($this->clients[9][$i]);
+        $client->setDuns($this->clients[10][$i]);
+        $client->setCreationDate(new \DateTime(rand(1, 28).'-'.rand(1, 12).'-'.rand(2012, 2018)));
 
 
         $manager->persist($client);
