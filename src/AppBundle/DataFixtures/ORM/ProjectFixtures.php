@@ -4,6 +4,7 @@ namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Agency;
 use AppBundle\Entity\Client;
+use AppBundle\Entity\Image;
 use AppBundle\Entity\Project;
 use Doctrine\Common\DataFixtures\BadMethodCallException;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -13,13 +14,13 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 class ProjectFixtures extends Fixture implements OrderedFixtureInterface
 {
     private $projects = [
-        ['Open-Annuaire', '3wAwards', 'Adav', 'VisionDrone' ,'DataStudio'],
+        ['Open Annuaire', '3wAwards', 'That one cool website', 'Project test', 'DataStudio'],
         [
             'Audietis nos dixistis loco iuratis.',
             'Iam exitialis cibos inediae flumen.',
             'Propositum aliis quoque eius neminem.',
             'Enim vivendi Eusebius tribunos Eusebius.',
-            'Illorum video fines ut De.'
+            'Illorum video fines ut De.',
         ],
         [
             'Sicut Quid Quid cum Quid.',
@@ -31,7 +32,7 @@ class ProjectFixtures extends Fixture implements OrderedFixtureInterface
         ],
     ];
 
-    private $status = [Project::STATUS_PENDING, Project::STATUS_ACCEPTED , Project::STATUS_REFUSED ];
+    private $status = [Project::STATUS_PENDING, Project::STATUS_ACCEPTED, Project::STATUS_REFUSED];
 
     /**
      * @return int*
@@ -48,7 +49,7 @@ class ProjectFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        for ($i=0; $i<5; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             $this->createProject($manager, $i);
         }
         $manager->flush();
@@ -63,13 +64,17 @@ class ProjectFixtures extends Fixture implements OrderedFixtureInterface
     {
         $project = new Project();
 
+        /** @var Image $image */
+        $image = $this->getReference('image_'.rand(1, 5));
+
         $project
             ->setProjectName($this->projects[0][$i])
             ->setProjectDescription($this->projects[1][$i])
             ->setPublicationDate(new \DateTime(rand(1, 28).'-'.rand(1, 12).'-'.rand(2012, 2018)))
-            ->setAverageRating(rand(1,100)/10)
+            ->setAverageRating(rand(1, 100) / 10)
+            ->addImage($image)
             ->setNoticableDescription($this->projects[2][$i])
-            ->setStatus($this->status[rand(0,2)]);
+            ->setStatus($this->status[rand(0, 2)]);
 
         if (rand(1, 2) == 1) {
             /** @var Agency $agency */

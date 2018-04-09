@@ -363,6 +363,20 @@ class Project
     }
 
     /**
+     * @param Image $image
+     *
+     * @return Project
+     */
+    public function addImage($image)
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+        }
+
+        return $this;
+    }
+
+    /**
      * @param Image[]|ArrayCollection $images
      *
      * @return $this
