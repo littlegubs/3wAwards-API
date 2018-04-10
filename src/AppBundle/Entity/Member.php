@@ -14,10 +14,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="member")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\MemberRepository")
  * @ApiResource(itemOperations={
- *     "get"={"method"="GET", "path"="/member/{id}" },
+ *     "get",
  *     },attributes={
  *     "normalization_context"={"groups"={"member"}},
- *     "denormalization_context"={"groups"={"member"}}
+ *     "denormalization_context"={"groups"={"member"}},
+ *     "filters"={"member.username_filter"}
  * })
  */
 class Member extends BaseUser

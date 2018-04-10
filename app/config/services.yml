@@ -49,6 +49,14 @@ services:
         autoconfigure: false
         public: false
 
+    member.username_filter:
+        parent: 'api_platform.doctrine.orm.search_filter'
+        arguments: [ { status: 'exact' } ]
+        tags:  [ 'api_platform.filter' ]
+        autowire: false
+        autoconfigure: false
+        public: false
+
     award.order_filter:
         parent: 'api_platform.doctrine.orm.order_filter'
         arguments: [ { date: ~ } ]
