@@ -40,7 +40,7 @@ class Client
 
     /**
      * @var string
-     * @Groups({"agency", "project", "award"})
+     * @Groups({"client", "project", "award"})
      * @ORM\Column(name="country", type="string", length=255)
      */
     private $country;

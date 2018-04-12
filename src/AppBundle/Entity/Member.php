@@ -61,6 +61,13 @@ class Member extends BaseUser
     private $birthday;
 
     /**
+     * @var string
+     * @Groups({"member"})
+     * @ORM\Column(name="country", type="string", length=255)
+     */
+    private $country;
+
+    /**
      * @var bool
      * @Groups({"member"})
      * @ORM\Column(name="isJudge", type="boolean")
@@ -416,6 +423,23 @@ class Member extends BaseUser
 
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getCountry(): string
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param string $country
+     */
+    public function setCountry(string $country)
+    {
+        $this->country = $country;
+    }
+
 
 
 }

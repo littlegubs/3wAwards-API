@@ -17,9 +17,9 @@ class MemberFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $this->createMember($manager, 'ROLE_USER', 'member', 'member@awfl-team.fr', 'Roger', 'Martin', 'member', 1);
+        $this->createMember($manager, 'ROLE_USER', 'member', 'member@awfl-team.fr', 'Roger', 'Martin', 'member', 'France', 1);
 
-        $this->createMember($manager, 'ROLE_ADMIN', 'admin', 'admin@awfl-team.fr', 'Richard ', 'Dubois ', 'admin', 2);
+        $this->createMember($manager, 'ROLE_ADMIN', 'admin', 'admin@awfl-team.fr', 'Richard ', 'Dubois ', 'admin', 'Espagne',2);
 
         $manager->flush();
     }
@@ -44,22 +44,22 @@ class MemberFixtures extends Fixture implements OrderedFixtureInterface
      *
      * @throws BadMethodCallException
      */
-    private function createMember(ObjectManager $manager, $role, $username, $mail, $firstName, $lastName, $password, $i)
+    private function createMember(ObjectManager $manager, $role, $username, $mail, $firstName, $lastName, $password, $country, $i)
     {
 
         $member = new Member();
-        $member
-            ->setUsername($username)
-            ->setGender('M')
-            ->setEmail($mail)
-            ->setPlainPassword($password)
-            ->setRoles([$role])
-            ->setFirstName($firstName)
-            ->setLastName($lastName)
-            ->setBirthday(new \DateTime('20-10-1997'))
-            ->setIsJudge(false)
-            ->setOptIn(false)
-            ->setEnabled(true);
+        $member->setUsername($username);
+        $member ->setCountry($country);
+        $member->setGender('M');
+        $member->setEmail($mail);
+        $member->setPlainPassword($password);
+        $member->setRoles([$role]);
+        $member->setFirstName($firstName);
+        $member->setLastName($lastName);
+        $member->setBirthday(new \DateTime('20-10-1997'));
+        $member->setIsJudge(false);
+        $member->setOptIn(false);
+        $member->setEnabled(true);
 
         $manager->persist($member);
         $this->addReference('member_'.$i, $member);
