@@ -33,8 +33,15 @@ class AwardFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        foreach ($this->awards as $key => $value) {
-            $this->createAward($manager, $key, $value);
+        $numberType = 0;
+        $i = 0;
+        while ($numberType <= 6) {
+            $value = array_rand($this->awards, 1);
+            $this->createAward($manager, $i, $this->awards[$value]);
+            if ($this->awards[$value] === Award::TYPE_DAY) {
+                $numberType++;
+            }
+            $i++;
         }
         $manager->flush();
     }
