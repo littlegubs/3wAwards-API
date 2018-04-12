@@ -28,12 +28,13 @@ class Client
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"member"})
      */
     private $id;
 
     /**
      * @var string
-     * @Groups({"client", "project"})
+     * @Groups({"client", "project", "member"})
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
