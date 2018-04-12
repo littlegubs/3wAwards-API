@@ -26,12 +26,13 @@ class Agency
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"member"})
      */
     private $id;
 
     /**
      * @var string
-     * @Groups({"agency", "project", "award"})
+     * @Groups({"agency", "project", "member", "award"})
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
