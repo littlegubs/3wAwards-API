@@ -42,7 +42,7 @@ class Project
 
     /**
      * @var string
-     * @Groups({"project"})
+     * @Groups({"project", "award"})
      * @ORM\Column(name="projectName", type="string", length=255)
      */
     private $projectName;
@@ -90,14 +90,14 @@ class Project
 
     /**
      * @var Client
-     * @Groups({"project"})
+     * @Groups({"project", "award"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Client", inversedBy="projects")
      */
     private $client;
 
     /**
      * @var Agency
-     * @Groups({"project"})
+     * @Groups({"project", "award"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Agency", inversedBy="projects")
      */
     private $agency;
@@ -111,7 +111,7 @@ class Project
 
     /**
      * @var Image[] | ArrayCollection
-     * @Groups({"project"})
+     * @Groups({"project", "award"})
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Image")
      * @ORM\JoinTable(name="project_image",
      *     joinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")},
