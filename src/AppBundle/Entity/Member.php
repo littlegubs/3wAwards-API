@@ -75,6 +75,13 @@ class Member extends BaseUser
     private $isJudge;
 
     /**
+     * @var Tag[] | ArrayCollection
+     * @Groups({"member"})
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="members")
+     */
+    private $tags;
+
+    /**
      * @var string
      * @Groups({"member"})
      * @ORM\Column(type="string", nullable=true)
@@ -440,6 +447,39 @@ class Member extends BaseUser
         $this->country = $country;
     }
 
+    /**
+     * @return Tag[]|ArrayCollection
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
 
+    /**
+     * @param Tag[]|ArrayCollection $tags
+     *
+     * @return $this
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+
+    /**
+     * @param $tag
+     *
+     * @return Member
+     */
+    public function addTag($tag)
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+            $tag->addMember($this);
+        }
+
+        return $this;
+    }
 
 }
