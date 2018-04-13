@@ -31,7 +31,7 @@ class Tag
 
     /**
      * @var string
-     * @Groups({"tag","member"})
+     * @Groups({"tag","member","agency","client"})
      * @ORM\Column(name="libelle", type="string", length=255)
      */
     private $libelle;
@@ -237,6 +237,21 @@ class Tag
         if (!$this->members->contains($member)) {
             $this->members[] = $member;
             $member->addTag($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Agency $agency
+     *
+     * @return Tag
+     */
+    public function addAgency($agency)
+    {
+        if (!$this->agencies->contains($agency)) {
+            $this->agencies[] = $agency;
+            $agency->addTag($this);
         }
 
         return $this;

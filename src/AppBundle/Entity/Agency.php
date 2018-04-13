@@ -622,6 +622,19 @@ class Agency
         $this->country = $country;
     }
 
+    /**
+     * @param $tag
+     *
+     * @return Agency
+     */
+    public function addTag($tag)
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+            $tag->addAgency($this);
+        }
 
+        return $this;
+    }
 }
 

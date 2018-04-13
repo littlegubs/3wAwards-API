@@ -6,6 +6,7 @@ use AppBundle\Entity\Project;
 use AppBundle\Entity\Tag;
 use AppBundle\Entity\TypeTag;
 use AppBundle\Entity\Member;
+use AppBundle\Entity\Agency;
 use Doctrine\Common\DataFixtures\BadMethodCallException;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -55,6 +56,8 @@ class TagFixtures extends Fixture implements OrderedFixtureInterface
         /* Challenge */
         [1, 2, 5, 5, 4, 2, 1, 5, 2, 4, 3, 5, 1, 4, 4, 1, 1],
         /* Member */
+        ['UX Design', 'Création de sites web', 'Web Design', 'E-Marketing', 'Stratégie Web', 'Création de logo', 'UI Design', 'Charte & identité visuelle'],
+        /* Agency */
         ['UX Design', 'Création de sites web', 'Web Design', 'E-Marketing', 'Stratégie Web', 'Création de logo', 'UI Design', 'Charte & identité visuelle']
     ];
 
@@ -107,11 +110,17 @@ class TagFixtures extends Fixture implements OrderedFixtureInterface
 
             $tag->addProject($project);
         }
-        if ($typeTagKey > 16) {
+        if ($typeTagKey > 16 && $typeTagKey <= 17 ) {
             /** @var Member $member */
             $member = $this->getReference('member_'.rand(1, 2));
 
             $tag->addMember($member);
+        }
+        if ($typeTagKey > 17 && $typeTagKey <= 18 ) {
+            /** @var Agency $agency */
+            $agency = $this->getReference('agency_'.rand(0, 4));
+
+            $tag->addAgency($agency);
         }
 
         $manager->persist($tag);
