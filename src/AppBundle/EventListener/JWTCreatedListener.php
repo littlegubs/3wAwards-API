@@ -4,16 +4,32 @@
 namespace AppBundle\EventListener;
 
 use AppBundle\Entity\Member;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Doctrine\ORM\EntityManager;
+use FOS\UserBundle\Model\UserManager;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTCreatedEvent;
+use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 
 class JWTCreatedListener
 {
-    private $container;
+    /**
+     * @var UserManager
+     */
+    private $userManager;
+    /**
+     * @var EntityManager
+     */
+    private $entityManager;
 
-    public function __construct(ContainerInterface $container)
+    /**
+     * @var CacheManager
+     */
+    protected $liipManager;
+
+    public function __construct(UserManager $userManager, EntityManager $em, CacheManager $cacheManager)
     {
-        $this->container = $container;
+        $this->userManager = $userManager;
+        $this->entityManager = $em;
+        $this->liipManager = $cacheManager;
     }
 
     /**
@@ -23,10 +39,9 @@ class JWTCreatedListener
      */
     public function onJWTCreated(JWTCreatedEvent $event)
     {
-        $userManager = $this->container->get('fos_user.user_manager');
-        $repository = $this->container->get('doctrine')->getRepository(Member::class);
+        $repository = $this->entityManager->getRepository(Member::class);
 
-        $user = $userManager->findUserByUsername($event->getUser()->getUsername());
+        $user = $this->userManager->findUserByUsername($event->getUser()->getUsername());
         /** @var Member $member */
         $member = $repository->find($user->getId());
 
@@ -34,7 +49,8 @@ class JWTCreatedListener
         $payload['firstName'] = $member->getFirstName();
         $payload['lastName'] = $member->getLastName();
         if (null !== $member->getProfilePicture()) {
-            $payload['icon'] = $member->getProfilePicture()->getPath();
+            $newPath = $this->liipManager->getBrowserPath($member->getProfilePicture()->getPath(), 'profile_pic_header');
+            $payload['icon'] = $newPath;
         }
 
 
