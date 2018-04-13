@@ -20,4 +20,4 @@ ubuntu-xenial-16.04-cloudimg-console.log
 *.log
 .vagrant
 web/uploads
-web/media
+web/media/cache/*
