@@ -242,6 +242,7 @@ class Tag
         return $this;
     }
 
+
     /**
      * @param Agency $agency
      *
@@ -271,6 +272,5 @@ class Tag
 
         return $this;
     }
-
 }
 
