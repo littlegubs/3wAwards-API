@@ -34,11 +34,7 @@ class Client
 
     /**
      * @var string
-<<<<<<< HEAD
-     * @Groups({"client", "project", "award"})
-=======
-     * @Groups({"client", "project", "member"})
->>>>>>> begin of dynamic client and agency
+     * @Groups({"client", "project", "award", "member"})
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
