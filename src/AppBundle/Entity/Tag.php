@@ -256,5 +256,21 @@ class Tag
 
         return $this;
     }
+
+    /**
+     * @param Client $client
+     *
+     * @return Tag
+     */
+    public function addClient($client)
+    {
+        if (!$this->clients->contains($client)) {
+            $this->clients[] = $client;
+            $client->addTag($this);
+        }
+
+        return $this;
+    }
+
 }
 

@@ -2,6 +2,7 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
+use AppBundle\Entity\Client;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\Tag;
 use AppBundle\Entity\TypeTag;
@@ -120,7 +121,11 @@ class TagFixtures extends Fixture implements OrderedFixtureInterface
             /** @var Agency $agency */
             $agency = $this->getReference('agency_'.rand(0, 4));
 
+            /** @var Client $client */
+            $client = $this->getReference('client_'.rand(0, 4));
+
             $tag->addAgency($agency);
+            $tag->addClient($client);
         }
 
         $manager->persist($tag);

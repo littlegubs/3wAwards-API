@@ -605,5 +605,20 @@ class Client
         $this->country = $country;
     }
 
+    /**
+     * @param $tag
+     *
+     * @return Client
+     */
+    public function addTag($tag)
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+            $tag->addClient($this);
+        }
+
+        return $this;
+    }
+
 }
 
