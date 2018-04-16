@@ -21,7 +21,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     "pagination_items_per_page"=12,
  *     "normalization_context"={"groups"={"project"}},
  *     "denormalization_context"={"groups"={"project"}},
- *     "filters"={"project.status_filter"}
+ *     "filters"={"project.status_filter", "project.client_name_filter", "project.agency_name_filter"}
  *     })
  */
 
