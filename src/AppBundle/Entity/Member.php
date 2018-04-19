@@ -14,7 +14,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="member")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\MemberRepository")
  * @ApiResource(itemOperations={
- *     "get",
+ *     "get","delete"
  *     },attributes={
  *     "normalization_context"={"groups"={"member"}},
  *     "denormalization_context"={"groups"={"member"}},

@@ -92,6 +92,7 @@ class Project
      * @var Client
      * @Groups({"project", "award"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Client", inversedBy="projects")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $client;
 
@@ -99,6 +100,7 @@ class Project
      * @var Agency
      * @Groups({"project", "award"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Agency", inversedBy="projects")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $agency;
 
@@ -121,7 +123,7 @@ class Project
 
     /**
      * @var Award[] | ArrayCollection
-     * @Groups({"project", "client"})
+     * @Groups({"project", "client", "agency"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Award", mappedBy="project")
      */
     private $awards;
