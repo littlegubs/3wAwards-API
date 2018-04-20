@@ -42,7 +42,7 @@ class Project
 
     /**
      * @var string
-     * @Groups({"project", "award"})
+     * @Groups({"project", "award", "member"})
      * @ORM\Column(name="projectName", type="string", length=255)
      */
     private $projectName;
