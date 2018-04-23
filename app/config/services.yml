@@ -77,7 +77,7 @@ services:
 
     project.project_favorite_member:
         parent: 'api_platform.doctrine.orm.search_filter'
-        arguments: [ { members.favoriteProjects: 'exact' } ]
+        arguments: [ { members.id: 'exact' } ]
         tags:  [ 'api_platform.filter' ]
         autowire: false
         autoconfigure: false
