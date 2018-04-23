@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="agency")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AgencyRepository")
  * @ApiResource(itemOperations={
- *     "get"
+ *     "get","delete"
  *     }, attributes={
  *     "normalization_context"={"groups"={"agency"}},
  *     "denormalization_context"={"groups"={"agency"}}
@@ -139,6 +139,7 @@ class Agency
      * @var Member
      * @Groups({"agency"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Member", inversedBy="agencies")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $member;
 

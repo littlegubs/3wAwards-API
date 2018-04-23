@@ -141,6 +141,7 @@ class Client
      * @var Member
      * @Groups({"client"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Member", inversedBy="clients")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $member;
 
