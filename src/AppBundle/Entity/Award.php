@@ -15,7 +15,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     }, attributes={
  *     "normalization_context"={"groups"={"award"}},
  *     "denormalization_context"={"groups"={"award"}},
- *     "filters"={"award.order_filter"}
+ *     "order"={"date": "ASC"},
+ *     "pagination_items_per_page"=7,
+ *     "filters"={"award.type_filter"}
  *     })
  */
 class Award

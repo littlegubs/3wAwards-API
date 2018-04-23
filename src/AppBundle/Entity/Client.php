@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="client")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ClientRepository")
  *  @ApiResource(itemOperations={
- *     "get"
+ *     "get", "delete"
  *     }, attributes={
  *     "normalization_context"={"groups"={"client"}},
  *     "denormalization_context"={"groups"={"client"}}
@@ -28,19 +28,20 @@ class Client
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"member"})
      */
     private $id;
 
     /**
      * @var string
-     * @Groups({"client", "project"})
+     * @Groups({"client", "project", "award", "member"})
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string
-     * @Groups({"agency", "project"})
+     * @Groups({"client", "project", "award"})
      * @ORM\Column(name="country", type="string", length=255)
      */
     private $country;
@@ -140,6 +141,7 @@ class Client
      * @var Member
      * @Groups({"client"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Member", inversedBy="clients")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $member;
 
@@ -598,6 +600,21 @@ class Client
     public function setCountry(string $country)
     {
         $this->country = $country;
+    }
+
+    /**
+     * @param $tag
+     *
+     * @return Client
+     */
+    public function addTag($tag)
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+            $tag->addClient($this);
+        }
+
+        return $this;
     }
 
 }

@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="agency")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AgencyRepository")
  * @ApiResource(itemOperations={
- *     "get"
+ *     "get","delete"
  *     }, attributes={
  *     "normalization_context"={"groups"={"agency"}},
  *     "denormalization_context"={"groups"={"agency"}}
@@ -26,19 +26,20 @@ class Agency
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"member"})
      */
     private $id;
 
     /**
      * @var string
-     * @Groups({"agency", "project"})
+     * @Groups({"agency", "project", "member", "award"})
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string
-     * @Groups({"agency", "project"})
+     * @Groups({"agency", "project", "award"})
      * @ORM\Column(name="country", type="string", length=255)
      */
     private $country;
@@ -138,6 +139,7 @@ class Agency
      * @var Member
      * @Groups({"agency"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Member", inversedBy="agencies")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $member;
 
@@ -621,6 +623,19 @@ class Agency
         $this->country = $country;
     }
 
+    /**
+     * @param $tag
+     *
+     * @return Agency
+     */
+    public function addTag($tag)
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+            $tag->addAgency($this);
+        }
 
+        return $this;
+    }
 }
 

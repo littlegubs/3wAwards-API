@@ -135,11 +135,18 @@ liip_imagine:
     filter_sets:
         cache: ~
         card_thumbnail:
+            quality: 75
             filters:
                 thumbnail: { size: [415, 300], mode: outbound }
         profile_pic:
+            quality: 75
             filters:
                 thumbnail: { size: [155,155], mode: outbound }
         slider_thumbnail:
+            quality: 75
             filters:
                 thumbnail: { size: [1780, 700], mode: outbound }
+        profile_pic_header:
+            quality: 75
+            filters:
+                thumbnail: { size: [40,40], mode: outbound }

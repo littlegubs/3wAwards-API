@@ -14,7 +14,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="member")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\MemberRepository")
  * @ApiResource(itemOperations={
- *     "get",
+ *     "get","delete"
  *     },attributes={
  *     "normalization_context"={"groups"={"member"}},
  *     "denormalization_context"={"groups"={"member"}},
@@ -61,11 +61,32 @@ class Member extends BaseUser
     private $birthday;
 
     /**
+     * @var string
+     * @Groups({"member"})
+     * @ORM\Column(name="country", type="string", length=255)
+     */
+    private $country;
+
+    /**
      * @var bool
      * @Groups({"member"})
      * @ORM\Column(name="isJudge", type="boolean")
      */
     private $isJudge;
+
+    /**
+     * @var Tag[] | ArrayCollection
+     * @Groups({"member"})
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="members")
+     */
+    private $tags;
+
+    /**
+     * @var Project[] | ArrayCollection
+     * @Groups({"member"})
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Project", mappedBy="members")
+     */
+    private $favoriteProjects;
 
     /**
      * @var string
@@ -124,9 +145,10 @@ class Member extends BaseUser
 
     public function __construct()
     {
-        $this->clients  = new ArrayCollection();
-        $this->agencies = new ArrayCollection();
+        $this->clients             = new ArrayCollection();
+        $this->agencies            = new ArrayCollection();
         $this->projectRatingMember = new ArrayCollection();
+        $this->favoriteProjects    = new ArrayCollection();
     }
 
     /**
@@ -417,5 +439,90 @@ class Member extends BaseUser
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getCountry(): string
+    {
+        return $this->country;
+    }
 
+    /**
+     * @param string $country
+     */
+    public function setCountry(string $country)
+    {
+        $this->country = $country;
+    }
+
+    /**
+     * @return Tag[]|ArrayCollection
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param Tag[]|ArrayCollection $tags
+     *
+     * @return $this
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+
+    /**
+     * @param $tag
+     *
+     * @return Member
+     */
+    public function addTag($tag)
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+            $tag->addMember($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Project[]|ArrayCollection
+     */
+    public function getFavoriteProjects()
+    {
+        return $this->favoriteProjects;
+    }
+
+    /**
+     * @param Project[]|ArrayCollection $favoriteProjects
+     *
+     * @return $this
+     */
+    public function setFavoriteProjects($favoriteProjects)
+    {
+        $this->favoriteProjects = $favoriteProjects;
+
+        return $this;
+    }
+
+    /**
+     * @param $favoriteProject
+     *
+     * @return Member
+     *
+     */
+    public function addFavoriteProject($favoriteProject)
+    {
+        if (!$this->favoriteProjects->contains($favoriteProject)) {
+            $this->favoriteProjects[] = $favoriteProject;
+            $favoriteProject->addMember($this);
+        }
+
+        return $this;
+    }
 }
