@@ -45,7 +45,7 @@ class ProjectRatingMember
 
     /**
      * @var Member
-     * @Groups({"project-rating-member"})
+     * @Groups({"project-rating-member", "project"})
      * @ORM\ManyToOne(targetEntity="Member", inversedBy="projectRatingMember")
      */
     private $member;
