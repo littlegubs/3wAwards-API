@@ -31,7 +31,7 @@ class Tag
 
     /**
      * @var string
-     * @Groups({"tag","member","agency","client"})
+     * @Groups({"tag", "member", "agency", "client", "project"})
      * @ORM\Column(name="libelle", type="string", length=255)
      */
     private $libelle;
