@@ -150,7 +150,7 @@ class Agency
 
     /**
      * @var Project[] | ArrayCollection
-     * @Groups({"agency"})
+     * @Groups({"agency", "member"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Project", mappedBy="agency")
      */
     private $projects;

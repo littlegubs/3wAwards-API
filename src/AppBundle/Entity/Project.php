@@ -21,7 +21,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     "pagination_items_per_page"=12,
  *     "normalization_context"={"groups"={"project"}},
  *     "denormalization_context"={"groups"={"project"}},
- *     "filters"={"project.status_filter", "project.agency_name_filter", "project.client_name_filter"}
+ *     "filters"={"project.status_filter", "project.agency_name_filter", "project.client_name_filter", "project.project_rating_member_id", "project.project_favorite_member"}
  *     })
  */
 
@@ -33,7 +33,7 @@ class Project
 
     /**
      * @var int
-     *
+     * @Groups({"award"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -42,7 +42,7 @@ class Project
 
     /**
      * @var string
-     * @Groups({"project", "award"})
+     * @Groups({"project", "award", "member"})
      * @ORM\Column(name="projectName", type="string", length=255)
      */
     private $projectName;
@@ -112,6 +112,13 @@ class Project
     private $tags;
 
     /**
+     * @var Member[] | ArrayCollection
+     * @Groups({"project"})
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Member", inversedBy="favoriteProjects")
+     */
+    private $members;
+
+    /**
      * @var Image[] | ArrayCollection
      * @Groups({"project", "award"})
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Image")
@@ -123,7 +130,7 @@ class Project
 
     /**
      * @var Award[] | ArrayCollection
-     * @Groups({"project", "client", "agency"})
+     * @Groups({"project", "client", "agency", "member"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Award", mappedBy="project")
      */
     private $awards;
@@ -133,6 +140,7 @@ class Project
         $this->awards = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->tags = new ArrayCollection();
+        $this->members = new ArrayCollection();
         $this->projectRatingMember = new ArrayCollection();
     }
 
@@ -426,6 +434,41 @@ class Project
         $this->status = $status;
     }
 
+
+    /**
+     * @return Project[]|ArrayCollection
+     */
+    public function getMembers()
+    {
+        return $this->members;
+    }
+
+    /**
+     * @param Project[]|ArrayCollection $members
+     *
+     * @return $this
+     */
+    public function setMembers($members)
+    {
+        $this->members = $members;
+
+        return $this;
+    }
+
+    /**
+     * @param $member
+     *
+     * @return Project
+     *
+     */
+    public function addMember($member)
+    {
+        if (!$this->members->contains($member)) {
+            $this->members[] = $member;
+        }
+
+        return $this;
+    }
 
 }
 

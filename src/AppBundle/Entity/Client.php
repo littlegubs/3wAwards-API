@@ -160,7 +160,7 @@ class Client
 
     /**
      * @var Project[] | ArrayCollection
-     * @Groups({"client"})
+     * @Groups({"client", "member"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Project", mappedBy="client")
      */
     private $projects;
