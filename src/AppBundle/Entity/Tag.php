@@ -31,7 +31,7 @@ class Tag
 
     /**
      * @var string
-     * @Groups({"tag","member","agency","client"})
+     * @Groups({"tag", "member", "agency", "client", "project"})
      * @ORM\Column(name="libelle", type="string", length=255)
      */
     private $libelle;
@@ -67,7 +67,7 @@ class Tag
 
     /**
      * @var TypeTag
-     * @Groups({"tag"})
+     * @Groups({"tag", "project"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TypeTag", inversedBy="tags")
      */
     private $type;
