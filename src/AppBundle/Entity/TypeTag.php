@@ -13,8 +13,13 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="type_tag")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TypeTagRepository")
  * @ApiResource(itemOperations={
- *     "get"
- *     }, attributes={
+ *     "get",
+ *     },
+ *     collectionOperations={
+ *     "get",
+ *     "post"={"method"="POST"},
+ *     },
+ *     attributes={
  *     "normalization_context"={"groups"={"type-tag"}},
  *     "denormalization_context"={"groups"={"type-tag"}}
  *     })
