@@ -67,7 +67,7 @@ class Tag
 
     /**
      * @var TypeTag
-     * @Groups({"tag"})
+     * @Groups({"tag", "member"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TypeTag", inversedBy="tags")
      */
     private $type;

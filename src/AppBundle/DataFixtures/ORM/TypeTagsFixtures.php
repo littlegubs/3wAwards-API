@@ -28,9 +28,8 @@ class TypeTagsFixtures extends Fixture implements OrderedFixtureInterface
         'back_tech',
         'cms',
         'challenge',
-        'member_tags',
-        'agency_tags',
-        'client_tag'
+        'skills',
+        'interests'
     ];
 
     /**
