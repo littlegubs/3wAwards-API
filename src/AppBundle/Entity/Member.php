@@ -25,7 +25,7 @@ class Member extends BaseUser
 {
     /**
      * @var int
-     *
+     * @Groups({"project"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")

@@ -13,8 +13,14 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="client")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ClientRepository")
  *  @ApiResource(itemOperations={
- *     "get", "delete"
- *     }, attributes={
+ *     "get",
+ *     "delete",
+ *     },
+ *     collectionOperations={
+ *     "get",
+ *     "post"={"method"="POST"},
+ *     },
+ *     attributes={
  *     "normalization_context"={"groups"={"client"}},
  *     "denormalization_context"={"groups"={"client"}}
  *     })
@@ -133,7 +139,7 @@ class Client
     /**
      * @var Tag[] | ArrayCollection
      * @Groups({"client"})
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="clients")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="clients" ,cascade={"persist"})
      */
     private $tags;
 
@@ -154,7 +160,7 @@ class Client
 
     /**
      * @var Project[] | ArrayCollection
-     * @Groups({"client"})
+     * @Groups({"client", "member"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Project", mappedBy="client")
      */
     private $projects;

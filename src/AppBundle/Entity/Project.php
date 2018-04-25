@@ -21,7 +21,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     "pagination_items_per_page"=12,
  *     "normalization_context"={"groups"={"project"}},
  *     "denormalization_context"={"groups"={"project"}},
- *     "filters"={"project.status_filter", "project.agency_name_filter", "project.client_name_filter"}
+ *     "filters"={"project.status_filter", "project.agency_name_filter", "project.client_name_filter", "project.project_rating_member_id", "project.project_favorite_member"}
  *     })
  */
 
@@ -33,7 +33,7 @@ class Project
 
     /**
      * @var int
-     *
+     * @Groups({"award"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -130,7 +130,7 @@ class Project
 
     /**
      * @var Award[] | ArrayCollection
-     * @Groups({"project", "client", "agency"})
+     * @Groups({"project", "client", "agency", "member"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Award", mappedBy="project")
      */
     private $awards;
