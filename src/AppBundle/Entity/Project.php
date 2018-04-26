@@ -16,6 +16,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     itemOperations={
  *     "get"
  *     },
+ *     collectionOperations={
+ *     "get",
+ *     "post"={"method"="POST"},
+ *     },
  *     attributes={
  *     "order"={"publicationDate": "DESC"},
  *     "pagination_items_per_page"=12,
