@@ -68,7 +68,7 @@ class Project
     /**
      * @var float
      * @Groups({"project"})
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      */
     private $averageRating;
 
