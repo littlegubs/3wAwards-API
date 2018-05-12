@@ -27,7 +27,7 @@ class CreditsFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 3;
+        return 5;
     }
 
     /**
@@ -51,9 +51,10 @@ class CreditsFixtures extends Fixture implements OrderedFixtureInterface
     private function createCredit(ObjectManager $manager, $i)
     {
         /** @var Project $project */
-        $project = $this->getReference('project_'.rand(1, 2));
+        $project = $this->getReference('project_'.rand(0, 4));
 
         $credit = new Credit();
+        $credit->addProject($project);
         $credit->setLastname($this->credits[0][$i]);
         $credit->setFirstname($this->credits[1][$i]);
         $credit->setFunction($this->credits[2][$i]);
