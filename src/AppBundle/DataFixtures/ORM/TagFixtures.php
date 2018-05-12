@@ -32,8 +32,8 @@ class TagFixtures extends Fixture implements OrderedFixtureInterface
         ['-5k', '5-10k', '10-20k', '20-40k', '40-80k', '80-120k', '120-160k', '160-200k', '200-240k', '240-280k',
             '280-320k', '320-360k', '360-500k', '500-750k', '750-900k', '900-1000k', '1000k+'],
         /* Colors */
-        ['#d3471d', '#7c472b', '#c83977', '#5d66d9', '#77f8da', '#437419', '#e6b826', '#1e3b22', '#6a04d8', '#8c3264', '#b694ec',
-            '#6989b6', '#baecd7', '#8af451', '#b67afa', '#bf4e5b', '#61a926'],
+        ['#ffffff', '#000000', '#999999', '#FD0100', '#FE8A01', '#FFDC02', '#80D300', '#27A101', '#00B09C', '#1888DA', '#00568D',
+            '#0E00C6', '#6500C9', '#8F01C9', '#8F02C5', '#D40280'],
         /* Style */
         ['Flat design', 'OnePage', 'Flash', 'LongScroll', 'Parallax', 'Animations', 'Fullscreen', 'Video', 'Modern'],
         /* Behavior */
