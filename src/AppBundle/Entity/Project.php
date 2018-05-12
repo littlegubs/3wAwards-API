@@ -112,6 +112,13 @@ class Project
     private $tags;
 
     /**
+     * @var Credit[] | ArrayCollection
+     * @Groups({"project"})
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Credit", inversedBy="projects")
+     */
+    private $credits;
+
+    /**
      * @var Member[] | ArrayCollection
      * @Groups({"project"})
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Member", inversedBy="favoriteProjects")
@@ -140,6 +147,7 @@ class Project
         $this->awards = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->tags = new ArrayCollection();
+        $this->credits = new ArrayCollection();
         $this->members = new ArrayCollection();
         $this->projectRatingMember = new ArrayCollection();
     }
@@ -339,6 +347,23 @@ class Project
     }
 
     /**
+     * @return Credit[]|ArrayCollection
+     */
+    public function getCredits()
+    {
+        return $this->credits;
+    }
+
+    /**
+     * @param Credit[]|ArrayCollection $credits
+     */
+    public function setCredits($credits)
+    {
+        $this->credits = $credits;
+    }
+
+
+    /**
      * @param Tag $tag
      *
      * @return Project
@@ -348,6 +373,20 @@ class Project
         if (!$this->tags->contains($tag)) {
             $this->tags[] = $tag;
             $tag->addProject($this);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Credit $credit
+     *
+     * @return Project
+     */
+    public function addCredit($credit)
+    {
+        if (!$this->tags->contains($credit)) {
+            $this->credits[] = $credit;
+            $credit->addProject($this);
         }
         return $this;
     }

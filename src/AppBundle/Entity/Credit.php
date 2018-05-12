@@ -3,12 +3,21 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Credit
  *
  * @ORM\Table(name="credit")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CreditRepository")
+ * @ApiResource(itemOperations={
+ *     "get"
+ *     }, attributes={
+ *     "normalization_context"={"groups"={"credit"}},
+ *     "denormalization_context"={"groups"={"credit"}}
+ *     })
  */
 class Credit
 {
@@ -23,7 +32,7 @@ class Credit
 
     /**
      * @var string
-     *
+     * @Groups({"credit", "project"})
      * @ORM\Column(name="lastname", type="string", length=255)
      */
     private $lastname;
@@ -31,17 +40,29 @@ class Credit
 
     /**
      * @var string
-     *
+     * @Groups({"credit", "project"})
      * @ORM\Column(name="firstname", type="string", length=255)
      */
     private $firstname;
 
     /**
      * @var string
-     *
+     * @Groups({"credit", "project"})
      * @ORM\Column(name="function", type="string", length=255)
      */
     private $function;
+
+    /**
+     * @var Project[] | ArrayCollection
+     * @Groups({"credit"})
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Project", mappedBy="credits")
+     */
+    private $projects;
+
+    public function __construct()
+    {
+     $this->projects = new ArrayCollection();
+    }
 
 
     /**
@@ -122,6 +143,32 @@ class Credit
     public function getFunction()
     {
         return $this->function;
+    }
+
+    /**
+     * @return Project[]|ArrayCollection
+     */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
+
+    /**
+     * @param Project[]|ArrayCollection $projects
+     */
+    public function setProjects($projects)
+    {
+        $this->projects = $projects;
+    }
+
+
+
+    public function addProject($project) {
+        if(!$this->projects->contains($project)) {
+            $this->projects[] = $project;
+            $project->addCredit($this);
+        }
+        return $this;
     }
 }
 
