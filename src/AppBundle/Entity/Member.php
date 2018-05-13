@@ -102,6 +102,13 @@ class Member extends BaseUser
     private $websiteUrl;
 
     /**
+     * @var string
+     * @Groups({"member"})
+     * @ORM\Column(name="function", type="string", length=255)
+     */
+    private $function;
+
+    /**
      * @var bool
      * @Groups({"member"})
      * @ORM\Column(name="newsletter", type="boolean", nullable=true)
@@ -198,6 +205,24 @@ class Member extends BaseUser
 
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getFunction(): string
+    {
+        return $this->function;
+    }
+
+    /**
+     * @param string $function
+     */
+    public function setFunction(string $function)
+    {
+        $this->function = $function;
+    }
+
+
 
     /**
      * @return string
