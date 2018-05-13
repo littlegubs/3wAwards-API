@@ -59,7 +59,9 @@ class TagFixtures extends Fixture implements OrderedFixtureInterface
         /* Skills */
         ['Dev Front-End', 'Dev Back-end', 'Full Stack'],
         /* Interest */
-        ['UX Design', 'Création de sites web', 'Web Design', 'E-Marketing', 'Stratégie Web', 'Création de logo', 'UI Design', 'Charte & identité visuelle']
+        ['UX Design', 'Création de sites web', 'Web Design', 'E-Marketing', 'Stratégie Web', 'Création de logo', 'UI Design', 'Charte & identité visuelle'],
+        /* Client size*/
+        ['TPE','PME','TGE']
     ];
 
     /**
