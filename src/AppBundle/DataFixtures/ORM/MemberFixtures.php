@@ -17,9 +17,9 @@ class MemberFixtures extends Fixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $this->createMember($manager, 'ROLE_USER', 'member', 'member@awfl-team.fr', 'Roger', 'Martin', 'member', 'France', 'Co-fondateur et directeur de création de l\'agence digitale Mentalworks, DA UX/UI, expert en stratégies digitales et en conception d\'architectures web/mobile.',1);
+        $this->createMember($manager, 'ROLE_USER', 'member', 'member@awfl-team.fr', 'Roger', 'Martin', 'member', 'France', 'Co-fondateur et directeur de création de l\'agence digitale Mentalworks, DA UX/UI, expert en stratégies digitales et en conception d\'architectures web/mobile.',"Intégrateur",1);
 
-        $this->createMember($manager, 'ROLE_ADMIN', 'admin', 'admin@awfl-team.fr', 'Richard ', 'Dubois ', 'admin', 'Espagne','Co-fondateur et directeur de création de l\'agence digitale Mentalworks, DA UX/UI, expert en stratégies digitales et en conception d\'architectures web/mobile.',2);
+        $this->createMember($manager, 'ROLE_ADMIN', 'admin', 'admin@awfl-team.fr', 'Richard ', 'Dubois ', 'admin', 'Espagne','Co-fondateur et directeur de création de l\'agence digitale Mentalworks, DA UX/UI, expert en stratégies digitales et en conception d\'architectures web/mobile.',"Développeur",2);
 
         $manager->flush();
     }
@@ -45,7 +45,7 @@ class MemberFixtures extends Fixture implements OrderedFixtureInterface
      *
      * @throws BadMethodCallException
      */
-    private function createMember(ObjectManager $manager, $role, $username, $mail, $firstName, $lastName, $password, $country, $presentation ,$i)
+    private function createMember(ObjectManager $manager, $role, $username, $mail, $firstName, $lastName, $password, $country, $presentation, $function ,$i)
     {
 
         $member = new Member();
@@ -62,6 +62,7 @@ class MemberFixtures extends Fixture implements OrderedFixtureInterface
         $member->setIsJudge(false);
         $member->setOptIn(false);
         $member->setEnabled(true);
+        $member->setFunction($function);
 
         $manager->persist($member);
         $this->addReference('member_'.$i, $member);
