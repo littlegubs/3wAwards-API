@@ -111,7 +111,7 @@ class Project
     /**
      * @var Tag[] | ArrayCollection
      * @Groups({"project"})
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="projects")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="projects", cascade={"persist"})
      */
     private $tags;
 
