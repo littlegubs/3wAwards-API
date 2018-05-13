@@ -41,6 +41,7 @@ class MemberFixtures extends Fixture implements OrderedFixtureInterface
      * @param string        $lastName
      * @param string        $password
      * @param string        $presentation
+     * @param string        $function
      * @param int           $i
      *
      * @throws BadMethodCallException
