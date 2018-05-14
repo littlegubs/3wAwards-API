@@ -14,7 +14,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="member")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\MemberRepository")
  * @ApiResource(itemOperations={
- *     "get","delete"
+ *     "get","delete", "put"
  *     },attributes={
  *     "normalization_context"={"groups"={"member"}},
  *     "denormalization_context"={"groups"={"member"}},
@@ -77,7 +77,7 @@ class Member extends BaseUser
     /**
      * @var Tag[] | ArrayCollection
      * @Groups({"member"})
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="members")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="members", cascade={"persist"})
      */
     private $tags;
 
