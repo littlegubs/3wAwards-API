@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * Tag
@@ -20,6 +21,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
  */
 class Tag
 {
+
+    use ORMBehaviors\Translatable\Translatable;
+
     /**
      * @var int
      *
@@ -29,12 +33,6 @@ class Tag
      */
     private $id;
 
-    /**
-     * @var string
-     * @Groups({"tag", "member", "agency", "client", "project"})
-     * @ORM\Column(name="libelle", type="string", length=255)
-     */
-    private $libelle;
 
     /**
      * @var Agency[] | ArrayCollection
