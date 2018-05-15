@@ -142,6 +142,13 @@ class Project
      */
     private $awards;
 
+    /**
+     * @var string
+     * @Groups({"project"})
+     * @ORM\Column(name="projectUrl", type="text")
+     */
+    private $projectUrl;
+
     public function __construct()
     {
         $this->awards = new ArrayCollection();
@@ -453,6 +460,26 @@ class Project
     public function setAwards($awards)
     {
         $this->awards = $awards;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProjectUrl()
+    {
+        return $this->projectUrl;
+    }
+
+    /**
+     * @param string $projectUrl
+     *
+     * @return $this
+     */
+    public function setProjectUrl($projectUrl)
+    {
+        $this->projectUrl = $projectUrl;
 
         return $this;
     }

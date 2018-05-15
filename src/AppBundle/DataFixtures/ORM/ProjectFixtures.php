@@ -31,6 +31,14 @@ class ProjectFixtures extends Fixture implements OrderedFixtureInterface
             'Amplis post quam ut inlustris',
 
         ],
+        /* websiteUrl */
+        [
+            'https://angular.io/',
+            'http://www.nodevo.com/',
+            'http://www.cabestan.com/',
+            'https://symfony.com/',
+            'https://arroi.fr/fr/dusensaloeuvre/',
+        ],
     ];
 
     private $status = [Project::STATUS_PENDING, Project::STATUS_ACCEPTED, Project::STATUS_REFUSED];
@@ -79,6 +87,7 @@ class ProjectFixtures extends Fixture implements OrderedFixtureInterface
             ->addImage($image)
             ->addMember($member)
             ->setNoticableDescription($this->projects[2][$i])
+            ->setProjectUrl($this->projects[3][$i])
             ->setStatus($this->status[rand(0, 2)]);
 
         if (rand(1, 2) == 1) {
