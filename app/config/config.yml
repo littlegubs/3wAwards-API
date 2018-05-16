@@ -120,13 +120,6 @@ nelmio_api_doc:
         path_patterns:
             - ^/api(?!/doc$)
 
-knp_doctrine_behaviors:
-    blameable:      false
-    geocodable:     ~
-    loggable:       ~
-    sluggable:      true
-    soft_deletable: true
-
 liip_imagine:
     resolvers:
         default:

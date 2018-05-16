@@ -2,34 +2,30 @@
 
 namespace AppBundle\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * Class TagTranslation
  *
  * @ORM\Entity
- * @ApiResource
+ * @ApiResource(
+ *     itemOperations={
+ *     "get"
+ *     })
+ * @ApiFilter(SearchFilter::class, properties={"locale": "exact", "translatable": "exact"})
  */
 class TagTranslation
 {
     use ORMBehaviors\Translatable\Translation;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @Groups({"tag"})
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
 
     /**
      * @var string
-     * @Groups({"tag"})
      * @ORM\Column(type="string", length=255)
      */
     private $libelle;

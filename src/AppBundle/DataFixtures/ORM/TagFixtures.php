@@ -5,6 +5,7 @@ namespace AppBundle\DataFixtures\ORM;
 use AppBundle\Entity\Client;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\Tag;
+use AppBundle\Entity\TagTranslation;
 use AppBundle\Entity\TypeTag;
 use AppBundle\Entity\Member;
 use AppBundle\Entity\Agency;
@@ -17,8 +18,9 @@ class TagFixtures extends Fixture implements OrderedFixtureInterface
 {
     private $allTags = [
         /* site type */
-        ['Showcase', 'Mobile', 'WebApp', 'e-shop', 'Blog', 'Social', 'Visit card', 'Portfolio', 'Portal', 'Mag',
-            'Event', 'Intranet'],
+        ['Vitrine', 'Mobile', 'WebApp', 'e-commerce', 'Blog', 'Social', 'Carte de visite', 'Portfolio', 'portail',
+                'Magazine',
+                'Evenementiel', 'Intranet'],
         /* Purpose */
         ['Complete reshaping', 'Technical reshaping', 'Graphical reshaping', 'Version upgrade',
             'Technology changement'],
@@ -62,6 +64,10 @@ class TagFixtures extends Fixture implements OrderedFixtureInterface
         ['UX Design', 'Création de sites web', 'Web Design', 'E-Marketing', 'Stratégie Web', 'Création de logo', 'UI Design', 'Charte & identité visuelle']
     ];
 
+    private $tagsEn =
+        ['Showcase', 'Mobile', 'WebApp', 'e-shop', 'Blog', 'Social', 'Visit card', 'Portfolio', 'Portal',
+            'Mag',
+            'Event', 'Intranet'];
     /**
      * @return int
      */
@@ -102,9 +108,19 @@ class TagFixtures extends Fixture implements OrderedFixtureInterface
 
         $tag = new Tag();
         $tag
-            ->setLibelle($tagKey)
             ->setType($typeTagRef);
-
+        if ($typeTagKey == 0) {
+                $tagTranslation = new TagTranslation();
+                $tagTranslation->setLibelle($this->allTags[0][$key]);
+                $tagTranslation->setLocale('fr');
+                $tagTranslation->setTranslatable($tag);
+                $manager->persist($tagTranslation);
+                $tagTranslation = new TagTranslation();
+                $tagTranslation->setLibelle($this->tagsEn[$key]);
+                $tagTranslation->setLocale('en');
+                $tagTranslation->setTranslatable($tag);
+                $manager->persist($tagTranslation);
+        }
         if ($typeTagKey <= 15) {
             /** @var Project $project */
             $project = $this->getReference('project_'.rand(0, 4));
