@@ -209,7 +209,7 @@ class Member extends BaseUser
     /**
      * @return string
      */
-    public function getFunction(): string
+    public function getFunction()
     {
         return $this->function;
     }
@@ -467,7 +467,7 @@ class Member extends BaseUser
     /**
      * @return string
      */
-    public function getCountry(): string
+    public function getCountry()
     {
         return $this->country;
     }
