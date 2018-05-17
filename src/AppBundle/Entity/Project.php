@@ -16,6 +16,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     itemOperations={
  *     "get"
  *     },
+ *     collectionOperations={
+ *     "get",
+ *     "post"={"method"="POST"},
+ *     },
  *     attributes={
  *     "order"={"publicationDate": "DESC"},
  *     "pagination_items_per_page"=12,
@@ -64,7 +68,7 @@ class Project
     /**
      * @var float
      * @Groups({"project"})
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      */
     private $averageRating;
 
@@ -107,7 +111,7 @@ class Project
     /**
      * @var Tag[] | ArrayCollection
      * @Groups({"project"})
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="projects")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="projects", cascade={"persist"})
      */
     private $tags;
 
