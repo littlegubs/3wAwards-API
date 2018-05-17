@@ -39,5 +39,6 @@ security:
     access_control:
         - { path: ^/login_check, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/members/, roles: [ ROLE_USER ] }
+        - { path: ^/members, roles: [ ROLE_ADMIN ] }
         - { path: ^/admin/, roles: [ ROLE_ADMIN ] }
 

@@ -16,12 +16,16 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     itemOperations={
  *     "get"
  *     },
+ *     collectionOperations={
+ *     "get",
+ *     "post"={"method"="POST"},
+ *     },
  *     attributes={
  *     "order"={"publicationDate": "DESC"},
  *     "pagination_items_per_page"=12,
  *     "normalization_context"={"groups"={"project"}},
  *     "denormalization_context"={"groups"={"project"}},
- *     "filters"={"project.status_filter"}
+ *     "filters"={"project.status_filter", "project.agency_name_filter", "project.client_name_filter", "project.project_rating_member_id", "project.project_favorite_member"}
  *     })
  */
 
@@ -33,7 +37,7 @@ class Project
 
     /**
      * @var int
-     *
+     * @Groups({"award"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -42,7 +46,7 @@ class Project
 
     /**
      * @var string
-     * @Groups({"project", "award"})
+     * @Groups({"project", "award", "member"})
      * @ORM\Column(name="projectName", type="string", length=255)
      */
     private $projectName;
@@ -64,7 +68,7 @@ class Project
     /**
      * @var float
      * @Groups({"project"})
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      */
     private $averageRating;
 
@@ -92,6 +96,7 @@ class Project
      * @var Client
      * @Groups({"project", "award"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Client", inversedBy="projects")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $client;
 
@@ -99,15 +104,30 @@ class Project
      * @var Agency
      * @Groups({"project", "award"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Agency", inversedBy="projects")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $agency;
 
     /**
      * @var Tag[] | ArrayCollection
      * @Groups({"project"})
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="projects")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="projects", cascade={"persist"})
      */
     private $tags;
+
+    /**
+     * @var Credit[] | ArrayCollection
+     * @Groups({"project"})
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Credit", inversedBy="projects")
+     */
+    private $credits;
+
+    /**
+     * @var Member[] | ArrayCollection
+     * @Groups({"project"})
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Member", inversedBy="favoriteProjects")
+     */
+    private $members;
 
     /**
      * @var Image[] | ArrayCollection
@@ -121,16 +141,25 @@ class Project
 
     /**
      * @var Award[] | ArrayCollection
-     * @Groups({"project"})
+     * @Groups({"project", "client", "agency", "member"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Award", mappedBy="project")
      */
     private $awards;
+
+    /**
+     * @var string
+     * @Groups({"project"})
+     * @ORM\Column(name="projectUrl", type="text")
+     */
+    private $projectUrl;
 
     public function __construct()
     {
         $this->awards = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->tags = new ArrayCollection();
+        $this->credits = new ArrayCollection();
+        $this->members = new ArrayCollection();
         $this->projectRatingMember = new ArrayCollection();
     }
 
@@ -329,6 +358,23 @@ class Project
     }
 
     /**
+     * @return Credit[]|ArrayCollection
+     */
+    public function getCredits()
+    {
+        return $this->credits;
+    }
+
+    /**
+     * @param Credit[]|ArrayCollection $credits
+     */
+    public function setCredits($credits)
+    {
+        $this->credits = $credits;
+    }
+
+
+    /**
      * @param Tag $tag
      *
      * @return Project
@@ -338,6 +384,20 @@ class Project
         if (!$this->tags->contains($tag)) {
             $this->tags[] = $tag;
             $tag->addProject($this);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Credit $credit
+     *
+     * @return Project
+     */
+    public function addCredit($credit)
+    {
+        if (!$this->tags->contains($credit)) {
+            $this->credits[] = $credit;
+            $credit->addProject($this);
         }
         return $this;
     }
@@ -411,6 +471,26 @@ class Project
     /**
      * @return string
      */
+    public function getProjectUrl()
+    {
+        return $this->projectUrl;
+    }
+
+    /**
+     * @param string $projectUrl
+     *
+     * @return $this
+     */
+    public function setProjectUrl($projectUrl)
+    {
+        $this->projectUrl = $projectUrl;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
     public function getStatus()
     {
         return $this->status;
@@ -424,6 +504,41 @@ class Project
         $this->status = $status;
     }
 
+
+    /**
+     * @return Project[]|ArrayCollection
+     */
+    public function getMembers()
+    {
+        return $this->members;
+    }
+
+    /**
+     * @param Project[]|ArrayCollection $members
+     *
+     * @return $this
+     */
+    public function setMembers($members)
+    {
+        $this->members = $members;
+
+        return $this;
+    }
+
+    /**
+     * @param $member
+     *
+     * @return Project
+     *
+     */
+    public function addMember($member)
+    {
+        if (!$this->members->contains($member)) {
+            $this->members[] = $member;
+        }
+
+        return $this;
+    }
 
 }
 

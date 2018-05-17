@@ -5,6 +5,7 @@ namespace AppBundle\DataFixtures\ORM;
 use AppBundle\Entity\Agency;
 use AppBundle\Entity\Client;
 use AppBundle\Entity\Image;
+use AppBundle\Entity\Member;
 use AppBundle\Entity\Project;
 use Doctrine\Common\DataFixtures\BadMethodCallException;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -29,6 +30,14 @@ class ProjectFixtures extends Fixture implements OrderedFixtureInterface
             'Modum Gallus milites ultra mortalem.',
             'Amplis post quam ut inlustris',
 
+        ],
+        /* websiteUrl */
+        [
+            'https://angular.io/',
+            'http://www.nodevo.com/',
+            'http://www.cabestan.com/',
+            'https://symfony.com/',
+            'https://arroi.fr/fr/dusensaloeuvre/',
         ],
     ];
 
@@ -64,6 +73,9 @@ class ProjectFixtures extends Fixture implements OrderedFixtureInterface
     {
         $project = new Project();
 
+        /** @var Member $member */
+        $member = $this->getReference('member_'.rand(1,2));
+
         /** @var Image $image */
         $image = $this->getReference('image_'.rand(1, 5));
 
@@ -73,7 +85,9 @@ class ProjectFixtures extends Fixture implements OrderedFixtureInterface
             ->setPublicationDate(new \DateTime(rand(1, 28).'-'.rand(1, 12).'-'.rand(2012, 2018)))
             ->setAverageRating(rand(1, 100) / 10)
             ->addImage($image)
+            ->addMember($member)
             ->setNoticableDescription($this->projects[2][$i])
+            ->setProjectUrl($this->projects[3][$i])
             ->setStatus($this->status[rand(0, 2)]);
 
         if (rand(1, 2) == 1) {

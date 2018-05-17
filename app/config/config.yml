@@ -146,6 +146,10 @@ liip_imagine:
             quality: 75
             filters:
                 thumbnail: { size: [1780, 700], mode: outbound }
+        project_pictures:
+            quality: 75
+            filters:
+                thumbnail: { size: [1140, 850], mode: outbound }
         profile_pic_header:
             quality: 75
             filters:

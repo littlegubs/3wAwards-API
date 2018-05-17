@@ -13,8 +13,14 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="client")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ClientRepository")
  *  @ApiResource(itemOperations={
- *     "get"
- *     }, attributes={
+ *     "get",
+ *     "delete",
+ *     },
+ *     collectionOperations={
+ *     "get",
+ *     "post"={"method"="POST"},
+ *     },
+ *     attributes={
  *     "normalization_context"={"groups"={"client"}},
  *     "denormalization_context"={"groups"={"client"}}
  *     })
@@ -28,19 +34,20 @@ class Client
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"member"})
      */
     private $id;
 
     /**
      * @var string
-     * @Groups({"client", "project", "award"})
+     * @Groups({"client", "project", "award", "member"})
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string
-     * @Groups({"agency", "project", "award"})
+     * @Groups({"client", "project", "award"})
      * @ORM\Column(name="country", type="string", length=255)
      */
     private $country;
@@ -132,7 +139,7 @@ class Client
     /**
      * @var Tag[] | ArrayCollection
      * @Groups({"client"})
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="clients")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="clients" ,cascade={"persist"})
      */
     private $tags;
 
@@ -140,6 +147,7 @@ class Client
      * @var Member
      * @Groups({"client"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Member", inversedBy="clients")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $member;
 
@@ -152,7 +160,7 @@ class Client
 
     /**
      * @var Project[] | ArrayCollection
-     * @Groups({"client"})
+     * @Groups({"client", "member"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Project", mappedBy="client")
      */
     private $projects;
@@ -598,6 +606,21 @@ class Client
     public function setCountry(string $country)
     {
         $this->country = $country;
+    }
+
+    /**
+     * @param $tag
+     *
+     * @return Client
+     */
+    public function addTag($tag)
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags[] = $tag;
+            $tag->addClient($this);
+        }
+
+        return $this;
     }
 
 }

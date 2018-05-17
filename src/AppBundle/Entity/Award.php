@@ -37,21 +37,21 @@ class Award
 
     /**
      * @var \DateTime
-     * @Groups({"award"})
+     * @Groups({"award", "member"})
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
 
     /**
      * @var Category
-     * @Groups({"award"})
+     * @Groups({"award", "member"})
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="awards")
      */
     private $category;
 
     /**
      * @var string
-     * @Groups({"award"})
+     * @Groups({"award", "member"})
      * @ORM\Column(name="type")
      */
     private $type;

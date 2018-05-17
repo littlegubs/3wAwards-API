@@ -31,7 +31,7 @@ class Tag
 
     /**
      * @var string
-     * @Groups({"tag"})
+     * @Groups({"tag", "member", "agency", "client", "project"})
      * @ORM\Column(name="libelle", type="string", length=255)
      */
     private $libelle;
@@ -50,6 +50,7 @@ class Tag
      */
     private $clients;
 
+
     /**
      * @var Project[] | ArrayCollection
      * @Groups({"tag"})
@@ -58,8 +59,15 @@ class Tag
     private $projects;
 
     /**
-     * @var TypeTag
+     * @var Member[] | ArrayCollection
      * @Groups({"tag"})
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Member", mappedBy="tags")
+     */
+    private $members;
+
+    /**
+     * @var TypeTag
+     * @Groups({"tag", "member", "project"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TypeTag", inversedBy="tags")
      */
     private $type;
@@ -69,6 +77,7 @@ class Tag
         $this->agencies = new ArrayCollection();
         $this->clients = new ArrayCollection();
         $this->projects = new ArrayCollection();
+        $this->members = new ArrayCollection();
     }
 
     /**
@@ -198,6 +207,70 @@ class Tag
         return $this;
     }
 
+    /**
+     * @return Member[]|ArrayCollection
+     */
+    public function getMembers()
+    {
+        return $this->members;
+    }
 
+    /**
+     * @param Member[]|ArrayCollection $members
+     *
+     * @return $this
+     */
+    public function setMembers($members)
+    {
+        $this->members = $members;
+
+        return $this;
+    }
+
+    /**
+     * @param Member $member
+     *
+     * @return Tag
+     */
+    public function addMember($member)
+    {
+        if (!$this->members->contains($member)) {
+            $this->members[] = $member;
+            $member->addTag($this);
+        }
+
+        return $this;
+    }
+
+
+    /**
+     * @param Agency $agency
+     *
+     * @return Tag
+     */
+    public function addAgency($agency)
+    {
+        if (!$this->agencies->contains($agency)) {
+            $this->agencies[] = $agency;
+            $agency->addTag($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Client $client
+     *
+     * @return Tag
+     */
+    public function addClient($client)
+    {
+        if (!$this->clients->contains($client)) {
+            $this->clients[] = $client;
+            $client->addTag($this);
+        }
+
+        return $this;
+    }
 }
 

@@ -46,6 +46,7 @@ class JWTCreatedListener
         $member = $repository->find($user->getId());
 
         $payload = $event->getData();
+        $payload['id'] = $member->getId();
         $payload['firstName'] = $member->getFirstName();
         $payload['lastName'] = $member->getLastName();
         if (null !== $member->getProfilePicture()) {
