@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Annotation\ApiProperty;
 
 /**
  * Member
@@ -78,6 +79,7 @@ class Member extends BaseUser
      * @var Tag[] | ArrayCollection
      * @Groups({"member"})
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="members")
+     * @ApiProperty(attributes={"jsonld_context"={"@type"="#Tag[]"}})
      */
     private $tags;
 
@@ -217,7 +219,7 @@ class Member extends BaseUser
     /**
      * @param string $function
      */
-    public function setFunction(string $function)
+    public function setFunction($function)
     {
         $this->function = $function;
     }
