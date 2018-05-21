@@ -64,7 +64,7 @@ class Member extends BaseUser
     /**
      * @var string
      * @Groups({"member"})
-     * @ORM\Column(name="country", type="string", length=255)
+     * @ORM\Column(name="country", type="string", length=255, nullable=true)
      */
     private $country;
 
@@ -106,7 +106,7 @@ class Member extends BaseUser
     /**
      * @var string
      * @Groups({"member"})
-     * @ORM\Column(name="function", type="string", length=255)
+     * @ORM\Column(name="function", type="string", length=255, nullable=true)
      */
     private $function;
 
