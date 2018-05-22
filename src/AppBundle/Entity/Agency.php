@@ -93,7 +93,7 @@ class Agency
 
     /**
      * @var string
-     * @Groups({"agency"})
+     * @Groups({"agency", "member"})
      * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;
@@ -107,14 +107,14 @@ class Agency
 
     /**
      * @var \DateTime
-     * @Groups({"agency"})
+     * @Groups({"agency", "member"})
      * @ORM\Column(name="creationDate", type="date")
      */
     private $creationDate;
 
     /**
      * @var string
-     * @Groups({"agency"})
+     * @Groups({"agency", "member"})
      * @ORM\Column(name="websiteUrl", type="string", length=255)
      */
     private $websiteUrl;
@@ -164,7 +164,7 @@ class Agency
 
     /**
      * @var Image
-     * @Groups({"agency"})
+     * @Groups({"agency", "member"})
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
      */
     private $image;
@@ -197,31 +197,6 @@ class Agency
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set logo
-     *
-     * @param string $logo
-     *
-     * @return string
-     */
-    public function setLogo($logo)
-    {
-        $this->logo = $logo;
-
-        return $this;
-    }
-
-
-    /**
-     * Get logo
-     *
-     * @return string
-     */
-    public function getLogo()
-    {
-        return $this->logo;
     }
 
     /**

@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Annotation\ApiProperty;
 
 /**
  * Project
@@ -112,13 +113,15 @@ class Project
      * @var Tag[] | ArrayCollection
      * @Groups({"project"})
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="projects", cascade={"persist"})
+     * @ApiProperty(attributes={"jsonld_context"={"@type"="#Tag[]"}})
      */
     private $tags;
 
     /**
      * @var Credit[] | ArrayCollection
      * @Groups({"project"})
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Credit", inversedBy="projects")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Credit", inversedBy="projects")*
+     * @ApiProperty(attributes={"jsonld_context"={"@type"="#Credit[]"}})
      */
     private $credits;
 

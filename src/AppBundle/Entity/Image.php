@@ -31,7 +31,7 @@ class Image
 
     /**
      * @var string
-     * @Groups({"image", "project", "award"})
+     * @Groups({"image", "project", "award", "member"})
      * @ORM\Column(type="string", length=255)
      */
     private $path;

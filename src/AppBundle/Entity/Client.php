@@ -96,7 +96,7 @@ class Client
 
     /**
      * @var string
-     * @Groups({"client"})
+     * @Groups({"client", "member"})
      * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;
@@ -110,14 +110,14 @@ class Client
 
     /**
      * @var \DateTime
-     * @Groups({"client"})
+     * @Groups({"client", "member"})
      * @ORM\Column(name="creationDate", type="date")
      */
     private $creationDate;
 
     /**
      * @var string
-     * @Groups({"client"})
+     * @Groups({"client", "member"})
      * @ORM\Column(name="websiteUrl", type="string", length=255)
      */
     private $websiteUrl;
@@ -153,7 +153,7 @@ class Client
 
     /**
      * @var Image
-     * @Groups({"client"})
+     * @Groups({"client", "member"})
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
      */
     private $image;
