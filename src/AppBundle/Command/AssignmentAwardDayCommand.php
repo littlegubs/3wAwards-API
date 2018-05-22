@@ -49,20 +49,30 @@ class AssignmentAwardDayCommand extends Command
        foreach ($allProjectRatingMember as $projectRatingMember) {
            $ratingProject = $projectRatingMember->getProject()->getAverageRating() /
                $this->countVoteByProjects($allProjectRatingMember, $projectRatingMember->getProject()->getId());
-           if ($ratingProject > $bestRatingProject) {
+           $isAwardDay = false;
+           foreach ($projectRatingMember->getProject()->getAwards() as $award)
+           {
+                if ($award->getType() === 'day') {
+                    $isAwardDay = true;
+                }
+           }
+           if ($ratingProject > $bestRatingProject && $isAwardDay === false) {
                $bestRatingProject = $ratingProject;
                $bestProject = $projectRatingMember->getProject();
            }
        }
-       $newAward = new Award();
-       $newAward->setDate($date);
-       $newAward->setProject($bestProject);
-       $newAward->setType('day');
+       if (isset($bestProject)) {
+           $newAward = new Award();
+           $newAward->setDate($date);
+           $newAward->setProject($bestProject);
+           $newAward->setType('day');
 
-       $this->entityManager->persist($newAward);
-       $this->entityManager->flush();
-
-        $output->writeln('<info>'.$bestProject->getProjectName().' wins the award for this day</info>');
+           $this->entityManager->persist($newAward);
+           $this->entityManager->flush();
+           $output->writeln('<info>'.$bestProject->getProjectName().' wins the award for this day</info>');
+       } else {
+           $output->writeln('<info>No project wins the award for this day</info>');
+       }
     }
 
     function countVoteByProjects($allProjectratingMember, $idProject) {

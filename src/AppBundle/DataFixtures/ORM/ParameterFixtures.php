@@ -23,7 +23,8 @@ class ParameterFixtures extends Fixture implements OrderedFixtureInterface
       'med_ranking_members',
       'nb_max_screen',
       'size_max_screen',
-      'nb_max_tags'
+      'nb_max_tags',
+      'min_project_competition'
     ];
 
     private $values = [
@@ -40,7 +41,8 @@ class ParameterFixtures extends Fixture implements OrderedFixtureInterface
       '4',
       '6',
       '10',
-      '5'
+      '5',
+      '3'
     ];
 
     /**
