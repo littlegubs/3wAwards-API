@@ -120,7 +120,7 @@ class Project
     /**
      * @var Credit[] | ArrayCollection
      * @Groups({"project"})
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Credit", inversedBy="projects")*
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Credit", inversedBy="projects", cascade={"persist"})
      * @ApiProperty(attributes={"jsonld_context"={"@type"="#Credit[]"}})
      */
     private $credits;
