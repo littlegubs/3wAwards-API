@@ -31,6 +31,7 @@ class TypeTag
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @Groups({"type-tag", "tag", "member", "project"})
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
