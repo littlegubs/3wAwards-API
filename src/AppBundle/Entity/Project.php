@@ -174,6 +174,13 @@ class Project
     private $agency;
 
     /**
+     * @var Agency
+     * @Groups({"project"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Target", inversedBy="projects")
+     */
+    private $target;
+
+    /**
      * @var Tag[] | ArrayCollection
      * @Groups({"project"})
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="projects", cascade={"persist"})
@@ -783,6 +790,22 @@ class Project
         $this->averageReactivityRatings = $averageReactivityRatings;
 
         return $this;
+    }
+
+    /**
+     * @return Agency
+     */
+    public function getTarget(): Agency
+    {
+        return $this->target;
+    }
+
+    /**
+     * @param Agency $target
+     */
+    public function setTarget(Agency $target)
+    {
+        $this->target = $target;
     }
 
 
