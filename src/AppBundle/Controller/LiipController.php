@@ -48,8 +48,7 @@ class LiipController
         $ext = pathinfo($_FILES['xd']['name'], PATHINFO_EXTENSION);
         $id = uniqid();
         move_uploaded_file($tmpName, $webDir.$id.'.'.$ext);
-        $newPath = $this->cacheManager->resolve($id.'.'.$ext, 'profile_pic');
 
-        return new JsonResponse($newPath, 200);
+        return new JsonResponse('uploads/'.$id.'.'.$ext, 200);
     }
 }
