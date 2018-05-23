@@ -96,12 +96,9 @@ class AssignmentAwardWeekCommand extends Command
                         $isAwardWeekSiteType = false;
                         foreach ($project->getAwards() as $award)
                         {
-                            if ($award->getType() === 'week' && $date < $award->getDate()->modify('+'.$time_expiry_award->getValue().' day')) {
-                                $isAwardWeekSiteType = true;
-                            }
                             if ($ratingProjectBySiteType > $bestRatingProjectBySiteType && $isAwardWeekSiteType === false && $project->getAverageRating() > $min_rating->getValue()) {
                                 $bestRatingProjectBySiteType = $ratingProjectBySiteType;
-                                $bestProjectBySiteType = $projectRatingMember->getProject();
+                                $bestProjectBySiteType = $project;
 
                                 $newAwardWeekBySiteType = new Award();
                                 $newAwardWeekBySiteType->setDate($date);
