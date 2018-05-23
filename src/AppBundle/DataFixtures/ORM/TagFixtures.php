@@ -32,8 +32,8 @@ class TagFixtures extends Fixture implements OrderedFixtureInterface
         ['-5k', '5-10k', '10-20k', '20-40k', '40-80k', '80-120k', '120-160k', '160-200k', '200-240k', '240-280k',
             '280-320k', '320-360k', '360-500k', '500-750k', '750-900k', '900-1000k', '1000k+'],
         /* Colors */
-        ['Red', 'Yellow', 'Green', 'Blue', 'White', 'Black', 'Grey', 'Light blue', 'Orange', 'Dark green', 'Light red',
-            'Gold', 'Purple', 'Pink', 'Brown', 'Salmon', ''],
+        ['#ffffff', '#000000', '#999999', '#FD0100', '#FE8A01', '#FFDC02', '#80D300', '#27A101', '#00B09C', '#1888DA', '#00568D',
+            '#0E00C6', '#6500C9', '#8F01C9', '#8F02C5', '#D40280'],
         /* Style */
         ['Flat design', 'OnePage', 'Flash', 'LongScroll', 'Parallax', 'Animations', 'Fullscreen', 'Video', 'Modern'],
         /* Behavior */
@@ -59,7 +59,9 @@ class TagFixtures extends Fixture implements OrderedFixtureInterface
         /* Skills */
         ['Dev Front-End', 'Dev Back-end', 'Full Stack'],
         /* Interest */
-        ['UX Design', 'Création de sites web', 'Web Design', 'E-Marketing', 'Stratégie Web', 'Création de logo', 'UI Design', 'Charte & identité visuelle']
+        ['UX Design', 'Création de sites web', 'Web Design', 'E-Marketing', 'Stratégie Web', 'Création de logo', 'UI Design', 'Charte & identité visuelle'],
+        /* Client size*/
+        ['TPE','PME','TGE']
     ];
 
     /**

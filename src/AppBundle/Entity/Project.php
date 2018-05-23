@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Annotation\ApiProperty;
 
 /**
  * Project
@@ -15,6 +16,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ApiResource(
  *     itemOperations={
  *     "get"
+ *     },
+ *     collectionOperations={
+ *     "get",
+ *     "post"={"method"="POST"},
  *     },
  *     attributes={
  *     "order"={"publicationDate": "DESC"},
@@ -64,7 +69,7 @@ class Project
     /**
      * @var float
      * @Groups({"project"})
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      */
     private $averageRating;
 
@@ -107,9 +112,18 @@ class Project
     /**
      * @var Tag[] | ArrayCollection
      * @Groups({"project"})
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="projects")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="projects", cascade={"persist"})
+     * @ApiProperty(attributes={"jsonld_context"={"@type"="#Tag[]"}})
      */
     private $tags;
+
+    /**
+     * @var Credit[] | ArrayCollection
+     * @Groups({"project"})
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Credit", inversedBy="projects", cascade={"persist"})
+     * @ApiProperty(attributes={"jsonld_context"={"@type"="#Credit[]"}})
+     */
+    private $credits;
 
     /**
      * @var Member[] | ArrayCollection
@@ -135,11 +149,19 @@ class Project
      */
     private $awards;
 
+    /**
+     * @var string
+     * @Groups({"project"})
+     * @ORM\Column(name="projectUrl", type="text")
+     */
+    private $projectUrl;
+
     public function __construct()
     {
         $this->awards = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->tags = new ArrayCollection();
+        $this->credits = new ArrayCollection();
         $this->members = new ArrayCollection();
         $this->projectRatingMember = new ArrayCollection();
     }
@@ -339,6 +361,23 @@ class Project
     }
 
     /**
+     * @return Credit[]|ArrayCollection
+     */
+    public function getCredits()
+    {
+        return $this->credits;
+    }
+
+    /**
+     * @param Credit[]|ArrayCollection $credits
+     */
+    public function setCredits($credits)
+    {
+        $this->credits = $credits;
+    }
+
+
+    /**
      * @param Tag $tag
      *
      * @return Project
@@ -348,6 +387,20 @@ class Project
         if (!$this->tags->contains($tag)) {
             $this->tags[] = $tag;
             $tag->addProject($this);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Credit $credit
+     *
+     * @return Project
+     */
+    public function addCredit($credit)
+    {
+        if (!$this->tags->contains($credit)) {
+            $this->credits[] = $credit;
+            $credit->addProject($this);
         }
         return $this;
     }
@@ -414,6 +467,26 @@ class Project
     public function setAwards($awards)
     {
         $this->awards = $awards;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProjectUrl()
+    {
+        return $this->projectUrl;
+    }
+
+    /**
+     * @param string $projectUrl
+     *
+     * @return $this
+     */
+    public function setProjectUrl($projectUrl)
+    {
+        $this->projectUrl = $projectUrl;
 
         return $this;
     }

@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Annotation\ApiProperty;
 
 /**
  * Member
@@ -63,7 +64,7 @@ class Member extends BaseUser
     /**
      * @var string
      * @Groups({"member"})
-     * @ORM\Column(name="country", type="string", length=255)
+     * @ORM\Column(name="country", type="string", length=255, nullable=true)
      */
     private $country;
 
@@ -78,6 +79,7 @@ class Member extends BaseUser
      * @var Tag[] | ArrayCollection
      * @Groups({"member"})
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="members", cascade={"persist"})
+     * @ApiProperty(attributes={"jsonld_context"={"@type"="#Tag[]"}})
      */
     private $tags;
 
@@ -100,6 +102,13 @@ class Member extends BaseUser
      * @ORM\Column(name="websiteUrl", type="string", length=255, nullable=true)
      */
     private $websiteUrl;
+
+    /**
+     * @var string
+     * @Groups({"member"})
+     * @ORM\Column(name="function", type="string", length=255, nullable=true)
+     */
+    private $function;
 
     /**
      * @var bool
@@ -198,6 +207,24 @@ class Member extends BaseUser
 
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getFunction()
+    {
+        return $this->function;
+    }
+
+    /**
+     * @param string $function
+     */
+    public function setFunction($function)
+    {
+        $this->function = $function;
+    }
+
+
 
     /**
      * @return string
@@ -442,7 +469,7 @@ class Member extends BaseUser
     /**
      * @return string
      */
-    public function getCountry(): string
+    public function getCountry()
     {
         return $this->country;
     }

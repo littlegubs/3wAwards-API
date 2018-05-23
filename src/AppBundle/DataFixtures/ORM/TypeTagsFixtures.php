@@ -29,7 +29,8 @@ class TypeTagsFixtures extends Fixture implements OrderedFixtureInterface
         'cms',
         'challenge',
         'skills',
-        'interests'
+        'interests',
+        'client_size'
     ];
 
     /**
