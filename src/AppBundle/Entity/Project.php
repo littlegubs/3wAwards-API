@@ -174,11 +174,18 @@ class Project
     private $agency;
 
     /**
-     * @var Agency
+     * @var Target
      * @Groups({"project"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Target", inversedBy="projects")
      */
     private $target;
+
+    /**
+     * @var SiteType
+     * @Groups({"project"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\SiteType", inversedBy="projects")
+     */
+    private $siteType;
 
     /**
      * @var Tag[] | ArrayCollection
@@ -793,19 +800,35 @@ class Project
     }
 
     /**
-     * @return Agency
+     * @return Target
      */
-    public function getTarget(): Agency
+    public function getTarget()
     {
         return $this->target;
     }
 
     /**
-     * @param Agency $target
+     * @param Target $target
      */
-    public function setTarget(Agency $target)
+    public function setTarget(Target $target)
     {
         $this->target = $target;
+    }
+
+    /**
+     * @return SiteType
+     */
+    public function getSiteType()
+    {
+        return $this->siteType;
+    }
+
+    /**
+     * @param SiteType $siteType
+     */
+    public function setSiteType(SiteType $siteType)
+    {
+        $this->siteType = $siteType;
     }
 
 
