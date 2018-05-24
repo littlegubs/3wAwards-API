@@ -7,6 +7,8 @@ use AppBundle\Entity\Client;
 use AppBundle\Entity\Image;
 use AppBundle\Entity\Member;
 use AppBundle\Entity\Project;
+use AppBundle\Entity\SiteType;
+use AppBundle\Entity\Target;
 use Doctrine\Common\DataFixtures\BadMethodCallException;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -83,12 +85,31 @@ class ProjectFixtures extends Fixture implements OrderedFixtureInterface
             ->setProjectName($this->projects[0][$i])
             ->setProjectDescription($this->projects[1][$i])
             ->setPublicationDate(new \DateTime(rand(1, 28).'-'.rand(1, 12).'-'.rand(2012, 2018)))
-            ->setAverageRating(rand(1, 100) / 10)
+            ->setAverageRating(rand(1, 100))
+            ->setAverageErgonomicRatings(rand(1, 100))
+            ->setAverageInteractivityRatings(rand(1, 100))
+            ->setAverageJudgeRatings(rand(1, 100))
+            ->setAverageOriginalityRatings(rand(1, 100))
+            ->setAverageQualityContentRatings(rand(1, 100))
+            ->setAverageReadabilityRatings(rand(1, 100))
+            ->setAverageUsersRatings(rand(1, 100))
+            ->setAverageReactivityRatings(rand(1, 100))
+            ->setAverageWeatlhFunctionalityRatings(rand(1, 100))
             ->addImage($image)
             ->addMember($member)
             ->setNoticableDescription($this->projects[2][$i])
             ->setProjectUrl($this->projects[3][$i])
             ->setStatus($this->status[rand(0, 2)]);
+
+        /** @var Target $target */
+        $target = $this->getReference('target_'.rand(0,1));
+        $project->setTarget($target);
+
+        /** @var SiteType $siteType */
+        $siteType = $this->getReference('site_type'.rand(0,6));
+        $project->setSiteType($siteType);
+
+
 
         if (rand(1, 2) == 1) {
             /** @var Agency $agency */
