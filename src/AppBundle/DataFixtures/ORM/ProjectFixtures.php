@@ -7,6 +7,8 @@ use AppBundle\Entity\Client;
 use AppBundle\Entity\Image;
 use AppBundle\Entity\Member;
 use AppBundle\Entity\Project;
+use AppBundle\Entity\SiteType;
+use AppBundle\Entity\Target;
 use Doctrine\Common\DataFixtures\BadMethodCallException;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -105,6 +107,16 @@ class ProjectFixtures extends Fixture implements OrderedFixtureInterface
             ->setNoticableDescription($this->projects[2][$i])
             ->setProjectUrl($this->projects[3][$i])
             ->setStatus($this->status[rand(0, 2)]);
+
+        /** @var Target $target */
+        $target = $this->getReference('target_'.rand(0,1));
+        $project->setTarget($target);
+
+        /** @var SiteType $siteType */
+        $siteType = $this->getReference('site_type'.rand(0,6));
+        $project->setSiteType($siteType);
+
+
 
         if (rand(1, 2) == 1) {
             /** @var Agency $agency */

@@ -8,10 +8,10 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * TypeTag
+ * Target
  *
- * @ORM\Table(name="type_tag")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\TypeTagRepository")
+ * @ORM\Table(name="target")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TargetRepository")
  * @ApiResource(itemOperations={
  *     "get",
  *     },
@@ -20,39 +20,38 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     "post"={"method"="POST"},
  *     },
  *     attributes={
- *     "normalization_context"={"groups"={"type-tag"}},
- *     "denormalization_context"={"groups"={"type-tag"}}
+ *     "normalization_context"={"groups"={"target"}},
+ *     "denormalization_context"={"groups"={"target"}}
  *     })
  */
-class TypeTag
+class Target
 {
     /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @Groups({"type-tag", "tag", "member", "project"})
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
-     * @Groups({"type-tag", "tag", "member", "project"})
+     * @Groups({"target", "project"})
      * @ORM\Column(name="libelle", type="string", length=255)
      */
     private $libelle;
 
     /**
-     * @var Tag[] | ArrayCollection
-     * @Groups({"type-tag"})
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Tag", mappedBy="type")
+     * @var Project[] | ArrayCollection
+     * @Groups({"target"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Project", mappedBy="target")
      */
-    private $tags;
+    private $projects;
 
     public function __construct()
     {
-        $this->tags = new ArrayCollection();
+        $this->projects = new ArrayCollection();
     }
 
     /**
@@ -70,7 +69,7 @@ class TypeTag
      *
      * @param string $libelle
      *
-     * @return TypeTag
+     * @return Target
      */
     public function setLibelle($libelle)
     {
@@ -92,22 +91,20 @@ class TypeTag
     /**
      * @return Tag[]|ArrayCollection
      */
-    public function getTags()
+    public function getProjects()
     {
-        return $this->tags;
+        return $this->projects;
     }
 
     /**
-     * @param Tag[]|ArrayCollection $tags
-     *
-     * @return $this
+     * @param Tag[]|ArrayCollection $projects
      */
-    public function setTags($tags)
+    public function setProjects($projects)
     {
-        $this->tags = $tags;
-
-        return $this;
+        $this->projects = $projects;
     }
+
+
 
 
 }

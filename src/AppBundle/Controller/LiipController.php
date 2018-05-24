@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Manager\FileManager;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -9,14 +10,24 @@ use Symfony\Component\HttpFoundation\Request;
 
 class LiipController
 {
-    /**
-     * @var CacheManager
-     */
-    protected $liipManager;
 
-    public function __construct(CacheManager $cacheManager)
+    /** @var FileManager */
+    protected $fileManager;
+
+    /** @var CacheManager */
+    protected $cacheManager;
+
+    /**
+     * LiipController constructor.
+     *
+     * @param FileManager  $fileManager
+     * @param CacheManager $cacheManager
+     */
+    public function __construct(FileManager $fileManager, CacheManager $cacheManager)
     {
-        $this->liipManager = $cacheManager;
+        $this->fileManager = $fileManager;
+        $this->cacheManager = $cacheManager;
+
     }
 
     /**
@@ -25,17 +36,19 @@ class LiipController
      * @return JsonResponse
      * @Route(
      *     name="liip_bundle",
-     *     path="/liip",
-     *     methods={"GET"}
+     *     path="/xd",
+     *     methods={"GET", "POST"}
      * )
      *
      */
     public function __invoke(Request $request)
     {
-        $path = $request->get('path');
-        $filter = $request->get('filter');
-        $newPath = $this->liipManager->getBrowserPath($path, $filter);
+        $webDir = $this->fileManager->xd().'/../web/uploads/';
+        $tmpName = $_FILES['xd']['tmp_name'];
+        $ext = pathinfo($_FILES['xd']['name'], PATHINFO_EXTENSION);
+        $id = uniqid();
+        move_uploaded_file($tmpName, $webDir.$id.'.'.$ext);
 
-        return new JsonResponse($newPath, 200);
+        return new JsonResponse('uploads/'.$id.'.'.$ext, 200);
     }
 }
