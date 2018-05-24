@@ -886,7 +886,6 @@ class Project
     {
         $this->target = $target;
 
-
         return $this;
     }
 
