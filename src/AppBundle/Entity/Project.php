@@ -78,35 +78,70 @@ class Project
      * @Groups({"project"})
      * @ORM\Column(type="float", nullable=true)
      */
-    private $averageOriginalityRatings;
+    private $averageOriginalityRatingsJudge;
 
     /**
      * @var float
      * @Groups({"project"})
      * @ORM\Column(type="float", nullable=true)
      */
-    private $averageReadabilityRatings;
+    private $averageOriginalityRatingsMember;
 
     /**
      * @var float
      * @Groups({"project"})
      * @ORM\Column(type="float", nullable=true)
      */
-    private $averageErgonomicRatings;
+    private $averageReadabilityRatingsJudge;
 
     /**
      * @var float
      * @Groups({"project"})
      * @ORM\Column(type="float", nullable=true)
      */
-    private $averageInteractivityRatings;
+    private $averageReadabilityRatingsMember;
 
     /**
      * @var float
      * @Groups({"project"})
      * @ORM\Column(type="float", nullable=true)
      */
-    private $averageQualityContentRatings;
+    private $averageErgonomicRatingsJudge;
+
+    /**
+     * @var float
+     * @Groups({"project"})
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $averageErgonomicRatingsMember;
+
+    /**
+     * @var float
+     * @Groups({"project"})
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $averageInteractivityRatingsJudge;
+
+    /**
+     * @var float
+     * @Groups({"project"})
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $averageInteractivityRatingsMember;
+
+    /**
+     * @var float
+     * @Groups({"project"})
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $averageQualityContentRatingsJudge;
+
+    /**
+     * @var float
+     * @Groups({"project"})
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $averageQualityContentRatingsMember;
 
 
     /**
@@ -114,7 +149,14 @@ class Project
      * @Groups({"project"})
      * @ORM\Column(type="float", nullable=true)
      */
-    private $averageWeatlhFunctionalityRatings;
+    private $averageWeatlhFunctionalityRatingsJudge;
+
+    /**
+     * @var float
+     * @Groups({"project"})
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $averageWeatlhFunctionalityRatingsMember;
 
 
     /**
@@ -122,7 +164,14 @@ class Project
      * @Groups({"project"})
      * @ORM\Column(type="float", nullable=true)
      */
-    private $averageReactivityRatings;
+    private $averageReactivityRatingsMember;
+
+    /**
+     * @var float
+     * @Groups({"project"})
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $averageReactivityRatingsJudge;
 
     /**
      * @var float
@@ -784,6 +833,286 @@ class Project
     public function setAverageReactivityRatings($averageReactivityRatings)
     {
         $this->averageReactivityRatings = $averageReactivityRatings;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAverageOriginalityRatingsJudge(): float
+    {
+        return $this->averageOriginalityRatingsJudge;
+    }
+
+    /**
+     * @param float $averageOriginalityRatingsJudge
+     *
+     * @return $this
+     */
+    public function setAverageOriginalityRatingsJudge($averageOriginalityRatingsJudge)
+    {
+        $this->averageOriginalityRatingsJudge = $averageOriginalityRatingsJudge;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAverageOriginalityRatingsMember(): float
+    {
+        return $this->averageOriginalityRatingsMember;
+    }
+
+    /**
+     * @param float $averageOriginalityRatingsMember
+     *
+     * @return $this
+     */
+    public function setAverageOriginalityRatingsMember($averageOriginalityRatingsMember)
+    {
+        $this->averageOriginalityRatingsMember = $averageOriginalityRatingsMember;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAverageReadabilityRatingsJudge(): float
+    {
+        return $this->averageReadabilityRatingsJudge;
+    }
+
+    /**
+     * @param float $averageReadabilityRatingsJudge
+     *
+     * @return $this
+     */
+    public function setAverageReadabilityRatingsJudge($averageReadabilityRatingsJudge)
+    {
+        $this->averageReadabilityRatingsJudge = $averageReadabilityRatingsJudge;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAverageReadabilityRatingsMember(): float
+    {
+        return $this->averageReadabilityRatingsMember;
+    }
+
+    /**
+     * @param float $averageReadabilityRatingsMember
+     *
+     * @return $this
+     */
+    public function setAverageReadabilityRatingsMember($averageReadabilityRatingsMember)
+    {
+        $this->averageReadabilityRatingsMember = $averageReadabilityRatingsMember;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAverageErgonomicRatingsJudge(): float
+    {
+        return $this->averageErgonomicRatingsJudge;
+    }
+
+    /**
+     * @param float $averageErgonomicRatingsJudge
+     *
+     * @return $this
+     */
+    public function setAverageErgonomicRatingsJudge($averageErgonomicRatingsJudge)
+    {
+        $this->averageErgonomicRatingsJudge = $averageErgonomicRatingsJudge;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAverageErgonomicRatingsMember(): float
+    {
+        return $this->averageErgonomicRatingsMember;
+    }
+
+    /**
+     * @param float $averageErgonomicRatingsMember
+     *
+     * @return $this
+     */
+    public function setAverageErgonomicRatingsMember($averageErgonomicRatingsMember)
+    {
+        $this->averageErgonomicRatingsMember = $averageErgonomicRatingsMember;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAverageInteractivityRatingsJudge(): float
+    {
+        return $this->averageInteractivityRatingsJudge;
+    }
+
+    /**
+     * @param float $averageInteractivityRatingsJudge
+     *
+     * @return $this
+     */
+    public function setAverageInteractivityRatingsJudge($averageInteractivityRatingsJudge)
+    {
+        $this->averageInteractivityRatingsJudge = $averageInteractivityRatingsJudge;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAverageInteractivityRatingsMember(): float
+    {
+        return $this->averageInteractivityRatingsMember;
+    }
+
+    /**
+     * @param float $averageInteractivityRatingsMember
+     *
+     * @return $this
+     */
+    public function setAverageInteractivityRatingsMember($averageInteractivityRatingsMember)
+    {
+        $this->averageInteractivityRatingsMember = $averageInteractivityRatingsMember;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAverageQualityContentRatingsJudge(): float
+    {
+        return $this->averageQualityContentRatingsJudge;
+    }
+
+    /**
+     * @param float $averageQualityContentRatingsJudge
+     *
+     * @return $this
+     */
+    public function setAverageQualityContentRatingsJudge($averageQualityContentRatingsJudge)
+    {
+        $this->averageQualityContentRatingsJudge = $averageQualityContentRatingsJudge;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAverageQualityContentRatingsMember(): float
+    {
+        return $this->averageQualityContentRatingsMember;
+    }
+
+    /**
+     * @param float $averageQualityContentRatingsMember
+     *
+     * @return $this
+     */
+    public function setAverageQualityContentRatingsMember($averageQualityContentRatingsMember)
+    {
+        $this->averageQualityContentRatingsMember = $averageQualityContentRatingsMember;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAverageWeatlhFunctionalityRatingsJudge(): float
+    {
+        return $this->averageWeatlhFunctionalityRatingsJudge;
+    }
+
+    /**
+     * @param float $averageWeatlhFunctionalityRatingsJudge
+     *
+     * @return $this
+     */
+    public function setAverageWeatlhFunctionalityRatingsJudge($averageWeatlhFunctionalityRatingsJudge)
+    {
+        $this->averageWeatlhFunctionalityRatingsJudge = $averageWeatlhFunctionalityRatingsJudge;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAverageWeatlhFunctionalityRatingsMember(): float
+    {
+        return $this->averageWeatlhFunctionalityRatingsMember;
+    }
+
+    /**
+     * @param float $averageWeatlhFunctionalityRatingsMember
+     *
+     * @return $this
+     */
+    public function setAverageWeatlhFunctionalityRatingsMember($averageWeatlhFunctionalityRatingsMember)
+    {
+        $this->averageWeatlhFunctionalityRatingsMember = $averageWeatlhFunctionalityRatingsMember;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAverageReactivityRatingsMember(): float
+    {
+        return $this->averageReactivityRatingsMember;
+    }
+
+    /**
+     * @param float $averageReactivityRatingsMember
+     *
+     * @return $this
+     */
+    public function setAverageReactivityRatingsMember($averageReactivityRatingsMember)
+    {
+        $this->averageReactivityRatingsMember = $averageReactivityRatingsMember;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAverageReactivityRatingsJudge(): float
+    {
+        return $this->averageReactivityRatingsJudge;
+    }
+
+    /**
+     * @param float $averageReactivityRatingsJudge
+     *
+     * @return $this
+     */
+    public function setAverageReactivityRatingsJudge($averageReactivityRatingsJudge)
+    {
+        $this->averageReactivityRatingsJudge = $averageReactivityRatingsJudge;
 
         return $this;
     }
