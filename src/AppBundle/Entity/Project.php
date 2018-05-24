@@ -224,6 +224,20 @@ class Project
     private $agency;
 
     /**
+     * @var Target
+     * @Groups({"project"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Target", inversedBy="projects")
+     */
+    private $target;
+
+    /**
+     * @var SiteType
+     * @Groups({"project"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\SiteType", inversedBy="projects")
+     */
+    private $siteType;
+
+    /**
      * @var Tag[] | ArrayCollection
      * @Groups({"project"})
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="projects", cascade={"persist"})
@@ -844,6 +858,13 @@ class Project
     {
         return $this->averageOriginalityRatingsJudge;
     }
+    /**
+     * @return Target
+     */
+    public function getTarget()
+    {
+        return $this->target;
+    }
 
     /**
      * @param float $averageOriginalityRatingsJudge
@@ -853,6 +874,18 @@ class Project
     public function setAverageOriginalityRatingsJudge($averageOriginalityRatingsJudge)
     {
         $this->averageOriginalityRatingsJudge = $averageOriginalityRatingsJudge;
+        return $this;
+    }
+
+    /**
+     * @param Target $target
+     *
+     * @return $this
+     */
+    public function setTarget(Target $target)
+    {
+        $this->target = $target;
+
 
         return $this;
     }
@@ -1115,6 +1148,24 @@ class Project
         $this->averageReactivityRatingsJudge = $averageReactivityRatingsJudge;
 
         return $this;
+    }
+
+
+
+    /**
+     * @return SiteType
+     */
+    public function getSiteType()
+    {
+        return $this->siteType;
+    }
+
+    /**
+     * @param SiteType $siteType
+     */
+    public function setSiteType(SiteType $siteType)
+    {
+        $this->siteType = $siteType;
     }
 
 
