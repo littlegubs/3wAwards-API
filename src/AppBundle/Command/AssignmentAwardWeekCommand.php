@@ -93,10 +93,7 @@ class AssignmentAwardWeekCommand extends Command
                     $projectsBytype = $this->entityManager->getRepository('AppBundle:Project')->findBy(['siteType' => $siteType]);
                     foreach ($projectsBytype as $project) {
                         $ratingProjectBySiteType = $project->getAverageRating() / $this->countVoteByProjects($allProjectRatingMember, $project->getId());
-                        $isAwardWeekSiteType = false;
-                        foreach ($project->getAwards() as $award)
-                        {
-                            if ($ratingProjectBySiteType > $bestRatingProjectBySiteType && $isAwardWeekSiteType === false && $project->getAverageRating() > $min_rating->getValue()) {
+                            if ($ratingProjectBySiteType > $bestRatingProjectBySiteType && $project->getAverageRating() > $min_rating->getValue()) {
                                 $bestRatingProjectBySiteType = $ratingProjectBySiteType;
                                 $bestProjectBySiteType = $project;
 
@@ -109,7 +106,6 @@ class AssignmentAwardWeekCommand extends Command
                                 $this->entityManager->persist($newAwardWeekBySiteType);
                                 $output->writeln('<info>'.$bestProjectBySiteType->getProjectName().' is the best '.$siteType->getLibelle().' </info>');
                             }
-                        }
 
                     }
                 } else {

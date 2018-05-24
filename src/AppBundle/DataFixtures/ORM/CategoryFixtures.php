@@ -26,7 +26,8 @@ class CategoryFixtures extends Fixture implements OrderedFixtureInterface
         'media ',
         'organisation',
         'B2B',
-        'B2C'
+        'B2C',
+
     ];
 
     /**
