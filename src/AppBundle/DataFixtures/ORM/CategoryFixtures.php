@@ -18,6 +18,16 @@ class CategoryFixtures extends Fixture implements OrderedFixtureInterface
         'content-quality',
         'functionnality',
         'reactivity',
+        'e-commerce ',
+        'institutionnel',
+        'produit ',
+        'événementiel ',
+        'communauté ',
+        'media ',
+        'organisation',
+        'B2B',
+        'B2C',
+
     ];
 
     /**
