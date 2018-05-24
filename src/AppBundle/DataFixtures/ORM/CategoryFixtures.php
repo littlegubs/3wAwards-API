@@ -11,12 +11,12 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 class CategoryFixtures extends Fixture implements OrderedFixtureInterface
 {
     private $categories = [
-        'creativity',
+        'originality',
         'graphism',
-        'ergonomy',
+        'navigation',
         'interactivity',
-        'contents_quality',
-        'fonctionnality_quality',
+        'content-quality',
+        'functionnality',
         'reactivity',
     ];
 
