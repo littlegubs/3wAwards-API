@@ -660,7 +660,7 @@ class Project
     /**
      * @return float
      */
-    public function getAverageOriginalityRatings(): float
+    public function getAverageOriginalityRatings()
     {
         return $this->averageOriginalityRatings;
     }
@@ -680,7 +680,7 @@ class Project
     /**
      * @return float
      */
-    public function getAverageReadabilityRatings(): float
+    public function getAverageReadabilityRatings()
     {
         return $this->averageReadabilityRatings;
     }
@@ -700,7 +700,7 @@ class Project
     /**
      * @return float
      */
-    public function getAverageErgonomicRatings(): float
+    public function getAverageErgonomicRatings()
     {
         return $this->averageErgonomicRatings;
     }
@@ -720,7 +720,7 @@ class Project
     /**
      * @return float
      */
-    public function getAverageInteractivityRatings(): float
+    public function getAverageInteractivityRatings()
     {
         return $this->averageInteractivityRatings;
     }
@@ -740,7 +740,7 @@ class Project
     /**
      * @return float
      */
-    public function getAverageQualityContentRatings(): float
+    public function getAverageQualityContentRatings()
     {
         return $this->averageQualityContentRatings;
     }
@@ -760,7 +760,7 @@ class Project
     /**
      * @return float
      */
-    public function getAverageWeatlhFunctionalityRatings(): float
+    public function getAverageWeatlhFunctionalityRatings()
     {
         return $this->averageWeatlhFunctionalityRatings;
     }
@@ -780,7 +780,7 @@ class Project
     /**
      * @return float
      */
-    public function getAverageUsersRatings(): float
+    public function getAverageUsersRatings()
     {
         return $this->averageUsersRatings;
     }
@@ -800,7 +800,7 @@ class Project
     /**
      * @return float
      */
-    public function getAverageJudgeRatings(): float
+    public function getAverageJudgeRatings()
     {
         return $this->averageJudgeRatings;
     }
@@ -820,7 +820,7 @@ class Project
     /**
      * @return float
      */
-    public function getAverageReactivityRatings(): float
+    public function getAverageReactivityRatings()
     {
         return $this->averageReactivityRatings;
     }
@@ -840,7 +840,7 @@ class Project
     /**
      * @return float
      */
-    public function getAverageOriginalityRatingsJudge(): float
+    public function getAverageOriginalityRatingsJudge()
     {
         return $this->averageOriginalityRatingsJudge;
     }
@@ -860,7 +860,7 @@ class Project
     /**
      * @return float
      */
-    public function getAverageOriginalityRatingsMember(): float
+    public function getAverageOriginalityRatingsMember()
     {
         return $this->averageOriginalityRatingsMember;
     }
@@ -880,7 +880,7 @@ class Project
     /**
      * @return float
      */
-    public function getAverageReadabilityRatingsJudge(): float
+    public function getAverageReadabilityRatingsJudge()
     {
         return $this->averageReadabilityRatingsJudge;
     }
@@ -900,7 +900,7 @@ class Project
     /**
      * @return float
      */
-    public function getAverageReadabilityRatingsMember(): float
+    public function getAverageReadabilityRatingsMember()
     {
         return $this->averageReadabilityRatingsMember;
     }
@@ -920,7 +920,7 @@ class Project
     /**
      * @return float
      */
-    public function getAverageErgonomicRatingsJudge(): float
+    public function getAverageErgonomicRatingsJudge()
     {
         return $this->averageErgonomicRatingsJudge;
     }
@@ -940,7 +940,7 @@ class Project
     /**
      * @return float
      */
-    public function getAverageErgonomicRatingsMember(): float
+    public function getAverageErgonomicRatingsMember()
     {
         return $this->averageErgonomicRatingsMember;
     }
@@ -960,7 +960,7 @@ class Project
     /**
      * @return float
      */
-    public function getAverageInteractivityRatingsJudge(): float
+    public function getAverageInteractivityRatingsJudge()
     {
         return $this->averageInteractivityRatingsJudge;
     }
@@ -980,7 +980,7 @@ class Project
     /**
      * @return float
      */
-    public function getAverageInteractivityRatingsMember(): float
+    public function getAverageInteractivityRatingsMember()
     {
         return $this->averageInteractivityRatingsMember;
     }
@@ -1000,7 +1000,7 @@ class Project
     /**
      * @return float
      */
-    public function getAverageQualityContentRatingsJudge(): float
+    public function getAverageQualityContentRatingsJudge()
     {
         return $this->averageQualityContentRatingsJudge;
     }
@@ -1020,7 +1020,7 @@ class Project
     /**
      * @return float
      */
-    public function getAverageQualityContentRatingsMember(): float
+    public function getAverageQualityContentRatingsMember()
     {
         return $this->averageQualityContentRatingsMember;
     }
@@ -1040,7 +1040,7 @@ class Project
     /**
      * @return float
      */
-    public function getAverageWeatlhFunctionalityRatingsJudge(): float
+    public function getAverageWeatlhFunctionalityRatingsJudge()
     {
         return $this->averageWeatlhFunctionalityRatingsJudge;
     }
@@ -1060,7 +1060,7 @@ class Project
     /**
      * @return float
      */
-    public function getAverageWeatlhFunctionalityRatingsMember(): float
+    public function getAverageWeatlhFunctionalityRatingsMember()
     {
         return $this->averageWeatlhFunctionalityRatingsMember;
     }
@@ -1080,7 +1080,7 @@ class Project
     /**
      * @return float
      */
-    public function getAverageReactivityRatingsMember(): float
+    public function getAverageReactivityRatingsMember()
     {
         return $this->averageReactivityRatingsMember;
     }
@@ -1100,7 +1100,7 @@ class Project
     /**
      * @return float
      */
-    public function getAverageReactivityRatingsJudge(): float
+    public function getAverageReactivityRatingsJudge()
     {
         return $this->averageReactivityRatingsJudge;
     }
