@@ -32,14 +32,14 @@ class Rating
 
     /**
      * @var int
-     * @Groups({"rating"})
+     * @Groups({"rating", "project-rating-member", "member"})
      * @ORM\Column(name="value", type="integer")
      */
     private $value;
 
     /**
      * @var Category
-     * @Groups({"rating"})
+     * @Groups({"rating", "project-rating-member", "member"})
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="ratings")
      */
     private $category;

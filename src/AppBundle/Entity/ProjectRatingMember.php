@@ -38,7 +38,7 @@ class ProjectRatingMember
 
     /**
      * @var bool
-     * @Groups({"project-rating-member"})
+     * @Groups({"project-rating-member", "member"})
      * @ORM\Column(name="isVoteJudge", type="boolean")
      */
     private $isVoteJudge;
@@ -52,14 +52,14 @@ class ProjectRatingMember
 
     /**
      * @var Project
-     * @Groups({"project-rating-member"})
+     * @Groups({"project-rating-member", "member"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project", inversedBy="projectRatingMember")
      */
     private $project;
 
     /**
      * @var Rating
-     * @Groups({"project-rating-member"})
+     * @Groups({"project-rating-member", "member"})
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Rating", inversedBy="projectRatingMember")
      */
     private $rating;

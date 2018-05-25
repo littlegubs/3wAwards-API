@@ -128,6 +128,7 @@ class Member extends BaseUser
      * @var ProjectRatingMember
      * @Groups({"member"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectRatingMember", mappedBy="member")
+     * @ApiProperty(attributes={"jsonld_context"={"@type"="#ProjectRatingMember[]"}})
      */
     private $projectRatingMember;
 
