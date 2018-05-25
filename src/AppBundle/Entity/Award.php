@@ -23,8 +23,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class Award
 {
     const TYPE_DAY = 'day';
+    const TYPE_WEEK =  'week';
     const TYPE_MONTH =  'month';
-    const TYPE_YEAR = 'year';
+    const TYPE_JURY = 'jury';
 
     /**
      * @var int
@@ -37,21 +38,21 @@ class Award
 
     /**
      * @var \DateTime
-     * @Groups({"award", "member"})
+     * @Groups({"award", "member", "project"})
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
 
     /**
      * @var Category
-     * @Groups({"award", "member"})
+     * @Groups({"award", "member", "project"})
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="awards")
      */
     private $category;
 
     /**
      * @var string
-     * @Groups({"award", "member"})
+     * @Groups({"award", "member", "project"})
      * @ORM\Column(name="type")
      */
     private $type;

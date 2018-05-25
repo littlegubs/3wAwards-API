@@ -14,8 +14,9 @@ class AwardFixtures extends Fixture implements OrderedFixtureInterface
 {
     private $awards = [
         Award::TYPE_DAY,
+        Award::TYPE_WEEK,
         Award::TYPE_MONTH,
-        Award::TYPE_YEAR
+        Award::TYPE_JURY
     ];
 
     /**
