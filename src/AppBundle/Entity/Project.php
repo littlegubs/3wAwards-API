@@ -78,7 +78,7 @@ class Project
      * @Groups({"project", "award"})
      * @ORM\Column(type="string", nullable=true)
      */
-    private $whatInTarnationIsThis;
+    private $whatTarnation;
 
     /**
      * @var string
@@ -360,19 +360,19 @@ class Project
     /**
      * @return string
      */
-    public function getWhatInTarnationIsThis()
+    public function getWhatTarnation(): string
     {
-        return $this->whatInTarnationIsThis;
+        return $this->whatTarnation;
     }
 
     /**
-     * @param string $whatInTarnationIsThis
+     * @param string $whatTarnation
      *
      * @return $this
      */
-    public function setWhatInTarnationIsThis($whatInTarnationIsThis)
+    public function setWhatTarnation($whatTarnation)
     {
-        $this->whatInTarnationIsThis = $whatInTarnationIsThis;
+        $this->whatTarnation = $whatTarnation;
 
         return $this;
     }
