@@ -76,7 +76,7 @@ class Project
     /**
      * @var string
      * @Groups({"project", "award"})
-     * @ORM\Column(type="float", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
     private $whatInTarnationIsThis;
 
@@ -358,7 +358,7 @@ class Project
     }
 
     /**
-     * @return float
+     * @return string
      */
     public function getWhatInTarnationIsThis()
     {
@@ -366,7 +366,7 @@ class Project
     }
 
     /**
-     * @param float $whatInTarnationIsThis
+     * @param string $whatInTarnationIsThis
      *
      * @return $this
      */
