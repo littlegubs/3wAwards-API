@@ -360,7 +360,7 @@ class Project
     /**
      * @return string
      */
-    public function getWhatTarnation(): string
+    public function getWhatTarnation()
     {
         return $this->whatTarnation;
     }

@@ -3,6 +3,7 @@
 namespace AppBundle\EventListener;
 
 use ApiPlatform\Core\EventListener\EventPriorities;
+use AppBundle\Entity\Project;
 use AppBundle\Entity\Rating;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -47,6 +48,8 @@ class RatingListener implements EventSubscriberInterface
     public function AverageCalculation(GetResponseForControllerResultEvent $event)
     {
         $object = $event->getControllerResult();
+        $projects = $this->em->getRepository(Project::class)->findAll();
+        dump($projects); die;
     }
 
 }
