@@ -84,6 +84,8 @@ nelmio_cors:
         '^/': ~
 
 api_platform:
+    eager_loading:
+        force_eager: false
     enable_fos_user: true
     http_cache:
         invalidation:
