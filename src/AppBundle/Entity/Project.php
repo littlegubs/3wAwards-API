@@ -358,6 +358,28 @@ class Project
     }
 
     /**
+     * @return float
+     */
+    public function getWhatInTarnationIsThis()
+    {
+        return $this->whatInTarnationIsThis;
+    }
+
+    /**
+     * @param float $whatInTarnationIsThis
+     *
+     * @return $this
+     */
+    public function setWhatInTarnationIsThis($whatInTarnationIsThis)
+    {
+        $this->whatInTarnationIsThis = $whatInTarnationIsThis;
+
+        return $this;
+    }
+
+
+
+    /**
      * Set publicationDate
      *
      * @param \DateTime $publicationDate
