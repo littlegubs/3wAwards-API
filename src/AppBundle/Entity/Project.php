@@ -143,7 +143,6 @@ class Project
      */
     private $averageQualityContentRatingsMember;
 
-
     /**
      * @var float
      * @Groups({"project"})
@@ -157,7 +156,6 @@ class Project
      * @ORM\Column(type="float", nullable=true)
      */
     private $averageWeatlhFunctionalityRatingsMember;
-
 
     /**
      * @var float
@@ -286,11 +284,11 @@ class Project
 
     public function __construct()
     {
-        $this->awards = new ArrayCollection();
-        $this->images = new ArrayCollection();
-        $this->tags = new ArrayCollection();
-        $this->credits = new ArrayCollection();
-        $this->members = new ArrayCollection();
+        $this->awards              = new ArrayCollection();
+        $this->images              = new ArrayCollection();
+        $this->tags                = new ArrayCollection();
+        $this->credits             = new ArrayCollection();
+        $this->members             = new ArrayCollection();
         $this->projectRatingMember = new ArrayCollection();
     }
 
@@ -504,7 +502,6 @@ class Project
         $this->credits = $credits;
     }
 
-
     /**
      * @param Tag $tag
      *
@@ -516,6 +513,7 @@ class Project
             $this->tags[] = $tag;
             $tag->addProject($this);
         }
+
         return $this;
     }
 
@@ -530,6 +528,7 @@ class Project
             $this->credits[] = $credit;
             $credit->addProject($this);
         }
+
         return $this;
     }
 
@@ -635,7 +634,6 @@ class Project
         $this->status = $status;
     }
 
-
     /**
      * @return Project[]|ArrayCollection
      */
@@ -674,196 +672,9 @@ class Project
     /**
      * @return float
      */
-    public function getAverageOriginalityRatings()
-    {
-        return $this->averageOriginalityRatings;
-    }
-
-    /**
-     * @param float $averageOriginalityRatings
-     *
-     * @return $this
-     */
-    public function setAverageOriginalityRatings($averageOriginalityRatings)
-    {
-        $this->averageOriginalityRatings = $averageOriginalityRatings;
-
-        return $this;
-    }
-
-    /**
-     * @return float
-     */
-    public function getAverageReadabilityRatings()
-    {
-        return $this->averageReadabilityRatings;
-    }
-
-    /**
-     * @param float $averageReadabilityRatings
-     *
-     * @return $this
-     */
-    public function setAverageReadabilityRatings($averageReadabilityRatings)
-    {
-        $this->averageReadabilityRatings = $averageReadabilityRatings;
-
-        return $this;
-    }
-
-    /**
-     * @return float
-     */
-    public function getAverageErgonomicRatings()
-    {
-        return $this->averageErgonomicRatings;
-    }
-
-    /**
-     * @param float $averageErgonomicRatings
-     *
-     * @return $this
-     */
-    public function setAverageErgonomicRatings($averageErgonomicRatings)
-    {
-        $this->averageErgonomicRatings = $averageErgonomicRatings;
-
-        return $this;
-    }
-
-    /**
-     * @return float
-     */
-    public function getAverageInteractivityRatings()
-    {
-        return $this->averageInteractivityRatings;
-    }
-
-    /**
-     * @param float $averageInteractivityRatings
-     *
-     * @return $this
-     */
-    public function setAverageInteractivityRatings($averageInteractivityRatings)
-    {
-        $this->averageInteractivityRatings = $averageInteractivityRatings;
-
-        return $this;
-    }
-
-    /**
-     * @return float
-     */
-    public function getAverageQualityContentRatings()
-    {
-        return $this->averageQualityContentRatings;
-    }
-
-    /**
-     * @param float $averageQualityContentRatings
-     *
-     * @return $this
-     */
-    public function setAverageQualityContentRatings($averageQualityContentRatings)
-    {
-        $this->averageQualityContentRatings = $averageQualityContentRatings;
-
-        return $this;
-    }
-
-    /**
-     * @return float
-     */
-    public function getAverageWeatlhFunctionalityRatings()
-    {
-        return $this->averageWeatlhFunctionalityRatings;
-    }
-
-    /**
-     * @param float $averageWeatlhFunctionalityRatings
-     *
-     * @return $this
-     */
-    public function setAverageWeatlhFunctionalityRatings($averageWeatlhFunctionalityRatings)
-    {
-        $this->averageWeatlhFunctionalityRatings = $averageWeatlhFunctionalityRatings;
-
-        return $this;
-    }
-
-    /**
-     * @return float
-     */
-    public function getAverageUsersRatings()
-    {
-        return $this->averageUsersRatings;
-    }
-
-    /**
-     * @param float $averageUsersRatings
-     *
-     * @return $this
-     */
-    public function setAverageUsersRatings($averageUsersRatings)
-    {
-        $this->averageUsersRatings = $averageUsersRatings;
-
-        return $this;
-    }
-
-    /**
-     * @return float
-     */
-    public function getAverageJudgeRatings()
-    {
-        return $this->averageJudgeRatings;
-    }
-
-    /**
-     * @param float $averageJudgeRatings
-     *
-     * @return $this
-     */
-    public function setAverageJudgeRatings($averageJudgeRatings)
-    {
-        $this->averageJudgeRatings = $averageJudgeRatings;
-
-        return $this;
-    }
-
-    /**
-     * @return float
-     */
-    public function getAverageReactivityRatings()
-    {
-        return $this->averageReactivityRatings;
-    }
-
-    /**
-     * @param float $averageReactivityRatings
-     *
-     * @return $this
-     */
-    public function setAverageReactivityRatings($averageReactivityRatings)
-    {
-        $this->averageReactivityRatings = $averageReactivityRatings;
-
-        return $this;
-    }
-
-    /**
-     * @return float
-     */
     public function getAverageOriginalityRatingsJudge()
     {
         return $this->averageOriginalityRatingsJudge;
-    }
-    /**
-     * @return Target
-     */
-    public function getTarget()
-    {
-        return $this->target;
     }
 
     /**
@@ -874,17 +685,6 @@ class Project
     public function setAverageOriginalityRatingsJudge($averageOriginalityRatingsJudge)
     {
         $this->averageOriginalityRatingsJudge = $averageOriginalityRatingsJudge;
-        return $this;
-    }
-
-    /**
-     * @param Target $target
-     *
-     * @return $this
-     */
-    public function setTarget(Target $target)
-    {
-        $this->target = $target;
 
         return $this;
     }
@@ -1149,7 +949,65 @@ class Project
         return $this;
     }
 
+    /**
+     * @return float
+     */
+    public function getAverageUsersRatings()
+    {
+        return $this->averageUsersRatings;
+    }
 
+    /**
+     * @param float $averageUsersRatings
+     *
+     * @return $this
+     */
+    public function setAverageUsersRatings($averageUsersRatings)
+    {
+        $this->averageUsersRatings = $averageUsersRatings;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAverageJudgeRatings()
+    {
+        return $this->averageJudgeRatings;
+    }
+
+    /**
+     * @param float $averageJudgeRatings
+     *
+     * @return $this
+     */
+    public function setAverageJudgeRatings($averageJudgeRatings)
+    {
+        $this->averageJudgeRatings = $averageJudgeRatings;
+
+        return $this;
+    }
+
+    /**
+     * @return Target
+     */
+    public function getTarget()
+    {
+        return $this->target;
+    }
+
+    /**
+     * @param Target $target
+     *
+     * @return $this
+     */
+    public function setTarget($target)
+    {
+        $this->target = $target;
+
+        return $this;
+    }
 
     /**
      * @return SiteType
@@ -1161,13 +1019,15 @@ class Project
 
     /**
      * @param SiteType $siteType
+     *
+     * @return $this
      */
-    public function setSiteType(SiteType $siteType)
+    public function setSiteType($siteType)
     {
         $this->siteType = $siteType;
+
+        return $this;
     }
 
 
-
 }
-
