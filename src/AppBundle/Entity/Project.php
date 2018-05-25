@@ -71,14 +71,14 @@ class Project
      * @Groups({"project", "award"})
      * @ORM\Column(type="float", nullable=true)
      */
-    private $averageUsersRatings;
+    private $averageRating;
 
     /**
      * @var float
      * @Groups({"project", "award"})
      * @ORM\Column(type="float", nullable=true)
      */
-    private $averageRating;
+    private $whatInTarnationIsThis;
 
     /**
      * @var float
@@ -177,6 +177,13 @@ class Project
      * @ORM\Column(type="float", nullable=true)
      */
     private $averageReactivityRatingsJudge;
+
+    /**
+     * @var float
+     * @Groups({"project", "award"})
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $averageUsersRatings;
 
     /**
      * @var float
