@@ -74,14 +74,14 @@ class Project
     private $averageRating;
 
     /**
-     * @var float
+     * @var string
      * @Groups({"project", "award"})
      * @ORM\Column(type="float", nullable=true)
      */
     private $whatInTarnationIsThis;
 
     /**
-     * @var float
+     * @var string
      * @Groups({"project"})
      * @ORM\Column(type="float", nullable=true)
      */
