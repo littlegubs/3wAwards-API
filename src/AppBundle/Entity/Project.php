@@ -15,7 +15,9 @@ use ApiPlatform\Core\Annotation\ApiProperty;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProjectRepository")
  * @ApiResource(
  *     itemOperations={
- *     "get"
+ *     "get",
+ *     "put"={"method"="PUT"},
+ *     "delete"
  *     },
  *     collectionOperations={
  *     "get",
@@ -203,7 +205,7 @@ class Project
     /**
      * @var ProjectRatingMember[] | ArrayCollection
      * @Groups({"project"})
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectRatingMember", mappedBy="project")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectRatingMember", mappedBy="project", cascade={"persist"})
      */
     private $projectRatingMember;
 
@@ -263,7 +265,7 @@ class Project
     /**
      * @var Image[] | ArrayCollection
      * @Groups({"project", "award"})
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Image")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
      * @ORM\JoinTable(name="project_image",
      *     joinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="image_id", referencedColumnName="id")})
@@ -273,7 +275,7 @@ class Project
     /**
      * @var Award[] | ArrayCollection
      * @Groups({"project", "client", "agency", "member"})
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Award", mappedBy="project")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Award", mappedBy="project", cascade={"persist"})
      */
     private $awards;
 

@@ -46,7 +46,7 @@ class Award
     /**
      * @var Category
      * @Groups({"award", "member", "project"})
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="awards")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="awards", cascade={"persist"})
      */
     private $category;
 
