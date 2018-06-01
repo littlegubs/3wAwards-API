@@ -49,7 +49,6 @@ class RatingListener implements EventSubscriberInterface
     {
         $object = $event->getControllerResult();
         $projects = $this->em->getRepository(Project::class)->findAll();
-        dump($projects); die;
     }
 
 }

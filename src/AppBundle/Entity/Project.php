@@ -74,14 +74,7 @@ class Project
     private $averageRating;
 
     /**
-     * @var string
-     * @Groups({"project", "award"})
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $whatTarnation;
-
-    /**
-     * @var string
+     * @var float
      * @Groups({"project"})
      * @ORM\Column(type="float", nullable=true)
      */
@@ -356,28 +349,6 @@ class Project
     {
         return $this->projectDescription;
     }
-
-    /**
-     * @return string
-     */
-    public function getWhatTarnation()
-    {
-        return $this->whatTarnation;
-    }
-
-    /**
-     * @param string $whatTarnation
-     *
-     * @return $this
-     */
-    public function setWhatTarnation($whatTarnation)
-    {
-        $this->whatTarnation = $whatTarnation;
-
-        return $this;
-    }
-
-
 
     /**
      * Set publicationDate

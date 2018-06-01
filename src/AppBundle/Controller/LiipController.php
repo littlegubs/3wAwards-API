@@ -50,8 +50,6 @@ class LiipController
      */
     public function __invoke(Request $request)
     {
-        $project = $this->em->getRepository(Project::class)->find(1);
-        var_dump($project); die;
         $webDir = $this->fileManager->xd().'/../web/uploads/';
         $tmpName = $_FILES['xd']['tmp_name'];
         $ext = pathinfo($_FILES['xd']['name'], PATHINFO_EXTENSION);
