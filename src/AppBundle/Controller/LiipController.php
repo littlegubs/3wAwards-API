@@ -43,6 +43,7 @@ class LiipController
      */
     public function __invoke(Request $request)
     {
+        dump('what in tarnation'); die,
         $webDir = $this->fileManager->xd().'/../web/uploads/';
         $tmpName = $_FILES['xd']['tmp_name'];
         $ext = pathinfo($_FILES['xd']['name'], PATHINFO_EXTENSION);
