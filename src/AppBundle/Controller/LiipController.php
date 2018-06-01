@@ -2,7 +2,9 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Project;
 use AppBundle\Manager\FileManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -17,16 +19,21 @@ class LiipController
     /** @var CacheManager */
     protected $cacheManager;
 
+    /** @var EntityManagerInterface */
+    protected $em;
+
     /**
      * LiipController constructor.
      *
-     * @param FileManager  $fileManager
-     * @param CacheManager $cacheManager
+     * @param FileManager            $fileManager
+     * @param CacheManager           $cacheManager
+     * @param EntityManagerInterface $em
      */
-    public function __construct(FileManager $fileManager, CacheManager $cacheManager)
+    public function __construct(FileManager $fileManager, CacheManager $cacheManager, EntityManagerInterface $em)
     {
         $this->fileManager = $fileManager;
         $this->cacheManager = $cacheManager;
+        $this->em = $em;
 
     }
 
@@ -43,7 +50,8 @@ class LiipController
      */
     public function __invoke(Request $request)
     {
-        dump('what in tarnation'); die,
+        $project = $this->em->getRepository(Project::class)->find(1);
+        var_dump($project); die;
         $webDir = $this->fileManager->xd().'/../web/uploads/';
         $tmpName = $_FILES['xd']['tmp_name'];
         $ext = pathinfo($_FILES['xd']['name'], PATHINFO_EXTENSION);
