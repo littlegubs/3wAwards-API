@@ -205,7 +205,8 @@ class Project
     /**
      * @var ProjectRatingMember[] | ArrayCollection
      * @Groups({"project"})
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectRatingMember", mappedBy="project", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectRatingMember", mappedBy="project",  cascade={"persist"})
+     * @ApiProperty(attributes={"jsonld_context"={"@type"="#ProjectRatingMember[]"}})
      */
     private $projectRatingMember;
 
