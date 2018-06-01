@@ -13,7 +13,7 @@ use ApiPlatform\Core\Annotation\ApiProperty;
  * @ORM\Table(name="agency")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AgencyRepository")
  * @ApiResource(itemOperations={
- *     "get","delete"
+ *     "get","delete", "put"
  *     },
  *     collectionOperations={
  *     "get",
