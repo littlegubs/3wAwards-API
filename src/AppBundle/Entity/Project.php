@@ -26,7 +26,7 @@ use ApiPlatform\Core\Annotation\ApiProperty;
  *     "pagination_items_per_page"=12,
  *     "normalization_context"={"groups"={"project"}},
  *     "denormalization_context"={"groups"={"project"}},
- *     "filters"={"project.status_filter", "project.agency_name_filter", "project.client_name_filter", "project.project_rating_member_id", "project.project_favorite_member"}
+ *     "filters"={"project.status_filter", "project.agency_name_filter", "project.client_name_filter", "project.project_rating_member_id", "project.project_favorite_member", "project.name_filter", "project.award_category_filter", "project.award_type_filter"}
  *     })
  */
 
