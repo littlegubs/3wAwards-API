@@ -40,7 +40,7 @@ class Rating
     /**
      * @var Category
      * @Groups({"rating", "project-rating-member", "member"})
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="ratings")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="ratings", cascade={"persist"})
      */
     private $category;
 

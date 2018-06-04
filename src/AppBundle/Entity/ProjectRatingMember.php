@@ -60,7 +60,7 @@ class ProjectRatingMember
     /**
      * @var Rating
      * @Groups({"project-rating-member", "member"})
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Rating", inversedBy="projectRatingMember")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Rating", inversedBy="projectRatingMember", cascade={"persist"})
      */
     private $rating;
 
