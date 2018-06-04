@@ -56,7 +56,7 @@ services:
 
     project.name_filter:
         parent: 'api_platform.doctrine.orm.search_filter'
-        arguments: [ { projectName: 'partial', status: 'exact' } ]
+        arguments: [ { projectName: 'partial' } ]
         tags: [ 'api_platform.filter' ]
         autowire: false
         autoconfigure: false
