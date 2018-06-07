@@ -54,6 +54,30 @@ services:
         autoconfigure: false
         public: false
 
+    project.name_filter:
+        parent: 'api_platform.doctrine.orm.search_filter'
+        arguments: [ { projectName: 'partial' } ]
+        tags: [ 'api_platform.filter' ]
+        autowire: false
+        autoconfigure: false
+        public: false
+
+    project.award_category_filter:
+        parent: 'api_platform.doctrine.orm.search_filter'
+        arguments: [ { awards.category.libelle: 'exact' } ]
+        tags:  [ 'api_platform.filter' ]
+        autowire: false
+        autoconfigure: false
+        public: false
+
+    project.award_type_filter:
+        parent: 'api_platform.doctrine.orm.search_filter'
+        arguments: [ { awards.type: 'partial' } ]
+        tags:  [ 'api_platform.filter' ]
+        autowire: false
+        autoconfigure: false
+        public: false
+
     project.client_name_filter:
         parent: 'api_platform.doctrine.orm.search_filter'
         arguments: [ { client.name: 'exact' } ]
