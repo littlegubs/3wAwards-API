@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Annotation\ApiProperty;
 
 /**
  * ProjectRatingMember
@@ -31,14 +32,14 @@ class ProjectRatingMember
 
     /**
      * @var \DateTime
-     * @Groups({"project-rating-member"})
+     * @Groups({"project-rating-member", "project"})
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
 
     /**
      * @var bool
-     * @Groups({"project-rating-member", "member"})
+     * @Groups({"project-rating-member", "member", "project"})
      * @ORM\Column(name="isVoteJudge", type="boolean")
      */
     private $isVoteJudge;

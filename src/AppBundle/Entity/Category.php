@@ -37,7 +37,7 @@ class Category
 
     /**
      * @var string
-     * @Groups({"category", "member", "project-rating-member", "member", "project"})
+     * @Groups({"category", "member", "project-rating-member", "project"})
      * @ORM\Column(name="libelle", type="string", length=255)
      */
     private $libelle;
