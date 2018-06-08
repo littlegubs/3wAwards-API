@@ -19,7 +19,8 @@ use ApiPlatform\Core\Annotation\ApiProperty;
  *     },attributes={
  *     "normalization_context"={"groups"={"member"}},
  *     "denormalization_context"={"groups"={"member"}},
- *     "filters"={"member.username_filter"}
+ *     "filters"={"member.username_filter"},
+ *     "pagination_items_per_page"=12,
  * })
  */
 class Member extends BaseUser
@@ -290,7 +291,7 @@ class Member extends BaseUser
     /**
      * @return bool
      */
-    public function isJudge()
+    public function getIsJudge()
     {
         return $this->isJudge;
     }
