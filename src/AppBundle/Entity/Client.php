@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Annotation\ApiProperty;
 
 /**
  * Client
@@ -141,6 +142,7 @@ class Client
      * @var Tag[] | ArrayCollection
      * @Groups({"client"})
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="clients" ,cascade={"persist"})
+     * @ApiProperty(attributes={"jsonld_context"={"@type"="#Tag[]"}})
      */
     private $tags;
 
