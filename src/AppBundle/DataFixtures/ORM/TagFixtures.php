@@ -61,7 +61,11 @@ class TagFixtures extends Fixture implements OrderedFixtureInterface
         /* Interest */
         ['UX Design', 'Création de sites web', 'Web Design', 'E-Marketing', 'Stratégie Web', 'Création de logo', 'UI Design', 'Charte & identité visuelle'],
         /* Client size*/
-        ['TPE','PME','TGE']
+        ['TPE','PME','TGE'],
+        /* Effectif */
+        ['10','20','30'],
+        /* Status */
+        ['indépendant', 'xdd', 'pas indépendant'],
     ];
 
     /**
