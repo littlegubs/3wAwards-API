@@ -33,7 +33,7 @@ class ProjectRatingMember
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @Groups({"project-rating-member"})
+     * @Groups({"project-rating-member", "member"})
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
@@ -48,9 +48,9 @@ class ProjectRatingMember
     /**
      * @var bool
      * @Groups({"project-rating-member", "member", "project"})
-     * @ORM\Column(name="isVoteJudge", type="boolean")
+     * @ORM\Column(name="voteJudge", type="boolean")
      */
-    private $isVoteJudge;
+    private $voteJudge;
 
     /**
      * @var Member
@@ -108,20 +108,21 @@ class ProjectRatingMember
      */
     public function isVoteJudge()
     {
-        return $this->isVoteJudge;
+        return $this->voteJudge;
     }
 
     /**
-     * @param bool $isVoteJudge
+     * @param bool $voteJudge
      *
      * @return $this
      */
-    public function setIsVoteJudge($isVoteJudge)
+    public function setVoteJudge($voteJudge)
     {
-        $this->isVoteJudge = $isVoteJudge;
+        $this->voteJudge = $voteJudge;
 
         return $this;
     }
+
 
     /**
      * @return Member

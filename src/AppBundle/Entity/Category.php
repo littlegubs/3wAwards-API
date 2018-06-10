@@ -25,6 +25,15 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  */
 class Category
 {
+
+    const CATEGORY_ORIGINALITY = 'originality';
+    const CATEGORY_READABILITY= 'readability';
+    const CATEGORY_NAVIGATION = 'navigation';
+    const CATEGORY_INTERACTIVITY = 'interactivity';
+    const CATEGORY_CONTENT_QUALITY = 'content-quality';
+    const CATEGORY_FUNCTIONALITY = 'functionality';
+    const CATEGORY_REACTIVITY = 'reactivity';
+
     /**
      * @var int
      *
