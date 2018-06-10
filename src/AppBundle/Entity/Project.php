@@ -282,7 +282,7 @@ class Project
 
     /**
      * @var string
-     * @Groups({"project"})
+     * @Groups({"project", "award"})
      * @ORM\Column(name="projectUrl", type="text")
      */
     private $projectUrl;
