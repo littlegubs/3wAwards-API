@@ -28,10 +28,11 @@ use ApiPlatform\Core\Annotation\ApiProperty;
  *     "pagination_items_per_page"=12,
  *     "normalization_context"={"groups"={"project"}},
  *     "denormalization_context"={"groups"={"project"}},
- *     "filters"={"project.status_filter", "project.agency_name_filter", "project.client_name_filter", "project.project_rating_member_id", "project.project_favorite_member", "project.name_filter", "project.award_category_filter", "project.award_type_filter"}
+ *     "filters"={"project.status_filter", "project.agency_name_filter", "project.client_name_filter",
+ *     "project.project_rating_member_id", "project.project_favorite_member", "project.name_filter",
+ *     "project.award_category_filter", "project.award_type_filter"}
  *     })
  */
-
 class Project
 {
     const STATUS_PENDING = 'pending';
@@ -145,7 +146,6 @@ class Project
      */
     private $averageQualityContentRatingsMember;
 
-
     /**
      * @var float
      * @Groups({"project"})
@@ -159,7 +159,6 @@ class Project
      * @ORM\Column(type="float", nullable=true)
      */
     private $averageWeatlhFunctionalityRatingsMember;
-
 
     /**
      * @var float
@@ -289,11 +288,11 @@ class Project
 
     public function __construct()
     {
-        $this->awards = new ArrayCollection();
-        $this->images = new ArrayCollection();
-        $this->tags = new ArrayCollection();
-        $this->credits = new ArrayCollection();
-        $this->members = new ArrayCollection();
+        $this->awards              = new ArrayCollection();
+        $this->images              = new ArrayCollection();
+        $this->tags                = new ArrayCollection();
+        $this->credits             = new ArrayCollection();
+        $this->members             = new ArrayCollection();
         $this->projectRatingMember = new ArrayCollection();
     }
 
@@ -507,7 +506,6 @@ class Project
         $this->credits = $credits;
     }
 
-
     /**
      * @param Tag $tag
      *
@@ -519,6 +517,7 @@ class Project
             $this->tags[] = $tag;
             $tag->addProject($this);
         }
+
         return $this;
     }
 
@@ -533,6 +532,7 @@ class Project
             $this->credits[] = $credit;
             $credit->addProject($this);
         }
+
         return $this;
     }
 
@@ -637,7 +637,6 @@ class Project
     {
         $this->status = $status;
     }
-
 
     /**
      * @return Project[]|ArrayCollection
@@ -861,6 +860,7 @@ class Project
     {
         return $this->averageOriginalityRatingsJudge;
     }
+
     /**
      * @return Target
      */
@@ -877,6 +877,7 @@ class Project
     public function setAverageOriginalityRatingsJudge($averageOriginalityRatingsJudge)
     {
         $this->averageOriginalityRatingsJudge = $averageOriginalityRatingsJudge;
+
         return $this;
     }
 
@@ -1152,8 +1153,6 @@ class Project
         return $this;
     }
 
-
-
     /**
      * @return SiteType
      */
@@ -1169,8 +1168,6 @@ class Project
     {
         $this->siteType = $siteType;
     }
-
-
 
 }
 

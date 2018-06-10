@@ -12,9 +12,16 @@ use ApiPlatform\Core\Annotation\ApiProperty;
  *
  * @ORM\Table(name="project_rating_member")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProjectRatingMemberRepository")
- * @ApiResource(itemOperations={
- *     "get"
- *     }, attributes={
+ * @ApiResource( itemOperations={
+ *     "get",
+ *     "put"={"method"="PUT"},
+ *     "delete"
+ *     },
+ *      collectionOperations={
+ *     "get",
+ *     "post"={"method"="POST"},
+ *     },
+ *      attributes={
  *     "normalization_context"={"groups"={"project-rating-member"}},
  *     "denormalization_context"={"groups"={"project-rating-member"}}
  *     })
@@ -26,6 +33,7 @@ class ProjectRatingMember
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @Groups({"project-rating-member"})
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
@@ -46,7 +54,7 @@ class ProjectRatingMember
 
     /**
      * @var Member
-     * @Groups({"project-rating-member", "project"})
+     * @Groups({"project-rating-member", "project", "member"})
      * @ORM\ManyToOne(targetEntity="Member", inversedBy="projectRatingMember")
      */
     private $member;
