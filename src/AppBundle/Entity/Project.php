@@ -41,7 +41,7 @@ class Project
 
     /**
      * @var int
-     * @Groups({"award", "member"})
+     * @Groups({"award", "member", "project-rating-member"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")

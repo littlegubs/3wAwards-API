@@ -59,7 +59,25 @@ class RatingController
 
         $this->em->persist($project);
         $this->em->flush();
-
-        return $project;
+        $ratings = [
+            $project->getAverageJudgeRatings(),
+            $project->getAverageUsersRatings(),
+            $project->getAverageRating(),
+            $project->getAverageOriginalityRatingsJudge(),
+            $project->getAverageReadabilityRatingsJudge(),
+            $project->getAverageNavigationRatingsJudge(),
+            $project->getAverageInteractivityRatingsJudge(),
+            $project->getAverageQualityContentRatingsJudge(),
+            $project->getAverageWeatlhFunctionalityRatingsJudge(),
+            $project->getAverageReactivityRatingsJudge(),
+            $project->getAverageOriginalityRatingsMember(),
+            $project->getAverageReadabilityRatingsMember(),
+            $project->getAverageNavigationRatingsMember(),
+            $project->getAverageInteractivityRatingsMember(),
+            $project->getAverageQualityContentRatingsMember(),
+            $project->getAverageWeatlhFunctionalityRatingsMember(),
+            $project->getAverageReactivityRatingsMember(),
+        ];
+        return new JsonResponse($ratings);
     }
 }
