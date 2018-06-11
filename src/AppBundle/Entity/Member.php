@@ -31,6 +31,7 @@ class Member extends BaseUser
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *      * @Groups({"requestJudge"})
      */
     protected $id;
 
@@ -43,14 +44,14 @@ class Member extends BaseUser
 
     /**
      * @var string
-     * @Groups({"member"})
+     * @Groups({"member", "requestJudge"})
      * @ORM\Column(name="firstName", type="string", length=255)
      */
     private $firstName;
 
     /**
      * @var string
-     * @Groups({"member"})
+     * @Groups({"member", "requestJudge"})
      * @ORM\Column(name="lastName", type="string", length=255)
      */
     private $lastName;
@@ -88,6 +89,7 @@ class Member extends BaseUser
      * @var Project[] | ArrayCollection
      * @Groups({"member"})
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Project", mappedBy="members")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $favoriteProjects;
 
@@ -130,6 +132,7 @@ class Member extends BaseUser
      * @Groups({"member"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectRatingMember", mappedBy="member")
      * @ApiProperty(attributes={"jsonld_context"={"@type"="#ProjectRatingMember[]"}})
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $projectRatingMember;
 
@@ -137,13 +140,23 @@ class Member extends BaseUser
      * @var Client | ArrayCollection[]
      * @Groups({"member"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Client", mappedBy="member")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $clients;
+
+    /**
+     * @var RequestJudge | ArrayCollection[]
+     * @Groups({"member"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\RequestJudge", mappedBy="member")
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     */
+    private $requestsJudge;
 
     /**
      * @var Agency | ArrayCollection[]
      * @Groups({"member"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Agency", mappedBy="member")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $agencies;
 
@@ -151,6 +164,7 @@ class Member extends BaseUser
      * @var Image
      * @Groups({"member"})
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $profilePicture;
 
@@ -503,6 +517,24 @@ class Member extends BaseUser
 
         return $this;
     }
+
+    /**
+     * @return Client|ArrayCollection[]
+     */
+    public function getRequestsJudge()
+    {
+        return $this->requestsJudge;
+    }
+
+    /**
+     * @param Client|ArrayCollection[] $requestsJudge
+     */
+    public function setRequestsJudge($requestsJudge)
+    {
+        $this->requestsJudge = $requestsJudge;
+    }
+
+
 
     /**
      * @param $tag
