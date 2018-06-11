@@ -49,6 +49,6 @@ class LiipController
         $id = uniqid();
         move_uploaded_file($tmpName, $webDir.$id.'.'.$ext);
 
-        return new JsonResponse('uploads/'.$id.'.'.$ext, 200);
+        return new JsonResponse(sprintf('uploads/%s.%s', $id, $ext), 200);
     }
 }
