@@ -57,7 +57,7 @@ class RegistrationController
                 ->setEnabled(true)
                 ->setIsJudge(false)
                 ->setOptIn(false)
-                ->setRoles(['ROLE_USER']);
+                ->setRoles([$request->get('role')]);
             $this->userManager->updatePassword($member);
 
             $this->em->persist($member);
