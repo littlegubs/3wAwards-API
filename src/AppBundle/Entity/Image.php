@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -42,6 +43,14 @@ class Image
      * @ORM\Column(name="libelle", type="string", length=255)
      */
     private $libelle;
+
+
+    /**
+     * @var int
+     * @Groups({"image", "project"})
+     * @ORM\Column(nullable=true, type="integer")
+     */
+    private $position;
 
     /**
      * Get id
@@ -84,6 +93,26 @@ class Image
     public function setPath($path)
     {
         $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param int $position
+     *
+     * @return $this
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
 
         return $this;
     }
