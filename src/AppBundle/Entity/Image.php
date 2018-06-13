@@ -38,7 +38,7 @@ class Image
 
     /**
      * @var string
-     * @Groups({"image", "project", "client", "agency"})
+     * @Groups({"image", "project", "client", "agency", "member"})
      * @ORM\Column(name="libelle", type="string", length=255)
      */
     private $libelle;
