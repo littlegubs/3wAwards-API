@@ -32,7 +32,8 @@ class TypeTagsFixtures extends Fixture implements OrderedFixtureInterface
         'interests',
         'client_size',
         'agency_effectif',
-        'agency_status'
+        'agency_status',
+        'agency_revenue',
     ];
 
     /**

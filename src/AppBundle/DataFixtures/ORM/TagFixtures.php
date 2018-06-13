@@ -65,7 +65,9 @@ class TagFixtures extends Fixture implements OrderedFixtureInterface
         /* Effectif */
         ['10','20','30'],
         /* Status */
-        ['indépendant', 'xdd', 'pas indépendant'],
+        ['indépendant', 'pas indépendant'],
+        /* Revenue */
+        ['1/2M €', '5M €', '10M+ €'],
     ];
 
     /**
