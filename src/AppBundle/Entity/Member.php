@@ -140,6 +140,7 @@ class Member extends BaseUser
      * @var Client | ArrayCollection[]
      * @Groups({"member"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Client", mappedBy="member")
+     * @ApiProperty(attributes={"jsonld_context"={"@type"="#Client[]"}})
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $clients;
@@ -156,6 +157,7 @@ class Member extends BaseUser
      * @var Agency | ArrayCollection[]
      * @Groups({"member"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Agency", mappedBy="member")
+     * @ApiProperty(attributes={"jsonld_context"={"@type"="#Agency[]"}})
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $agencies;

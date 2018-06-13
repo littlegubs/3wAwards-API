@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Annotation\ApiProperty;
 
 /**
  * Client
@@ -162,6 +163,7 @@ class Client
      * @var Project[] | ArrayCollection
      * @Groups({"client", "member"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Project", mappedBy="client")
+     * @ApiProperty(attributes={"jsonld_context"={"@type"="#Project[]"}})
      */
     private $projects;
 
