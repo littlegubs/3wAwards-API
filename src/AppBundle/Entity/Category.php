@@ -2,10 +2,12 @@
 
 namespace AppBundle\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * Category
@@ -18,15 +20,27 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     "normalization_context"={"groups"={"category"}},
  *     "denormalization_context"={"groups"={"category"}}
  *     })
+ * })
+ * @ApiFilter(SearchFilter::class, properties={"libelle": "exact"})
  */
 class Category
 {
+
+    const CATEGORY_ORIGINALITY = 'originality';
+    const CATEGORY_READABILITY= 'readability';
+    const CATEGORY_NAVIGATION = 'navigation';
+    const CATEGORY_INTERACTIVITY = 'interactivity';
+    const CATEGORY_CONTENT_QUALITY = 'content-quality';
+    const CATEGORY_FUNCTIONALITY = 'functionality';
+    const CATEGORY_REACTIVITY = 'reactivity';
+
     /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"category"})
      */
     private $id;
 

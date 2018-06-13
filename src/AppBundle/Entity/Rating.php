@@ -13,7 +13,13 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="rating")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\RatingRepository")
  * @ApiResource(itemOperations={
- *     "get"
+ *     "get",
+ *     "put"={"method"="PUT"},
+ *     "delete"
+ *     },
+ *      collectionOperations={
+ *     "get",
+ *     "post"={"method"="POST"},
  *     }, attributes={
  *     "normalization_context"={"groups"={"rating"}},
  *     "denormalization_context"={"groups"={"rating"}}
@@ -26,6 +32,7 @@ class Rating
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @Groups({"project-rating-member", "member"})
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
@@ -40,7 +47,7 @@ class Rating
     /**
      * @var Category
      * @Groups({"rating", "project-rating-member", "member"})
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="ratings")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="ratings", cascade={"persist"})
      */
     private $category;
 
