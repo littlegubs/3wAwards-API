@@ -9,6 +9,7 @@ use AppBundle\Entity\Member;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\SiteType;
 use AppBundle\Entity\Target;
+use AppBundle\Manager\ProjectManager;
 use Doctrine\Common\DataFixtures\BadMethodCallException;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -46,6 +47,16 @@ class ProjectFixtures extends Fixture implements OrderedFixtureInterface
     private $status = [Project::STATUS_PENDING, Project::STATUS_ACCEPTED, Project::STATUS_REFUSED];
 
     /**
+     * @var ProjectManager
+     */
+    private $projectManager;
+
+    public function __construct(ProjectManager $projectManager)
+    {
+        $this->projectManager = $projectManager;
+    }
+
+    /**
      * @return int*
      */
     public function getOrder()
@@ -69,12 +80,14 @@ class ProjectFixtures extends Fixture implements OrderedFixtureInterface
     /**
      * @param ObjectManager $manager
      *
-     * @throws BadMethodCallException
+     * @param               $i
+     *
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     private function createProject(ObjectManager $manager, $i)
     {
         $project = new Project();
-
         /** @var Member $member */
         $member = $this->getReference('member_'.rand(1,2));
 
@@ -85,23 +98,6 @@ class ProjectFixtures extends Fixture implements OrderedFixtureInterface
             ->setProjectName($this->projects[0][$i])
             ->setProjectDescription($this->projects[1][$i])
             ->setPublicationDate(new \DateTime(rand(1, 28).'-'.rand(1, 12).'-'.rand(2012, 2018)))
-            ->setAverageRating(rand(1, 100))
-            ->setAverageErgonomicRatingsMember(rand(1, 100))
-            ->setAverageInteractivityRatingsMember(rand(1, 100))
-            ->setAverageJudgeRatings(rand(1, 100))
-            ->setAverageOriginalityRatingsMember(rand(1, 100))
-            ->setAverageQualityContentRatingsMember(rand(1, 100))
-            ->setAverageReadabilityRatingsMember(rand(1, 100))
-            ->setAverageUsersRatings(rand(1, 100))
-            ->setAverageReactivityRatingsMember(rand(1, 100))
-            ->setAverageWeatlhFunctionalityRatingsMember(rand(1, 100))
-            ->setAverageErgonomicRatingsJudge(rand(1, 100))
-            ->setAverageInteractivityRatingsJudge(rand(1, 100))
-            ->setAverageOriginalityRatingsJudge(rand(1, 100))
-            ->setAverageQualityContentRatingsJudge(rand(1, 100))
-            ->setAverageReadabilityRatingsJudge(rand(1, 100))
-            ->setAverageReactivityRatingsJudge(rand(1, 100))
-            ->setAverageWeatlhFunctionalityRatingsJudge(rand(1, 100))
             ->addImage($image)
             ->addMember($member)
             ->setNoticableDescription($this->projects[2][$i])

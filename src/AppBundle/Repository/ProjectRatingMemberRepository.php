@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Project;
+
 /**
  * ProjectRatingMemberRepository
  *
@@ -10,4 +12,35 @@ namespace AppBundle\Repository;
  */
 class ProjectRatingMemberRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @param Project      $project
+     *
+     * @param string|null  $category
+     * @param boolean|null $isVoteJudge
+     *
+     * @return mixed
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getAverage(Project $project, $category = null, $isVoteJudge = null)
+    {
+        $q = $this->createQueryBuilder('prm')
+            ->select('avg(r.value)')
+            ->innerJoin('prm.rating', "r")
+            ->innerJoin("r.category", "c")
+            ->where('prm.project = :project')
+            ->setParameter('project', $project);
+
+        if ($category !== null) {
+            $q->AndWhere('c.libelle = :libelle')
+                ->setParameter('libelle', $category);
+        }
+
+        if ($isVoteJudge !== null) {
+            $q->AndWhere('prm.voteJudge = :bool')
+                ->setParameter('bool', $isVoteJudge);
+        }
+
+        return round($q->getQuery()->getSingleScalarResult() * 10);
+    }
 }

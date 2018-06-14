@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
@@ -161,6 +162,7 @@ class Agency
      * @var Tag[] | ArrayCollection
      * @Groups({"agency"})
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="agencies")
+     * @ApiProperty(attributes={"jsonld_context"={"@type"="#Tag[]"}})
      */
     private $tags;
 
