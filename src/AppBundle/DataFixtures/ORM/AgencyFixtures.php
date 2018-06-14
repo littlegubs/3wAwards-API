@@ -49,7 +49,6 @@ class AgencyFixtures extends Fixture implements OrderedFixtureInterface
         ['12345678901', 'X1234567890', '1X123456789', 'XX123456789', '0987654321'],
         /* duns*/
         ['123456789', '987654321', '678912345', '987612345', '123498765'],
-
     ];
 
     /**

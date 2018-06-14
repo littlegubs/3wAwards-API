@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     "normalization_context"={"groups"={"award"}},
  *     "denormalization_context"={"groups"={"award"}},
  *     "order"={"date": "ASC"},
- *     "pagination_items_per_page"=7,
+ *     "pagination_items_per_page"=12,
  *     "filters"={"award.type_filter"}
  *     })
  */
@@ -46,7 +46,7 @@ class Award
     /**
      * @var Category
      * @Groups({"award", "member", "project"})
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="awards")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="awards", cascade={"persist"})
      */
     private $category;
 

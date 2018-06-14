@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
@@ -12,7 +13,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="agency")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AgencyRepository")
  * @ApiResource(itemOperations={
- *     "get","delete"
+ *     "get","delete", "put"
  *     },
  *     collectionOperations={
  *     "get",
@@ -152,13 +153,15 @@ class Agency
      * @var Project[] | ArrayCollection
      * @Groups({"agency", "member"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Project", mappedBy="agency")
+     * @ApiProperty(attributes={"jsonld_context"={"@type"="#Project[]"}})
      */
     private $projects;
 
     /**
      * @var Tag[] | ArrayCollection
      * @Groups({"agency"})
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="agencies")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="agencies", cascade={"persist"})
+     * @ApiProperty(attributes={"jsonld_context"={"@type"="#Tag[]"}})
      */
     private $tags;
 

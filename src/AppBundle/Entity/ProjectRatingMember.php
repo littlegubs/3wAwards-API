@@ -5,15 +5,23 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Annotation\ApiProperty;
 
 /**
  * ProjectRatingMember
  *
  * @ORM\Table(name="project_rating_member")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProjectRatingMemberRepository")
- * @ApiResource(itemOperations={
- *     "get"
- *     }, attributes={
+ * @ApiResource( itemOperations={
+ *     "get",
+ *     "put"={"method"="PUT"},
+ *     "delete"
+ *     },
+ *      collectionOperations={
+ *     "get",
+ *     "post"={"method"="POST"},
+ *     },
+ *      attributes={
  *     "normalization_context"={"groups"={"project-rating-member"}},
  *     "denormalization_context"={"groups"={"project-rating-member"}}
  *     })
@@ -25,28 +33,30 @@ class ProjectRatingMember
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @Groups({"project-rating-member", "member"})
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var \DateTime
-     * @Groups({"project-rating-member"})
+     * @Groups({"project-rating-member", "project"})
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
 
     /**
      * @var bool
-     * @Groups({"project-rating-member", "member"})
-     * @ORM\Column(name="isVoteJudge", type="boolean")
+     * @Groups({"project-rating-member", "member", "project"})
+     * @ORM\Column(name="voteJudge", type="boolean")
      */
-    private $isVoteJudge;
+    private $voteJudge;
 
     /**
      * @var Member
-     * @Groups({"project-rating-member", "project"})
+     * @Groups({"project-rating-member", "project", "member"})
      * @ORM\ManyToOne(targetEntity="Member", inversedBy="projectRatingMember")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $member;
 
@@ -60,7 +70,7 @@ class ProjectRatingMember
     /**
      * @var Rating
      * @Groups({"project-rating-member", "member"})
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Rating", inversedBy="projectRatingMember")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Rating", inversedBy="projectRatingMember", cascade={"persist"})
      */
     private $rating;
 
@@ -99,20 +109,21 @@ class ProjectRatingMember
      */
     public function isVoteJudge()
     {
-        return $this->isVoteJudge;
+        return $this->voteJudge;
     }
 
     /**
-     * @param bool $isVoteJudge
+     * @param bool $voteJudge
      *
      * @return $this
      */
-    public function setIsVoteJudge($isVoteJudge)
+    public function setVoteJudge($voteJudge)
     {
-        $this->isVoteJudge = $isVoteJudge;
+        $this->voteJudge = $voteJudge;
 
         return $this;
     }
+
 
     /**
      * @return Member

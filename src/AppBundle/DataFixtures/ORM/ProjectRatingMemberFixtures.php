@@ -49,7 +49,7 @@ class ProjectRatingMemberFixtures extends Fixture implements OrderedFixtureInter
             ->setRating($rating)
             ->setProject($project)
             ->setMember($member)
-            ->setIsVoteJudge((rand(0, 1) === 1));
+            ->setVoteJudge((rand(0, 1) === 1));
 
         $manager->persist($projectRatingMember);
     }
