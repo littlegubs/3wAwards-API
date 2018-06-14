@@ -212,7 +212,7 @@ class Project
     /**
      * @var Client
      * @Groups({"project", "award"})
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Client", inversedBy="projects")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Client", inversedBy="projects", cascade={"persist"})
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $client;

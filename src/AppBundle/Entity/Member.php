@@ -161,7 +161,7 @@ class Member extends BaseUser
     /**
      * @var Image
      * @Groups({"member"})
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image",cascade={"persist"})
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $profilePicture;

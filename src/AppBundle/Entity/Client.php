@@ -16,6 +16,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *  @ApiResource(itemOperations={
  *     "get",
  *     "delete",
+ *     "put",
  *     },
  *     collectionOperations={
  *     "get",

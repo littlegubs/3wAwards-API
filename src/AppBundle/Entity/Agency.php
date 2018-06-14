@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="agency")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AgencyRepository")
  * @ApiResource(itemOperations={
- *     "get","delete"
+ *     "get","delete", "put"
  *     },
  *     collectionOperations={
  *     "get",
@@ -160,7 +160,7 @@ class Agency
     /**
      * @var Tag[] | ArrayCollection
      * @Groups({"agency"})
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="agencies")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", inversedBy="agencies", cascade={"persist"})
      * @ApiProperty(attributes={"jsonld_context"={"@type"="#Tag[]"}})
      */
     private $tags;
