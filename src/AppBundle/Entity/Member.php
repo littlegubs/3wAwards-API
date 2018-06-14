@@ -89,7 +89,6 @@ class Member extends BaseUser
      * @var Project[] | ArrayCollection
      * @Groups({"member"})
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Project", mappedBy="members")
-     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $favoriteProjects;
 
@@ -132,7 +131,6 @@ class Member extends BaseUser
      * @Groups({"member"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\ProjectRatingMember", mappedBy="member")
      * @ApiProperty(attributes={"jsonld_context"={"@type"="#ProjectRatingMember[]"}})
-     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $projectRatingMember;
 
@@ -141,7 +139,6 @@ class Member extends BaseUser
      * @Groups({"member"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Client", mappedBy="member")
      * @ApiProperty(attributes={"jsonld_context"={"@type"="#Client[]"}})
-     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $clients;
 
@@ -158,7 +155,6 @@ class Member extends BaseUser
      * @Groups({"member"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Agency", mappedBy="member")
      * @ApiProperty(attributes={"jsonld_context"={"@type"="#Agency[]"}})
-     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $agencies;
 

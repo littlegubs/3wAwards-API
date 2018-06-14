@@ -260,6 +260,7 @@ class Project
      * @var Member[] | ArrayCollection
      * @Groups({"project"})
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Member", inversedBy="favoriteProjects")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $members;
 
