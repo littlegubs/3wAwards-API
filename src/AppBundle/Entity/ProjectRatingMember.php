@@ -56,6 +56,7 @@ class ProjectRatingMember
      * @var Member
      * @Groups({"project-rating-member", "project", "member"})
      * @ORM\ManyToOne(targetEntity="Member", inversedBy="projectRatingMember")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $member;
 

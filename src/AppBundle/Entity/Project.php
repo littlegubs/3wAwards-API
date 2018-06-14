@@ -259,6 +259,7 @@ class Project
      * @var Member[] | ArrayCollection
      * @Groups({"project"})
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Member", inversedBy="favoriteProjects")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $members;
 
@@ -281,7 +282,7 @@ class Project
 
     /**
      * @var string
-     * @Groups({"project"})
+     * @Groups({"project", "award"})
      * @ORM\Column(name="projectUrl", type="text")
      */
     private $projectUrl;
