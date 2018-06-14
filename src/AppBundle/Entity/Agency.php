@@ -153,6 +153,7 @@ class Agency
      * @var Project[] | ArrayCollection
      * @Groups({"agency", "member"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Project", mappedBy="agency")
+     * @ApiProperty(attributes={"jsonld_context"={"@type"="#Project[]"}})
      */
     private $projects;
 

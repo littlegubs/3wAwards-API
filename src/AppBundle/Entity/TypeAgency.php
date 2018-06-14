@@ -31,7 +31,7 @@ class TypeAgency
 
     /**
      * @var string
-     * @Groups({"type-agency"})
+     * @Groups({"type-agency", "agency"})
      * @ORM\Column(name="libelle", type="string", length=255)
      */
     private $libelle;

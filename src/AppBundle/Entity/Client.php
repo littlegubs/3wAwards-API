@@ -164,6 +164,7 @@ class Client
      * @var Project[] | ArrayCollection
      * @Groups({"client", "member"})
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Project", mappedBy="client")
+     * @ApiProperty(attributes={"jsonld_context"={"@type"="#Project[]"}})
      */
     private $projects;
 
