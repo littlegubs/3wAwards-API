@@ -117,3 +117,19 @@ services:
         autowire: false
         autoconfigure: false
         public: false
+
+    project.project_agency_member:
+        parent: 'api_platform.doctrine.orm.search_filter'
+        arguments: [ { agency.member.id: 'exact' } ]
+        tags:  [ 'api_platform.filter' ]
+        autowire: false
+        autoconfigure: false
+        public: false
+
+    project.project_client_member:
+        parent: 'api_platform.doctrine.orm.search_filter'
+        arguments: [ { client.member.id: 'exact' } ]
+        tags:  [ 'api_platform.filter' ]
+        autowire: false
+        autoconfigure: false
+        public: false

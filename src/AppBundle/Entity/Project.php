@@ -29,8 +29,8 @@ use ApiPlatform\Core\Annotation\ApiProperty;
  *     "normalization_context"={"groups"={"project"}},
  *     "denormalization_context"={"groups"={"project"}},
  *     "filters"={"project.status_filter", "project.agency_name_filter", "project.client_name_filter",
- *     "project.project_rating_member_id", "project.project_favorite_member", "project.name_filter",
- *     "project.award_category_filter", "project.award_type_filter"}
+ *     "project.project_rating_member_id", "project.project_favorite_member", "project.project_agency_member",
+ *     "project.project_client_member", "project.name_filter", "project.award_category_filter", "project.award_type_filter"}
  *     })
  */
 class Project
@@ -146,6 +146,7 @@ class Project
      */
     private $averageQualityContentRatingsMember;
 
+
     /**
      * @var float
      * @Groups({"project"})
@@ -159,6 +160,7 @@ class Project
      * @ORM\Column(type="float", nullable=true)
      */
     private $averageWeatlhFunctionalityRatingsMember;
+
 
     /**
      * @var float
@@ -509,6 +511,7 @@ class Project
         $this->credits = $credits;
     }
 
+
     /**
      * @param Tag $tag
      *
@@ -640,6 +643,7 @@ class Project
     {
         $this->status = $status;
     }
+
 
     /**
      * @return Project[]|ArrayCollection
