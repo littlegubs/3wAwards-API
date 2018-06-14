@@ -40,14 +40,14 @@ class Image
 
     /**
      * @var string
-     * @Groups({"image", "project", "award", "member"})
+     * @Groups({"image", "project", "award", "member", "agency", "client"})
      * @ORM\Column(type="string", length=255)
      */
     private $path;
 
     /**
      * @var string
-     * @Groups({"image", "project"})
+     * @Groups({"image", "project", "client", "agency", "member"})
      * @ORM\Column(name="libelle", type="string", length=255)
      */
     private $libelle;
