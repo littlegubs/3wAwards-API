@@ -266,7 +266,9 @@ class Project
     /**
      * @var Image[] | ArrayCollection
      * @Groups({"project", "award"})
+     * @ApiProperty(attributes={"jsonld_context"={"@type"="#Image[]"}})
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
+     * @ORM\OrderBy({"position" = "ASC"})
      * @ORM\JoinTable(name="project_image",
      *     joinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="image_id", referencedColumnName="id")})

@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -11,8 +12,15 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *
  * @ORM\Table(name="image")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ImageRepository")
- * @ApiResource(itemOperations={
- *     "get"
+ * @ApiResource(
+ *     itemOperations={
+ *     "get",
+ *     "put"={"method"="PUT"},
+ *     "delete"
+ *     },
+ *     collectionOperations={
+ *     "get",
+ *     "post"={"method"="POST"},
  *     }, attributes={
  *     "normalization_context"={"groups"={"image"}},
  *     "denormalization_context"={"groups"={"image"}}
@@ -25,6 +33,7 @@ class Image
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
+     * @Groups({"image", "project", "award", "member"})
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
@@ -42,6 +51,14 @@ class Image
      * @ORM\Column(name="libelle", type="string", length=255)
      */
     private $libelle;
+
+
+    /**
+     * @var int
+     * @Groups({"image", "project"})
+     * @ORM\Column(nullable=true, type="integer")
+     */
+    private $position;
 
     /**
      * Get id
@@ -84,6 +101,26 @@ class Image
     public function setPath($path)
     {
         $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param int $position
+     *
+     * @return $this
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
 
         return $this;
     }
