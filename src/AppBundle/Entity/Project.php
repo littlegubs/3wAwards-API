@@ -57,14 +57,14 @@ class Project
 
     /**
      * @var string
-     * @Groups({"project"})
+     * @Groups({"project", "award", "member"})
      * @ORM\Column(name="projectDescription", type="text")
      */
     private $projectDescription;
 
     /**
      * @var \DateTime
-     * @Groups({"project"})
+     * @Groups({"project", "award", "member"})
      * @ORM\Column(name="publicationDate", type="date")
      */
     private $publicationDate;
